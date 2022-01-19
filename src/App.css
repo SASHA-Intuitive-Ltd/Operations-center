@@ -1,0 +1,79 @@
+* {
+  --global-black: black;
+  --global-white: white;
+  --global-grey: #C4C4C4;
+  --global-primary: #25a48c;
+
+  padding: 2px;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.personal-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  padding: 15px;
+  max-width: 400px;
+}
+
+.info {
+  padding: 10px;
+  border: solid 1px var(--global-grey);
+  border-bottom: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-picture {
+  padding-right: 20px;
+  margin: 10px 0px 10px 10px;
+}
+
+.user-vitals {
+  text-align: left;
+}
+
+.user-vitals .info__username {
+  font-weight: 800;
+  font-size: 120%;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.user-vitals p {
+  font-weight: 650;
+}
+
+.graphs {
+  padding: 10px;
+  border: solid 1px var(--global-grey);
+}
+
+.history-button {
+  color: var(--global-black) !important;
+  font-weight: 800;
+  background-color: var(--global-white) !important;
+  border-radius: 20px !important;
+  padding: 5px 10px !important;
+  border: solid 1px var(--global-black) !important;
+  cursor: pointer !important;
+  transition: all 0.65s;
+}
+
+.history-button:hover {
+  color: var(--global-white) !important;
+  background-color: var(--global-primary) !important;
+  border-radius: 20px !important;
+  transition: all 0.65s;
+}
+
+.graphs .history-button {
+  top: 0;
+  right: -40%;
+}
