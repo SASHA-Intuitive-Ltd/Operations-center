@@ -2,27 +2,35 @@ import React from 'react'
 import HealthStats from './HealthStats'
 import PersonalInfo from './PersonalInfo'
 import ProgressTrack from './WorkflowContainerDetails/ProgressTrack'
+import DeviceTrack from './WorkflowContainerDetails/DeviceTrack'
+import Performance from './WorkflowContainerDetails/Performance'
 
-function PageContainer({ userInfo, healthStats, devicePerformance }) {
+function PageContainer({ userInfo, healthStats, devicesPerformances, currentDevice }) {
+
+    // TODO: add useEffect for currentDevice prop
+
     return (
         <div className='personal-container'>
             <div className='left'>
                 {/* Subject's personal info */}
-                <PersonalInfo user={}/>
+                <PersonalInfo user={userInfo}/>
                 {/* Subject's health tracking */}
-                <HealthStats stats={}/>
+                <HealthStats stats={healthStats}/>
             </div>
             <div className='right'>
-                <div>
+                <div className='row1'>
                     {/* Subject's placement in workflow */}
-                    <ProgressTrack />
+                    <ProgressTrack currentDevice={currentDevice} />
                 </div>
-                <div>
-                    {/* Subjeect's performance (Reaction times, transition between devices time and more..) */}
-
+                <div className='row2'>
+                    {/* Subject's performance (Reaction times, transition between devices time and more..) */}
+                    <Performance/>
                     {/* Active device's performance (According to the performance parameters of each device, as specified)*/}
+                    <DeviceTrack currentDevice={currentDevice}/>
                 </div>
             </div>
         </div>
     )
 }
+
+export default PageContainer

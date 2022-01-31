@@ -5,8 +5,9 @@
 import './App.css';
 
 // Components testing imports
-import PersonalInfo from './Components/Personal_data_monitoring/PersonalInfo';
-import HealthStats from './Components/Personal_data_monitoring/HealthStats';
+import PageContainer from './Components/Personal_data_monitoring/PageContainer';
+import PageContainerOperator from './Components/Operator_control_pannel/PageContainerOperator'
+const logo = require('./assets/logo.png')
 
 // Modules import
 
@@ -25,17 +26,19 @@ function App() {
         {/* Top bar component */}
         <div className='top-bar'>
           {/* Logo + Title + Menu */}
+            <img src={logo} className='logo'/>
         </div>
 
         {/* Router */}
-
-        {/* Components testing without login */}
-        <div className='left'>
-        <PersonalInfo user={testConfigs.user1}/>
-        <HealthStats stats={testConfigs.healthStats1}/>
-        </div>
+        {/* NOTICE: currentDevice should be written only in lower case format. */}
+       {/*<PageContainer 
+          userInfo={testConfigs.user1}
+          healthStats={testConfigs.healthStats1}
+          currentDevice={"wheelchair"} 
+       />*/}
+        <PageContainerOperator/>
     </div>
-  );
+  )
 }
 
 export default App;

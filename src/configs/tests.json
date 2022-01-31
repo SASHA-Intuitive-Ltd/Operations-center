@@ -5,6 +5,7 @@
         "grey": "#c4c4c4",
         "primary": "#25a48c"
     },
+    
     "user1": {
         "name": "Ruby Rudov",
         "age": 19,
@@ -119,6 +120,66 @@
             0.976,
             0.976,
             0.976
+        ]
+    },
+    "device_checkpoints": {
+        "wheelchair": [
+            {
+                "name": "Loaded",
+                "progress": "finished",
+                "pstg": 15,
+                "index": "1"
+            },
+            {
+                "name": "Location received",
+                "progress": "finished",
+                "pstg": 15,
+                "index": "2"
+            },
+            {
+                "name": "Movement",
+                "progress": "in-progress",
+                "pstg": 50,
+                "index": "3"
+            },
+            {
+                "name": "Arrived",
+                "progress": "not-started",
+                "pstg": 20,
+                "index": "4"
+            }
+        ],
+        "shower": [
+            "Start",
+            "Air",
+            "Soap",
+            "Water",
+            "End"
+        ],
+        "toilet": [
+            "Drop",
+            "Sit",
+            "Finished",
+            "Stand",
+            "Flush"
+        ]
+    },
+    "device_vitals": {
+        "wheelchair": [
+            
+        ],
+        "shower": [
+            {
+                "vital": "Water temp",
+                "stat": "38"
+            },
+            {
+                "vital": "Water pressure",
+                "stat": "4 Bars"
+            }
+        ],
+        "toilet": [
+
         ]
     }
 }
