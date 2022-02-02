@@ -7,6 +7,8 @@ import './App.css';
 // Components testing imports
 import PageContainer from './Components/Personal_data_monitoring/PageContainer';
 import PageContainerOperator from './Components/Operator_control_pannel/PageContainerOperator'
+import Register from './Components/User_management/register_patient/Register';
+import AdminView from './Components/Admin_views/AdminView';
 const logo = require('./assets/logo.png')
 
 // Modules import
@@ -36,7 +38,8 @@ function App() {
           healthStats={testConfigs.healthStats1}
           currentDevice={"wheelchair"} 
        />*/}
-        <PageContainerOperator/>
+       {/* <PageContainerOperator/>*/}
+       <AdminView adminInfo={testConfigs.admin1}/>
     </div>
   )
 }

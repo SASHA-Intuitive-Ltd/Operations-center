@@ -181,5 +181,12 @@
         "toilet": [
 
         ]
+    },
+    "admin1": {
+        "username": "Ruben Rudov",
+        "password": "1234",
+        "patients_list": [
+            "user1"
+        ]
     }
 }

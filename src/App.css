@@ -338,3 +338,35 @@
 .room:hover .header {
   background-color: var(--global-primary);
 }
+
+.operator-dashboard {
+  padding: 30px;
+  padding-left: 100px;
+  text-align: left;
+}
+
+.operator-dashboard h1 {
+  font-size: xx-large;
+}
+
+.operator-dashboard h2 {
+  font-size: x-large;
+}
+
+.possible-actions {
+  padding: 100px;
+}
+
+.possible-actions .row {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center
+}
+
+.card-button:hover {
+  background-color: var(--global-primary) !important;
+}
+
+.card-button:hover .button-icon {
+  color: var(--global-white) !important;
+}

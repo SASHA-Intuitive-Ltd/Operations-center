@@ -15,7 +15,6 @@ function PageContainerOperator() {
            {/* Requests - immidiate and longer term requests */}
            <RequestsContainer/>
            <RoomsContainer/>
-           
         </div>
     )
 }
