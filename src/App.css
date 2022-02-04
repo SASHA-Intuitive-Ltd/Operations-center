@@ -370,3 +370,16 @@
 .card-button:hover .button-icon {
   color: var(--global-white) !important;
 }
+
+.landing {
+  padding: 200px;
+}
+
+.landing h1 {
+  font-size: xx-large !important;
+}
+
+.landing h2 {
+  font-size: x-large !important;
+}
+

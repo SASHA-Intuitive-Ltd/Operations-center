@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -19,6 +19,16 @@ import Select from '@mui/material/Select';
 
 function AddPatient({ openAdd, handleClose }) {
 
+    const [ newPat, setNewPat ] = useState({
+        username: null,
+        email: null,
+        address: null,
+        phone: null,
+        diseases: null,
+        gender: null,
+    })
+
+    const [img, setImage] = useState(null)
     
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -51,6 +61,17 @@ function AddPatient({ openAdd, handleClose }) {
         return items
     }
 
+    const handleOnChangeInput = (e) => {
+        const { name, value } = e.target
+
+        if (name === 'picture') {
+            if (e.target.files && e.target.files[0]) {
+                let img1 = e.target.files[0];
+                setImage(URL.createObjectURL(img1)) }
+        }
+
+    }
+
     return (
         <div>
             <Dialog
@@ -62,11 +83,11 @@ function AddPatient({ openAdd, handleClose }) {
                         <p>Enter new patient info</p>
                     </DialogTitle>
                     <DialogContent style={inputsContainerStyle}>
-                        <TextField style={tfieldStyle} id="outlined-basic" label="Full name" variant="outlined" />
-                        <TextField style={tfieldStyle} id="outlined-basic" label="Email address" variant="outlined" />
-                        <TextField style={tfieldStyle} id="outlined-basic" label="Home Adress" variant="outlined" />
-                        <TextField style={tfieldStyle} id="outlined-basic" label="Phone number" variant="outlined" />
-                        <TextField style={tfieldStyle} id="outlined-basic" label="Previous diseases" variant="outlined" />
+                        <TextField style={tfieldStyle} name="fullname" label="Full name" variant="outlined" />
+                        <TextField style={tfieldStyle} name="email" label="Email address" variant="outlined" />
+                        <TextField style={tfieldStyle} name="address" label="Home Adress" variant="outlined" />
+                        <TextField style={tfieldStyle} name="phone" label="Phone number" variant="outlined" />
+                        <TextField style={tfieldStyle} name="disease" label="Previous diseases" variant="outlined" />
 
                         <DialogContentText>Gender</DialogContentText>
                         <RadioGroup
@@ -74,8 +95,8 @@ function AddPatient({ openAdd, handleClose }) {
                             name="radio-buttons-group"
                             style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
                         >
-                            <FormControlLabel value="male" control={<Radio />} label="Male" />
-                            <FormControlLabel value="female" control={<Radio />} label="Female" />
+                            <FormControlLabel name='gender_male' value="male" control={<Radio />} label="Male" />
+                            <FormControlLabel name='gender_female' value="female" control={<Radio />} label="Female" />
                         </RadioGroup>
                         <FormControl style={tfieldStyle}>
                                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
@@ -98,8 +119,11 @@ function AddPatient({ openAdd, handleClose }) {
                             <input
                                 type="file"
                                 hidden
+                                name="picture"
+                                onChange={handleOnChangeInput}
                             />
                         </Button>
+                        <img src={img}/>
                     </DialogContent>
                     <DialogActions>
                         <Button style={buttonStyle} autoFocus variant="contained" sx={{backgroundColor: 'green', color: 'white !important'}} onClick={handleClose}>
