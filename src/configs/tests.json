@@ -7,13 +7,14 @@
     },
     
     "user1": {
-        "name": "Ruby Rudov",
+        "fullname": "Ruby Rudov",
         "age": 19,
         "email": "ruby.rudov@gmail.com",
-        "phoneNumber": "05X-XXXXXXX",
+        "phone": "05X-XXXXXXX",
         "profileImageURl": "NaN",
         "diagnosis": "Healthy",
-        "password": "12345678"
+        "password": "12345678",
+        "address": "Hak"
     },
 
     "healthStats1": {
@@ -183,10 +184,16 @@
         ]
     },
     "admin1": {
-        "username": "Ruben Rudov",
-        "password": "1234",
-        "patients_list": [
-            "user1"
-        ]
+        "_id": {
+            "$oid": "620e329218549ab171e53ee7"
+        },
+        "patients": ["6206299539bd33ce78e3ed58", "6205a62c7da7ea26ce9d5fe0"],
+        "location": "Sasha",
+        "email": "rudovruben4all@gmail.com",
+        "password": "ruby1111",
+        "fullname": "Ruben Rudov",
+        "__v": {
+            "$numberInt": "0"
+        }
     }
 }

@@ -7,14 +7,14 @@ import EmergenciesContainer from './EmergenciesContainer'
 import RequestsContainer from './RequestsContainer'
 import RoomsContainer from "./RoomsContainer"
 
-function PageContainerOperator() {
+function PageContainerOperator({ operatorInfo }) {
     return (
         <div className="operator-screen">
            {/* Emergencies - Health and System */}
            <EmergenciesContainer/>
            {/* Requests - immidiate and longer term requests */}
            <RequestsContainer/>
-           <RoomsContainer/>
+           <RoomsContainer patientsList={operatorInfo.patients}/>
         </div>
     )
 }

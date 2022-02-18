@@ -15,19 +15,19 @@ function PageContainer({ userInfo, healthStats, devicesPerformances, currentDevi
                 {/* Subject's personal info */}
                 <PersonalInfo user={userInfo}/>
                 {/* Subject's health tracking */}
-                <HealthStats stats={healthStats}/>
+                {/*  <HealthStats stats={healthStats}/>*/}
             </div>
             <div className='right'>
-                <div className='row1'>
-                    {/* Subject's placement in workflow */}
+                {/*<div className='row1'>
+                    {/* Subject's placement in workflow 
                     <ProgressTrack currentDevice={currentDevice} />
                 </div>
                 <div className='row2'>
-                    {/* Subject's performance (Reaction times, transition between devices time and more..) */}
+                    {/* Subject's performance (Reaction times, transition between devices time and more..) 
                     <Performance/>
-                    {/* Active device's performance (According to the performance parameters of each device, as specified)*/}
+                    {/* Active device's performance (According to the performance parameters of each device, as specified)
                     <DeviceTrack currentDevice={currentDevice}/>
-                </div>
+                </div>*/}
             </div>
         </div>
     )

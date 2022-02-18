@@ -6,7 +6,6 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { Fab as Button, TextField } from '@mui/material';
-import { Button as Btn } from "@mui/material";
 import Typography from '@mui/material/Typography';
 
 
@@ -82,7 +81,7 @@ function AdminView({ adminInfo }) {
 
     return(
         <div className="operator-dashboard">
-            <h1>Hey, {adminInfo.username}</h1>
+            <h1>Hey, {adminInfo.fullname}</h1>
             <h2>Please choose an operation to execute:</h2>
             <div className="possible-actions">
                 <div className="row">
@@ -93,7 +92,7 @@ function AdminView({ adminInfo }) {
                                 card({
                                     "action": "View your patients",
                                     "actionCall": <PreviewIcon style={iconStyle} className="button-icon"/>,
-                                    "description": "View your personal patients list and take control of necessary devices"
+                                    "description": "View your personal patients list and take control of necessary devices",
                                 })
                             }
                         </Card>

@@ -2,13 +2,13 @@
  * @Purpose Rooms list grid component
  */
 
-import React, { useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import RoomBox from "./RoomBox"
 import SearchBar from "../SearchBar/SearchBar"
 
-function RoomsContainer() {
+function RoomsContainer({ patientsList }) {
 
-    const [rooms, setRooms] = useState([
+    /*const [rooms, setRooms] = useState([
         {
             "name": "Patient1",
             "room_id": "R# 1",
@@ -39,12 +39,12 @@ function RoomsContainer() {
                 "requests": "no_"
             }
         }
-    ])
+    ])*/
 
-    const [filter, setFilter] = useState("")
+    // const [filter, setFilter] = useState("")
 
     // Handler for filtering, by name and room
-   /** const handleOnChange = (e) => {
+    /** const handleOnChange = (e) => {
         const { name, value } = e.target
         var temp = []
 
@@ -73,6 +73,28 @@ function RoomsContainer() {
         setRooms(temp)
     }*/
 
+    const [ rooms, setRooms ] = useState([{
+        "name": "Patient1",
+        "room_id": "R# 1",
+        "current_activity": "Shower",
+        "states": {
+            "health": "no_",
+            "monitors": "no_issue",
+            "requests": "no_issue"
+        }
+    }])
+
+    /*useEffect(() => {
+        var roomsList = []
+
+        patientsList.forEach(element => {
+            roomsList.push(
+                element
+            )
+        })
+
+    }, [])*/
+
     return (
         <div>
                 <div className="filters">
@@ -81,6 +103,10 @@ function RoomsContainer() {
                 </div>
                 {/* Rooms list - each room has a name, number, current operation, 3 fields: Requests, monitors issues and health issues */}
                 <div className="rooms-list">
+                    <div>
+                       
+                    </div>
+                    {/*
                     <RoomBox roomParams={rooms[0]}/>
                     <RoomBox roomParams={rooms[1]}/>
                     <RoomBox roomParams={rooms[2]}/>
@@ -99,6 +125,7 @@ function RoomsContainer() {
                     <RoomBox roomParams={rooms[0]}/>
                     <RoomBox roomParams={rooms[2]}/>
                     <RoomBox roomParams={rooms[2]}/>
+                    */}
                 </div>
            </div>
     )

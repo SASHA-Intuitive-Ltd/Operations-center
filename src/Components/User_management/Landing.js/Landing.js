@@ -13,15 +13,11 @@ const buttonStyle = {
 
 function Landing() {
 
-    const onClickHandler = (e) => {
+    function onClickHandler(e) {
         const {name, value} = e.target
-        
         console.log(name)
         console.log(value)
-
-        {<Redirect to={`/${name}`}/>}
     }
-
 
     return (
         <div className='landing'>

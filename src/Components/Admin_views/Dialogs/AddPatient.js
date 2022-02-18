@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -17,16 +17,18 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import axios from 'axios'
+
 function AddPatient({ openAdd, handleClose }) {
 
-    const [ newPat, setNewPat ] = useState({
-        username: null,
-        email: null,
-        address: null,
-        phone: null,
-        diseases: null,
-        gender: null,
-    })
+    const [fullname, setFullname] = useState("Rub R")
+    const [email, setEmail] = useState("ruby@gmail.com")
+    const [password, setPassword] = useState("ruby@gmail.com")
+    const [address, setAdress] = useState("rashlatz")
+    const [phone, setPhone] = useState("1234567")
+    const [diseases, setDiseases] = useState([])
+    const [gender, setGender] = useState("Male")
+    const [profileImg, setProfileImg] = useState("default")
 
     const [img, setImage] = useState(null)
     
@@ -53,11 +55,31 @@ function AddPatient({ openAdd, handleClose }) {
         margin: 10
     }
 
+    const submitNewPatient = useCallback(async () => {
+        // TODO: Validators
+
+        // Send info to webserver
+        await axios.post('http://localhost:5000/users', {
+            fullname: fullname,
+            password: password,
+            email: email,
+            address: address,
+            phone: phone,
+            profileImg: profileImg,
+            gender: gender
+        })
+
+        // Handle dialog closing
+        handleClose()
+    })
+    
     const pickerItems = () => {
         var items = []
+        
         for(var i = 20; i < 100; i++) {
             items.push(<MenuItem value={i}>{i}</MenuItem>)
         }
+
         return items
     }
 
@@ -70,6 +92,29 @@ function AddPatient({ openAdd, handleClose }) {
                 setImage(URL.createObjectURL(img1)) }
         }
 
+        else if (name === 'fullname') {
+            setFullname(value)
+        }
+
+        else if (name === 'password') {
+            setPassword(value)
+        }
+
+        else if (name === 'email') {
+            setEmail(value)
+        }
+
+        else if (name === 'address') {
+            setAdress(value)
+        }
+
+        else if (name === 'phone') {
+            setPhone(value)
+        }
+
+        //else if (name === 'gender') {
+          //  setEmail(value)
+        //}
     }
 
     return (
@@ -83,11 +128,35 @@ function AddPatient({ openAdd, handleClose }) {
                         <p>Enter new patient info</p>
                     </DialogTitle>
                     <DialogContent style={inputsContainerStyle}>
-                        <TextField style={tfieldStyle} name="fullname" label="Full name" variant="outlined" />
-                        <TextField style={tfieldStyle} name="email" label="Email address" variant="outlined" />
-                        <TextField style={tfieldStyle} name="address" label="Home Adress" variant="outlined" />
-                        <TextField style={tfieldStyle} name="phone" label="Phone number" variant="outlined" />
-                        <TextField style={tfieldStyle} name="disease" label="Previous diseases" variant="outlined" />
+                        <TextField style={tfieldStyle} name="fullname" label="Full name" variant="outlined" 
+                            value={fullname}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
+
+                        <TextField style={tfieldStyle} name="email" label="Email address" variant="outlined"
+                            value={email}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
+
+                        <TextField style={tfieldStyle} name="password" label="User password" variant="outlined" 
+                            value={password}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
+                        
+                        <TextField style={tfieldStyle} name="address" label="Home Adress" variant="outlined" 
+                            value={address}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
+
+                        <TextField style={tfieldStyle} name="phone" label="Phone number" variant="outlined" 
+                            value={phone}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
+                        
+                        <TextField style={tfieldStyle} name="disease" label="Previous diseases" variant="outlined" 
+                            value={diseases}
+                            onChange={e => handleOnChangeInput(e)} 
+                        />
 
                         <DialogContentText>Gender</DialogContentText>
                         <RadioGroup
@@ -126,7 +195,7 @@ function AddPatient({ openAdd, handleClose }) {
                         <img src={img}/>
                     </DialogContent>
                     <DialogActions>
-                        <Button style={buttonStyle} autoFocus variant="contained" sx={{backgroundColor: 'green', color: 'white !important'}} onClick={handleClose}>
+                        <Button style={buttonStyle} onClick={submitNewPatient} autoFocus variant="contained" sx={{backgroundColor: 'green', color: 'white !important'}}>
                             Submit patient
                         </Button>
                     </DialogActions>

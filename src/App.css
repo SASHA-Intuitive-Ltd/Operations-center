@@ -83,10 +83,6 @@
   padding-top: 5px;
 }
 
-.user-vitals p {
-  font-weight: 650;
-}
-
 .graphs {
   padding: 10px;
   border: solid 2px var(--global-grey);
@@ -383,3 +379,9 @@
   font-size: x-large !important;
 }
 
+.user-management {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
