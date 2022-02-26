@@ -9,5 +9,7 @@ appendixes found in project's google drive, ask Ruben Rudov for perms
 ## Questions directed to
 Ruben Rudov - Software developer and architect
 Through:
+
 Email: rudovruben4all@gmail.com 
+
 Whatsapp: +972-054-2679333

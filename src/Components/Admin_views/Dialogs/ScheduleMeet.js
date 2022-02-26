@@ -48,7 +48,7 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
             admin: adminName,
             user: patient,
             date: date,
-            link: "",
+            link: "https://zoom.us/",
             topic: topic
         })
 

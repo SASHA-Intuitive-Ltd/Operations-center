@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from "react"
-import { useHistory, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { TextField, Button, Box, InputAdornment, IconButton } from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 
@@ -21,17 +21,16 @@ const formStyle = {
 const buttonStyle = {
     textTransform: 'none', 
     color: 'var(--global-primary)',
-    borderColor: 'var(--global-primary)',
     margin: 10,
     fontWeight: 'bolder',
     fontSize: 'large',
+    border: '2px solid var(--global-primary)'
 }
 
-function Login({ userType }) {
+function Login({ userType, setToken, creds }) {
     const [showPassword, setShowPassword] = useState(false);
-    const history = useHistory();
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("Ruben Rudov")
+    const [password, setPassword] = useState("ruby1111")
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
@@ -47,6 +46,16 @@ function Login({ userType }) {
             setPassword(value)
         }
     }
+
+    const login = () => {
+        // Try matching passwords (useCallback...)
+
+        setToken(true)
+        console.log("Logged in")
+
+    }
+
+    
 
     return (
         <div className="user-management">
@@ -70,9 +79,9 @@ function Login({ userType }) {
                         )
                       }}
                 />
-                <Button className='login-button' name="user" style={buttonStyle} variant='outlined'>
+                <Link className='login-button' name={userType} style={buttonStyle} variant='outlined' to={`operating_screen/6205a62c7da7ea26ce9d5fe0`}>
                         Login as {userType}
-                </Button>
+                </Link>
             </Box>
         </div>
     )

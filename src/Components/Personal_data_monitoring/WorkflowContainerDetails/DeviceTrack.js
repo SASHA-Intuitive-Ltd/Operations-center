@@ -11,7 +11,7 @@ function DeviceTrack({currentDevice}) {
     const getItems = () => {
         vitals.forEach(element => {
           elements.push(
-              <div>
+              <div key={element.vital}>
                   <p>{element.vital}: {element.stat}</p>
               </div>
           )  
@@ -25,11 +25,9 @@ function DeviceTrack({currentDevice}) {
             <div className='title-w-button'>
                 <h2>{currentDevice} Status</h2>
             </div>
-            <p>
-                {
-                    getItems()
-                }
-            </p>
+            {
+                getItems()
+            }
         </div>
     )
 }

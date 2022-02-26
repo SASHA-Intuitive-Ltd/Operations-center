@@ -9,25 +9,19 @@ function EmergenciesContainer() {
 
     const [emergencies, setEmergencies] = useState([
         {
-            "patient": "Patient",
+            "patient": "John Doe",
             "room_id": "R# 1",
-            "issue": "Soap empty",
+            "issue": "Wheelchair not charged",
         },
         {
-            "patient": "Patient2",
+            "patient": "Philip Fischer",
             "room_id": "R# 2",
             "issue": "Wheelchair failed charge",
-        },
-        {
-            "patient": "Patient3",
-            "room_id": "R# 3",
-            "issue": "Heart failure",
         }
     ])
 
     const getEmergencies = () => {
         const lst = []
-
        
     }
 
@@ -40,7 +34,6 @@ function EmergenciesContainer() {
                 {/* Emergencies list iterating, return emergency component for each occurnce */}
                 <EmergencyBox emergency={emergencies[0]}/>
                 <EmergencyBox emergency={emergencies[1]}/>
-                <EmergencyBox emergency={emergencies[2]}/>
             </div>
             <div className="emergencies">
 

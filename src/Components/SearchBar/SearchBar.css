@@ -1,16 +1,15 @@
 .searchInputs {
-    margin: 10px;
-    border: 1px solid black;
+    margin: 15px;
+    border: 2.5px solid black;
     display: flex;
+    padding: 5px;
+    border-radius: 15px;
     cursor: pointer;
   }
   
   .search input {
     background-color: white;
     border: 0;
-    border-radius: 2px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
     font-size: 18px;
     padding: 15px;
     height: 30px;
@@ -32,6 +31,10 @@
 
   .searchIcon svg {
     font-size: 35px;
+  }
+
+  .link-box:hover {
+    background-color: transparent;
   }
   
   .dataResult {

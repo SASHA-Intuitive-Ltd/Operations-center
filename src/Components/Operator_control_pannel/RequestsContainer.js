@@ -2,12 +2,43 @@
  * Requests container, contains requests by room request params
  */
 
-import React from "react"
+import React, {useState} from "react"
+import EmergencyBox from "./EmergencyBox"
 
 function RequestsContainer() {
+
+    const [emergencies, setEmergencies] = useState([
+        {
+            "patient": "John Doe",
+            "room_id": "R# 1",
+            "issue": "Wheelchair not charged",
+        },
+        {
+            "patient": "Philip Fischer",
+            "room_id": "R# 2",
+            "issue": "Wheelchair failed charge",
+        },
+        {
+            "patient": "Cris Walker",
+            "room_id": "R# 3",
+            "issue": "Wheelchair failed charge",
+        }
+    ])
+
+    const getEmergencies = () => {
+        const lst = []
+       
+    }
+
     return (
         <div className="req-container">
-            <h3 className="header">Requests</h3>
+            <div className="header"><h3>Requests</h3></div>
+            <div className="requests">
+                {/* Emergencies list iterating, return emergency component for each occurnce */}
+                <EmergencyBox emergency={emergencies[0]}/>
+                <EmergencyBox emergency={emergencies[1]}/>
+                <EmergencyBox emergency={emergencies[2]}/>
+            </div>
         </div>
     )
 }

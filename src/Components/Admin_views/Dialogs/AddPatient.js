@@ -36,12 +36,19 @@ function AddPatient({ openAdd, handleClose }) {
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
     const inputsContainerStyle = {
-        padding: 5,
+        padding: 15,
         display: 'flex',
         flexDirection: 'column',
         minWidth: 500,
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        overflow: 'scroll'
+    }
+
+    const imgStyle = {
+        padding: 20,
+        maxHeight: 75,
+        maxWidth: 45
     }
 
     const tfieldStyle = {
@@ -192,7 +199,7 @@ function AddPatient({ openAdd, handleClose }) {
                                 onChange={handleOnChangeInput}
                             />
                         </Button>
-                        <img src={img}/>
+                        <img src={img} style={imgStyle}/>
                     </DialogContent>
                     <DialogActions>
                         <Button style={buttonStyle} onClick={submitNewPatient} autoFocus variant="contained" sx={{backgroundColor: 'green', color: 'white !important'}}>
