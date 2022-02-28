@@ -46,6 +46,7 @@ function Graph({ graphParams, xAxisTitle, yAxisTitle, chartName }) {
     const options = {
         legend: {
             fontColor: config.theme.primary,
+            position: 'top'
         },
         responsive: true,
         layout: {

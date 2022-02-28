@@ -27,7 +27,7 @@ const buttonStyle = {
     border: '2px solid var(--global-primary)'
 }
 
-function Login({ userType, setToken, creds }) {
+function Login({ userType, setToken, creds, link }) {
     const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState("Ruben Rudov")
     const [password, setPassword] = useState("ruby1111")
@@ -79,7 +79,7 @@ function Login({ userType, setToken, creds }) {
                         )
                       }}
                 />
-                <Link className='login-button' name={userType} style={buttonStyle} variant='outlined' to={`operating_screen/6205a62c7da7ea26ce9d5fe0`}>
+                <Link className='login-button' name={userType} style={buttonStyle} variant='outlined' to={`home_admin/620a324365bd8515cf1a7ba3`}>
                         Login as {userType}
                 </Link>
             </Box>

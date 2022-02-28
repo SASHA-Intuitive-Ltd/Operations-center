@@ -4,6 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { DialogContent, DialogTitle, TextField, DialogActions, Button } from "@mui/material";
+import { MuiStyles } from "../../../styles/Mui_styles";
 
 
 function ReportBug({ openAdd, handleClose }) {
@@ -47,7 +48,7 @@ function ReportBug({ openAdd, handleClose }) {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button style={{textTransform: 'none'}} autoFocus variant="outlined" onClick={handleClose}>
+                        <Button style={MuiStyles.ButtonStyle} autoFocus variant="outlined" onClick={handleClose}>
                             Submit ticket
                         </Button>
                     </DialogActions>

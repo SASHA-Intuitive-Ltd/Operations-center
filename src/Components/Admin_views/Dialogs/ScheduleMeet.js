@@ -8,6 +8,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import axios from 'axios'
+import { MuiStyles } from '../../../styles/Mui_styles';
 
 function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
 
@@ -119,16 +120,12 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
                         onChange={e => handleOnChangeInput(e)}
                         label="Patient name" variant="outlined"
                     />
-
-                    {/* Pick patient from patients list (Get name by objectId for each patient of an admin, via server...) */}
-                    <div>
-                        {patientsList}
-                    </div>
                 </DialogContent>
 
                 <DialogActions>
-                        <Button style={{textTransform: 'none',
-                            color: 'var(--global-primary)', borderColor: 'var(--global-primary)'}} 
+                        <Button style={
+                            MuiStyles.ButtonStyle
+                        } 
                             autoFocus 
                             variant="outlined"
                             onClick={submitNewMeeting}

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useLayoutEffect } from "react"
 
 // MUI comps
 import Box from '@mui/material/Box';
@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { Fab as Button, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
-
+import { Link } from "react-router-dom";
 
 // Icons
 import PreviewIcon from '@mui/icons-material/Preview';
@@ -19,9 +19,9 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import AddPatient from "./Dialogs/AddPatient";
 import ReportBug from "./Dialogs/ReportBug";
 import BugReport from "@mui/icons-material/BugReport";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-// Styles
-
+// Styles TODO: Transfer it to design js file (Styles folder)
 const cardStyle = { 
     minWidth: '30%',
     maxWidth: '30%', 
@@ -38,25 +38,44 @@ const buttonStyle = {
 
 const iconStyle = {
     fontSize: '150%',
+    size: 'fit-content',
+    alignSelf: 'center',
     color: require('../../configs/tests.json').theme.primary,
     transition: 'all 0.65s'
 }
 
-function AdminView({ adminInfo }) {
+function AdminView({  }) {
 
     // Add user dialog state
     const [ open, setOpen ] = React.useState(false)
     const [ type, setType ] = React.useState('add')
 
+    // Admin information
+    const [ adminInfo, setInfo ] = useState({})
+
+    const { id } = useParams()
+
+    useLayoutEffect(() => {
+        
+        // Fetch admin info (TODO: Do according to _id param from route)
+        fetch('http://localhost:5000/admins/620a324365bd8515cf1a7ba3').then((response) => response.json())
+        .then((data) => {
+            setInfo(data);
+        })
+        console.log(adminInfo)
+    }, [])
+
+
+    // Handle dialogs opening
     const handleClickOpen = (dialogType) => () => {
         setType(dialogType);
         setOpen(true);
     }
     
+    // Handle dialog closing
     const handleClose = () => {
           setOpen(false);
-    };
-    
+    }
 
     // Card const function component for generating action cards by cardInfo json doc.
     const card = (cardInfo) =>  (
@@ -84,19 +103,21 @@ function AdminView({ adminInfo }) {
             <h1>Hey, {adminInfo.fullname}</h1>
             <h2>Please choose an operation to execute:</h2>
             <div className="possible-actions">
+                {/* Container for actions: view patients, add new patient, manage current patients */}
                 <div className="row">
-                    {/* Container for actions: view patients, add new patient, manage current patients */}
+                    {/* View operating screen action */}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
                                 card({
                                     "action": "View your patients",
-                                    "actionCall": <PreviewIcon style={iconStyle} className="button-icon"/>,
+                                    "actionCall": <Link className="link-box" to={`/operating_screen/${id}`}><PreviewIcon style={iconStyle} className="button-icon"/></Link>,
                                     "description": "View your personal patients list and take control of necessary devices",
                                 })
                             }
                         </Card>
                     </Box>
+                    {/* Open patient adding dialog */}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
@@ -110,6 +131,7 @@ function AdminView({ adminInfo }) {
                             }
                         </Card>
                     </Box>
+                    {/* View patient management (Update and delete options too) */}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
@@ -122,19 +144,22 @@ function AdminView({ adminInfo }) {
                         </Card>
                     </Box>
                 </div>
+                
+                {/* Container for actions: view upcoming booked meets, book a meeting, report issue to IT department */}
                 <div className="row">
-                    {/* Container for actions: view upcoming booked meets, book a meeting, report issue to IT department */}
+                    {/* View booked meetings as well as appointing new meetings */}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
                                 card({
                                     "action": "View booked meetings",
-                                    "actionCall": <CardMembershipIcon style={iconStyle} className="button-icon"/>,
+                                    "actionCall": <Link className="link-box" to={`/meetings/${id}`}><CardMembershipIcon style={iconStyle} className="button-icon"/></Link>,
                                     "description": "View your personal patients list and take control of necessary devices"
                                 })
                             }
                         </Card>
                     </Box>
+                    {/* Open new report ticket  dialog*/}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
@@ -147,6 +172,8 @@ function AdminView({ adminInfo }) {
                             }
                         </Card>
                     </Box>
+
+                    {/* View updates for operators */}
                     <Box sx={cardStyle}>
                         <Card variant="outlined">
                             {
@@ -160,6 +187,7 @@ function AdminView({ adminInfo }) {
                     </Box>
                 </div>
             </div>
+            {/* Include dialog according to dialog type */}
             <div>
                 { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose}/> : null}
                 { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose}/> : null}

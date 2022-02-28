@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react"
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { MuiStyles } from '../../../styles/Mui_styles'
 
 
 function ProgressTrack({ currentDevice }) {
@@ -11,7 +12,7 @@ function ProgressTrack({ currentDevice }) {
 
     const checkpointProgressStateStyle = {height: "35px", width: "35px", border: "1px solid black"}
 
-    function addCheckpoints() {
+    const getItems = () => {
         checkpoints.forEach(element => {
             elements.push(
                 <div key={element.index} className="checkpoint">
@@ -19,23 +20,18 @@ function ProgressTrack({ currentDevice }) {
                 </div>
             );
         })
-        
+
         return elements
     }
 
     return (
         <div className="progress-track">
-            <h3>Device in use: <span style={{fontWeight: 600}}>{currentDevice}</span></h3>
-            <span style={{padding: "10px"}}></span>
-            <div className="checkpoints">
-                {
-                    addCheckpoints()
-                }
-            </div>
-            <span style={{padding: "10px"}}></span>
+            <h3>Device in use: <span style={{fontWeight: 600, textTransform: 'capitalize'}}>{currentDevice}</span></h3>
+            {
+                getItems()
+            }
             <p><b>Progress: {progress}%</b></p>
-            <span style={{padding: "10px"}}></span>
-            <LinearProgress valueBuffer={progress} style={{width: "200px", height: "30px"}} color="success" variant="buffer" value={progress}/>
+            <LinearProgress valueBuffer={progress} style={MuiStyles.LineProgStyle2} color="success" variant="buffer" value={progress}/>
         </div>
     )
 }

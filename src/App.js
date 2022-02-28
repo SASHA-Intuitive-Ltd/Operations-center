@@ -84,7 +84,7 @@ function App() {
               <Route exact path='/' component={() => {return(<Landing/>)}}/>
 
               {/* Login pages for each session */}
-              <Route exact path='/login_admin'><Login userType='admin' setToken={setToken} setCreds={setCreds}/></Route>
+              <Route exact path='/login_admin' link={'620a324365bd8515cf1a7ba3'}><Login userType='admin' setToken={setToken} setCreds={setCreds}/></Route>
               <Route exact path='/login_patient'><Login userType='patient' setToken={setToken} setCreds={setCreds}/></Route>
               <Route path='/home_admin/:id'><AdminView adminInfo={userCreds}/></Route>
 
@@ -92,9 +92,8 @@ function App() {
               <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1}
                 devicesPerformances={testConfigs.device_checkpoints} currentDevice={"wheelchair"}
                 /></Route>
-
-
               
+              <Route path='/meetings/:id'><MeetingsPageContainer/></Route>              
               {/* Home pages for each session FIXME: Add private routing, after login successful*/}
               {/*<Route path='/admin_home'></Route>*/}
               {/*<Route path='/patient_home'></Route>*/}

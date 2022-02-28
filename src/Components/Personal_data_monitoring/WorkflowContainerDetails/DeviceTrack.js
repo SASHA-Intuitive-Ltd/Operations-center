@@ -23,7 +23,7 @@ function DeviceTrack({currentDevice}) {
     return(
         <div className='system-stats'>
             <div className='title-w-button'>
-                <h2>{currentDevice} Status</h2>
+                <h1 style={{textTransform: 'capitalize', fontSize: 'x-large'}}>{currentDevice} Status</h1>
             </div>
             {
                 getItems()

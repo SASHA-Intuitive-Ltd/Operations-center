@@ -18,16 +18,17 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import axios from 'axios'
+import { MuiStyles } from '../../../styles/Mui_styles';
 
 function AddPatient({ openAdd, handleClose }) {
 
-    const [fullname, setFullname] = useState("Rub R")
-    const [email, setEmail] = useState("ruby@gmail.com")
-    const [password, setPassword] = useState("ruby@gmail.com")
-    const [address, setAdress] = useState("rashlatz")
-    const [phone, setPhone] = useState("1234567")
+    const [fullname, setFullname] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [address, setAdress] = useState("")
+    const [phone, setPhone] = useState("")
     const [diseases, setDiseases] = useState([])
-    const [gender, setGender] = useState("Male")
+    const [gender, setGender] = useState("")
     const [profileImg, setProfileImg] = useState("default")
 
     const [img, setImage] = useState(null)
@@ -52,13 +53,6 @@ function AddPatient({ openAdd, handleClose }) {
     }
 
     const tfieldStyle = {
-        margin: 10
-    }
-
-    const buttonStyle = {
-        textTransform: 'none', 
-        color: 'var(--global-primary)',
-        borderColor: 'var(--global-primary)',
         margin: 10
     }
 
@@ -189,7 +183,7 @@ function AddPatient({ openAdd, handleClose }) {
                         <Button
                             variant="outlined"
                             component="label"
-                            style={buttonStyle}
+                            style={MuiStyles.ButtonStyle}
                             >
                             Upload patient image
                             <input
@@ -202,7 +196,7 @@ function AddPatient({ openAdd, handleClose }) {
                         <img src={img} style={imgStyle}/>
                     </DialogContent>
                     <DialogActions>
-                        <Button style={buttonStyle} onClick={submitNewPatient} autoFocus variant="contained" sx={{backgroundColor: 'green', color: 'white !important'}}>
+                        <Button style={MuiStyles.ButtonStyle} onClick={submitNewPatient} autoFocus variant="contained">
                             Submit patient
                         </Button>
                     </DialogActions>

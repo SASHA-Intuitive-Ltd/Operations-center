@@ -16,6 +16,7 @@ function PersonalInfo({ user }) {
     const [ userInfo, setInfo ] = useState({})
 
     useEffect(() => {
+        setInfo({})
         fetch(`http://localhost:5000/users/${user}`).then((response) => response.json())
         .then((data) => {
             console.log(data)

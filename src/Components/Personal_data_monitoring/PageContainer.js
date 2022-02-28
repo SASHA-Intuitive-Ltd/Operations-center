@@ -11,7 +11,6 @@ function PageContainer({ healthStats, devicesPerformances, currentDevice }) {
     // TODO: add useEffect for currentDevice prop
     const { _id } = useParams()
 
-
     return (
         <div className='personal-container'>
             <div className='left'>

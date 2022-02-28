@@ -84,6 +84,7 @@
 .info {
   padding: 25px;
   border: solid 2px var(--global-grey);
+  border-radius: 10px 10px 0 0;
   border-bottom: none;
   display: flex;
   flex-direction: row;
@@ -105,9 +106,27 @@
   padding-top: 5px;
 }
 
+.MuiLinearProgress-barColorSuccess {
+  background-color: var(--global-primary) !important;
+}
+
+.insert-fab:hover {
+  background-color: var(--global-primary) !important;
+}
+
+.insert-fab:hover .fab-icon {
+  color: white !important;
+}
+
+.cell a {
+  color: rgb(122, 122, 226);
+  font-weight: 600;
+}
+
 .graphs {
   padding: 10px;
   border: solid 2px var(--global-grey);
+  border-radius: 0 0 10px 10px;
 }
 
 .history-button {
@@ -454,4 +473,5 @@
 .link-box {
   text-decoration: none !important;
   color: black !important;
+  size: fit-content;
 }
