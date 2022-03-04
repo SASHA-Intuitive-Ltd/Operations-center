@@ -11,7 +11,6 @@ import { Button, RadioGroup, TextField } from '@mui/material';
 import { Radio } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { textAlign } from '@mui/system';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -29,8 +28,8 @@ function AddPatient({ openAdd, handleClose }) {
     const [phone, setPhone] = useState("")
     const [diseases, setDiseases] = useState([])
     const [gender, setGender] = useState("")
+    const [age, setAge] = useState(20)
     const [profileImg, setProfileImg] = useState("default")
-
     const [img, setImage] = useState(null)
     
     const theme = useTheme()
@@ -41,6 +40,7 @@ function AddPatient({ openAdd, handleClose }) {
         maxHeight: 75,
         maxWidth: 45
     }
+
 
     const submitNewPatient = useCallback(async () => {
         // TODO: Validators

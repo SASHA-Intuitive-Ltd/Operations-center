@@ -11,6 +11,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import { Link } from 'react-router-dom'
 
+// Dialogs import
+import UpdatePatient from '../Dialogs/UpdatePatient'
+
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -56,9 +59,13 @@ const StyledMenu = styled((props) => (
 export default function MoreOptions({patientInfo}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [openEdit, setOpenEdit] = React.useState(false)
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
+
   const handleClose = () => {
     setAnchorEl(null);
   }
@@ -78,6 +85,15 @@ export default function MoreOptions({patientInfo}) {
         icon: <ExtensionIcon/>
     },
   ]
+
+  const handleClickOpen = () => {
+    setOpenEdit(true);
+  }
+
+  // Handle dialog closing
+  const handleCloseDia = () => {
+    setOpenEdit(false);
+  }
 
   return (
     <div>
@@ -109,7 +125,11 @@ export default function MoreOptions({patientInfo}) {
                         {
                             element.name === 'Edit patient'
                             ?
-                                <MenuItem onClick={handleClose} disableRipple>
+                                <MenuItem onClick={() => {
+                                    handleClickOpen()
+                                    handleClose()
+                                  }
+                                 } disableRipple>
                                     {element.icon}
                                     {element.name}
                                 </MenuItem>  
@@ -143,6 +163,7 @@ export default function MoreOptions({patientInfo}) {
             })
         }
       </StyledMenu>
+      <UpdatePatient patientInfo={patientInfo} openAdd={openEdit} handleClose={handleCloseDia} />
     </div>
   )
 }
