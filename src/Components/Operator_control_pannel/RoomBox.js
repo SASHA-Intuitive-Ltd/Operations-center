@@ -12,7 +12,7 @@ function RoomBox({ roomParams }) {
     console.log(`/patient/${roomParams._id}`)
 
     return(
-        <Link className="link-box" href={`/patient/${roomParams._id}`}>
+        <Link className="link2" href={`/patient/${roomParams._id}`}>
             <div className="room">
                     <div className="header">
                             <h2>{roomParams.name}</h2>

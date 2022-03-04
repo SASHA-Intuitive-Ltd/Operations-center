@@ -36,24 +36,10 @@ function AddPatient({ openAdd, handleClose }) {
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
-    const inputsContainerStyle = {
-        padding: 15,
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 500,
-        justifyContent: 'center',
-        textAlign: 'center',
-        overflow: 'scroll'
-    }
-
     const imgStyle = {
         padding: 20,
         maxHeight: 75,
         maxWidth: 45
-    }
-
-    const tfieldStyle = {
-        margin: 10
     }
 
     const submitNewPatient = useCallback(async () => {
@@ -128,33 +114,33 @@ function AddPatient({ openAdd, handleClose }) {
                     <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
                         <p>Enter new patient info</p>
                     </DialogTitle>
-                    <DialogContent style={inputsContainerStyle}>
-                        <TextField style={tfieldStyle} name="fullname" label="Full name" variant="outlined" 
+                    <DialogContent style={MuiStyles.InputsContainerStyle}>
+                        <TextField style={MuiStyles.TextField} name="fullname" label="Full name" variant="outlined" 
                             value={fullname}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
-                        <TextField style={tfieldStyle} name="email" label="Email address" variant="outlined"
+                        <TextField style={MuiStyles.TextField} name="email" label="Email address" variant="outlined"
                             value={email}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
-                        <TextField style={tfieldStyle} name="password" label="User password" variant="outlined" 
+                        <TextField style={MuiStyles.TextField} name="password" label="User password" variant="outlined" 
                             value={password}
                             onChange={e => handleOnChangeInput(e)} 
                         />
                         
-                        <TextField style={tfieldStyle} name="address" label="Home Adress" variant="outlined" 
+                        <TextField style={MuiStyles.TextField} name="address" label="Home Adress" variant="outlined" 
                             value={address}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
-                        <TextField style={tfieldStyle} name="phone" label="Phone number" variant="outlined" 
+                        <TextField style={MuiStyles.TextField} name="phone" label="Phone number" variant="outlined" 
                             value={phone}
                             onChange={e => handleOnChangeInput(e)} 
                         />
                         
-                        <TextField style={tfieldStyle} name="disease" label="Previous diseases" variant="outlined" 
+                        <TextField style={MuiStyles.TextField} name="disease" label="Previous diseases" variant="outlined" 
                             value={diseases}
                             onChange={e => handleOnChangeInput(e)} 
                         />
@@ -168,7 +154,7 @@ function AddPatient({ openAdd, handleClose }) {
                             <FormControlLabel name='gender_male' value="male" control={<Radio />} label="Male" />
                             <FormControlLabel name='gender_female' value="female" control={<Radio />} label="Female" />
                         </RadioGroup>
-                        <FormControl style={tfieldStyle}>
+                        <FormControl style={MuiStyles.TextField}>
                                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
                                 <Select
                                 labelId="demo-simple-select-label"

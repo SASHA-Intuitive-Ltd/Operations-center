@@ -31,6 +31,15 @@ export const MuiStyles = {
         margin: 10
     },
 
+    OptionsButtonStyle: {
+        textTransform: 'none', 
+        color: 'var(--global-grey-darker)',
+        backgroundColor: 'var(--global-white)',
+        border: '1.75px solid var(--global-grey-darker)',
+        margin: 10,
+        width: 'min-content'
+    },
+
     FabStyle: {
         border: '3px solid var(--global-primary)',
         backgroundColor: 'white', 
@@ -40,6 +49,16 @@ export const MuiStyles = {
     },
     
     TextField: {
+        margin: 10
+    },
 
+    InputsContainerStyle: {
+        padding: 15,
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 500,
+        justifyContent: 'center',
+        textAlign: 'center',
+        overflow: 'scroll'
     }
 }

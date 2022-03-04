@@ -33,14 +33,16 @@ const cardStyle = {
 const buttonStyle = {
     border: '1px solid var(--global-grey)',
     backgroundColor: 'var(--global-white)',
-    transition: 'all 0.65s'
+    transition: 'all 0.65s',
+    alignSelf: 'center',
+    textAlign: 'center',
 }
 
 const iconStyle = {
-    fontSize: '150%',
-    size: 'fit-content',
-    alignSelf: 'center',
-    color: require('../../configs/tests.json').theme.primary,
+    margin: 5,
+    fontSize: 'xx-large',
+    size: 'max-content',
+    color: 'var(--global-primary)',
     transition: 'all 0.65s'
 }
 
@@ -111,7 +113,7 @@ function AdminView({  }) {
                             {
                                 card({
                                     "action": "View your patients",
-                                    "actionCall": <Link className="link-box" to={`/operating_screen/${id}`}><PreviewIcon style={iconStyle} className="button-icon"/></Link>,
+                                    "actionCall": <Link className="link-box" to={`/operating_screen/${id}`} style={iconStyle}><PreviewIcon className="button-icon"/></Link>,
                                     "description": "View your personal patients list and take control of necessary devices",
                                 })
                             }
@@ -137,7 +139,7 @@ function AdminView({  }) {
                             {
                                 card({
                                     "action": "Manage patients",
-                                    "actionCall": <UpdateIcon style={iconStyle} className="button-icon"/>,
+                                    "actionCall": <Link className="link-box" to={`/manage/${id}`} style={iconStyle}><UpdateIcon className="button-icon"/></Link>,
                                     "description": "Update or remove patient info, also can re-add patient to other representative"
                                 })
                             }
@@ -153,7 +155,8 @@ function AdminView({  }) {
                             {
                                 card({
                                     "action": "View booked meetings",
-                                    "actionCall": <Link className="link-box" to={`/meetings/${id}`}><CardMembershipIcon style={iconStyle} className="button-icon"/></Link>,
+                                    "actionCall": <Link className="link-box" to={`/meetings/${id}`} style={iconStyle}><CardMembershipIcon 
+                                        className="button-icon"/></Link>,
                                     "description": "View your personal patients list and take control of necessary devices"
                                 })
                             }
@@ -180,7 +183,7 @@ function AdminView({  }) {
                                 card({
                                     "action": "Internal updates",
                                     "actionCall": <HelpOutlineIcon style={iconStyle} className="button-icon"/>,
-                                    "description": "Internal updates for and instructions for admins"
+                                    "description": "Internal updates and instructions for admins"
                                 })
                             }
                         </Card>
