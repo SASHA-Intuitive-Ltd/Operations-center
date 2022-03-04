@@ -45,7 +45,6 @@ function MeetingsPageContainer({ }) {
     
     return (
         <div>
-            <h1 style={{textAlign: 'left', marginLeft: 200, paddingTop: 20, fontSize: 'xx-large'}}>Booked meetings for: <u>{adminInfo.fullname}</u></h1>
             {/* Meetings list according to admin ordered by chronological order of dates and times: high priority */}
             <center><MeetingsList meetings={meetings}/></center>
             {/* Floating action button for dialog of creating new meeting high priority */}

@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react"
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { MuiStyles } from '../../../styles/Mui_styles'
+import { Tooltip } from "@mui/material";
 
 
 function ProgressTrack({ currentDevice }) {
@@ -15,9 +16,11 @@ function ProgressTrack({ currentDevice }) {
     const getItems = () => {
         checkpoints.forEach(element => {
             elements.push(
-                <div key={element.index} className="checkpoint">
-                    <div className={`checkpoint-progress ${element.progress}`} style={checkpointProgressStateStyle}><p>{element.index}</p></div>
-                </div>
+                <Tooltip title={`${element.name}: ${element.progress}`} arrow placement="bottom" sx={{ m: 0 }}>
+                    <div key={element.index} className="checkpoint">
+                        <div className={`checkpoint-progress ${element.progress}`} style={checkpointProgressStateStyle}><p>{element.index}</p></div>
+                    </div>
+                </Tooltip>
             );
         })
 

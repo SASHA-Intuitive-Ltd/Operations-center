@@ -7,52 +7,90 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { Button, Fab } from '@mui/material';
+import { More, MoreHoriz, MoreOutlined } from '@mui/icons-material';
+import MoreInfo from '../Dialogs/MoreInfo'
+
 
 const columns = [
   { 
     id: 'topic',
-    label: 'Topic',
-    width: 5 },
+    label: 'Topic'
+  },
   { 
     id: 'date',
-    label: 'Date',
-    width: 5 },
+    label: 'Date'
+  },
   {
     id: 'patient',
     label: 'Patient',
-    width: 5,
   },
   {
     id: 'link',
     label: 'Meeting link',
-    width: 5,
   },
   {
     id: 'actions',
     label: 'More Actions',
-    width: 5,
+    width: 3,
   },
 ];
 
-function createData(topic, date, patient, link) {
-  return { topic, date, patient, link};
+function createData(topic, date, patient, link, actions) {
+  return { topic, date, patient, link, actions};
 }
 
 const rows = [
-  createData('Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>),
-  createData('Prev heart surgery', '2022-03-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>),
-  createData('Cris Walker`s room issue', '2022-03-19T12:33:30.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>),
-  createData('Casual check', '2022-04-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>),
-  createData('Casual check', '2022-05-17T13:33:28.806Z', 'Philip Fischer',  <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>),
+  createData('Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Prev heart surgery', '2022-03-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Cris Walker`s room issue', '2022-03-19T12:33:30.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-04-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-05-17T13:33:28.806Z', 'Philip Fischer',  <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Prev heart surgery', '2022-03-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Cris Walker`s room issue', '2022-03-19T12:33:30.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-04-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-05-17T13:33:28.806Z', 'Philip Fischer',  <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Prev heart surgery', '2022-03-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Cris Walker`s room issue', '2022-03-19T12:33:30.806Z', 'Cris Walker', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-04-17T12:33:28.806Z', 'John Doe', <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>,
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
+  createData('Casual check', '2022-05-17T13:33:28.806Z', 'Philip Fischer',  <a href={'https://zoom.us/'}>{'https://zoom.us/'}</a>, 
+  <Button style={{width: '100%', color: 'var(--global-primary)'}}><MoreHoriz/></Button>),
 ];
 
 export default function MeetingsList() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [open, setOpen] = React.useState(false)
+
+  // Handle dialogs opening
+  const handleClickOpen = () => {
+    setOpen(true);
+  }
+
+  // Handle dialog closing
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  };
+  }
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -60,8 +98,8 @@ export default function MeetingsList() {
   };
 
   return (
-    <Paper sx={{ width: '80%', overflow: 'hidden', marginTop: 5, marginBottom: 5, borderRadius: 5}}>
-      <TableContainer sx={{ maxHeight: 600 }}>
+    <div>
+      <TableContainer sx={{ maxHeight: '700px' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -121,6 +159,7 @@ export default function MeetingsList() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+      <MoreInfo openAdd={open} handleClose={handleClose} info={['Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', 'https://zoom.us/']}/>
+    </div>
   );
 }

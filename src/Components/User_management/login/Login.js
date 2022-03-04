@@ -55,7 +55,7 @@ function Login({ userType, setToken, creds, link }) {
 
     }
 
-    
+    login()
 
     return (
         <div className="user-management">
