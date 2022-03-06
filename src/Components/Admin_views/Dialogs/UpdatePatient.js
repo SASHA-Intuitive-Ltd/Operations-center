@@ -19,7 +19,7 @@ import Select from '@mui/material/Select';
 import axios from 'axios'
 import { MuiStyles } from '../../../styles/Mui_styles';
 
-export default function UpdatePatient({ patientInfo, openAdd, handleClose }) {
+export default function UpdatePatient({ patientInfo, openAdd, handleClose, setTrigger }) {
 
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -78,6 +78,7 @@ export default function UpdatePatient({ patientInfo, openAdd, handleClose }) {
 
         // Handle dialog closing
         handleClose()
+        setTrigger(true)
     })
 
     return (
@@ -122,9 +123,9 @@ export default function UpdatePatient({ patientInfo, openAdd, handleClose }) {
                         />
                 </DialogContent>
                 <DialogActions>
-                        <Button style={MuiStyles.ButtonStyle} onClick={submitEdits} autoFocus variant="contained">
-                            Edit {patientInfo.fullname}
-                        </Button>
+                    <Button style={MuiStyles.ButtonStyle} onClick={submitEdits} autoFocus variant="contained">
+                        Edit {patientInfo.fullname}
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

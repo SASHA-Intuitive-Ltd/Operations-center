@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 
 // Dialogs import
 import UpdatePatient from '../Dialogs/UpdatePatient'
+import DeletePatient from '../Dialogs/DeletePatient';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -56,11 +57,12 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MoreOptions({patientInfo}) {
+export default function MoreOptions({patientInfo, setTrigger}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const [openEdit, setOpenEdit] = React.useState(false)
+  const [openDelete, setOpenDelete] = React.useState(false)
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -93,6 +95,15 @@ export default function MoreOptions({patientInfo}) {
   // Handle dialog closing
   const handleCloseDia = () => {
     setOpenEdit(false);
+  }
+
+  const handleClickOpenDel = () => {
+    setOpenDelete(true);
+  }
+
+  // Handle dialog closing
+  const handleCloseDel = () => {
+    setOpenDelete(false);
   }
 
   return (
@@ -139,7 +150,10 @@ export default function MoreOptions({patientInfo}) {
                         {
                             element.name === 'Delete patient'
                             ?
-                                <MenuItem onClick={handleClose} disableRipple>
+                                <MenuItem onClick={() => {
+                                  handleClickOpenDel()
+                                  handleClose()
+                                }} disableRipple>
                                     {element.icon}
                                     {element.name}
                                 </MenuItem> 
@@ -163,7 +177,8 @@ export default function MoreOptions({patientInfo}) {
             })
         }
       </StyledMenu>
-      <UpdatePatient patientInfo={patientInfo} openAdd={openEdit} handleClose={handleCloseDia} />
+      <UpdatePatient patientInfo={patientInfo} openAdd={openEdit} handleClose={handleCloseDia} setTrigger={setTrigger}/>
+      <DeletePatient patientInfo={patientInfo} open={openDelete} handleClose={handleCloseDel} setTrigger={setTrigger}/>
     </div>
   )
 }

@@ -33,6 +33,8 @@ export default function PatientsList({ activeFilters }) {
         setComps((c) => [...c, newComp])
     }
 
+    const [ updateTrigger, setTrigger ] = useState(false)
+
     const columns = [
         {
             title: 'Fullname',
@@ -66,7 +68,7 @@ export default function PatientsList({ activeFilters }) {
 
     function getMoreOptionsMenu(patient) {
         return (
-            <MoreOptions patientInfo={patient}/>
+            <MoreOptions patientInfo={patient} setTrigger={setTrigger}/>
         )
     }
 
@@ -85,7 +87,9 @@ export default function PatientsList({ activeFilters }) {
                             <TableCell className='cell'
                                 style={{
                                     border: '0.5px solid var(--global-grey)',
-                                    textAlign: align
+                                    textAlign: align,
+                                    fontWeight: 'bold',
+                                    fontSize: 'medium'
                                 }}
                             >
                                 {
@@ -104,18 +108,25 @@ export default function PatientsList({ activeFilters }) {
 
     async function beforeRunning() {
         setComps([])
-        await fetch(`http://localhost:5000/admins/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data.patients)
-            data.patients.map((patient) => {
-                getPatientComp(patient)
+        
+        if(comps.length === 0) {
+
+            await fetch(`http://localhost:5000/admins/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.patients)
+                data.patients.map((patient) => {
+                    getPatientComp(patient)
+                })
             })
-        })
+        }
 
     }
 
-    useEffect(() => beforeRunning(), [id])
+    useEffect(() => {
+        beforeRunning()
+        setTrigger(false)
+    }, [id, updateTrigger])
 
     return (
         <div>
