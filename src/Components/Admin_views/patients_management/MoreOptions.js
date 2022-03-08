@@ -4,11 +4,11 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MuiStyles } from '../../../styles/Mui_styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ExtensionIcon from '@mui/icons-material/Extension';
+import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom'
 
 // Dialogs import
@@ -84,7 +84,7 @@ export default function MoreOptions({patientInfo, setTrigger}) {
     },
     {
         name: 'View patient',
-        icon: <ExtensionIcon/>
+        icon: <PersonIcon/>
     },
   ]
 
@@ -118,7 +118,7 @@ export default function MoreOptions({patientInfo, setTrigger}) {
         style={MuiStyles.OptionsButtonStyle}
         onClick={handleClick}
       >
-        <MoreHorizIcon/>
+        <MoreVertIcon/>
       </Button>
       <StyledMenu
         id="demo-customized-menu"

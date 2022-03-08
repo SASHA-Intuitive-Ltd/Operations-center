@@ -31,11 +31,20 @@ export const MuiStyles = {
         margin: 10
     },
 
+    ButtonStyleRed: {
+        textTransform: 'none', 
+        color: 'var(--global-white)',
+        borderColor: '#d32f2f',
+        backgroundColor: '#d32f2f',
+        margin: 10
+    },
+
     OptionsButtonStyle: {
         textTransform: 'none', 
         color: 'var(--global-grey-darker)',
         backgroundColor: 'var(--global-white)',
-        border: '1.75px solid var(--global-grey-darker)',
+        border: '1px solid var(--global-grey-darker)',
+        borderRadius: 7.5,
         margin: 10,
         width: 'min-content'
     },

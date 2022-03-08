@@ -73,6 +73,7 @@ export default function UpdatePatient({ patientInfo, openAdd, handleClose, setTr
             address: address,
             phone: phone,
             profileImg: profileImg,
+            age: patientInfo.age,
             gender: patientInfo.gender
         })
 

@@ -12,13 +12,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Alert from '@mui/material/Alert';
 
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+
 // HTTP
 import axios from 'axios'
+import { MuiStyles } from '../../../styles/Mui_styles';
 
 export default function DeletePatient({ patientInfo, open, handleClose, setTrigger }) {
 
     const [ admin, setAdmin ] = useState({})
     const { id } = useParams()
+    
 
     /*async function deleteUser() {
     
@@ -41,22 +46,24 @@ export default function DeletePatient({ patientInfo, open, handleClose, setTrigg
                 aria-describedby="alert-dialog-description"
             >
                 
-                <DialogTitle sx={{ padding: 0, marginBottom: 5 }} id="alert-dialog-title">
+                <DialogTitle sx={{ padding: 0, marginBottom: 2 }} id="alert-dialog-title">
                     <Alert variant='filled' severity='error' sx={{ fontSize: 'large', fontWeight: 'bold', borderRadius: 0 }}> Are you sure you want to delete <u>{patientInfo.fullname}'s</u> account ?</Alert>
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    This action is permanent and you would'nt be able to go back
+                    <h1 style={{fontSize: 'medium', padding: 0, margin: 0}}>This action is permanent and you would'nt be able to go back</h1>
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleClose}>Disagree</Button>
-                <Button onClick={() => {
-                    deleteUser()
-                    handleClose()
-                }} autoFocus>
-                    Agree
-                </Button>
+                    <Button style={MuiStyles.ButtonStyleRed} onClick={handleClose}>
+                        <ThumbDownIcon style={{ marginRight: 5 }}/>Cancel
+                    </Button>
+                    <Button style={MuiStyles.ButtonStyle} onClick={() => {
+                        deleteUser()
+                        handleClose()
+                    }} autoFocus>
+                        <ThumbUpAltIcon style={{ marginRight: 5 }}/> Ok
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
