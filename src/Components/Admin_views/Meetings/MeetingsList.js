@@ -110,7 +110,13 @@ export default function MeetingsList() {
                     column.ref === null ?
                     getMoreOptionsMenu(meeting)
                     :
-                    meeting[column.ref]
+                    <>
+                      {
+                        column.ref === 'link' ?
+                        <a href={meeting[column.ref]}>{meeting[column.ref]}</a> 
+                        :
+                        meeting[column.ref]}
+                    </>
                   }
                 </TableCell>
               );

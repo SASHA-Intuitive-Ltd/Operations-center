@@ -9,8 +9,9 @@ import { MuiStyles } from '../../../styles/Mui_styles';
 
 // Icons
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+import MoreInfo from "../Dialogs/MoreInfo";
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -58,6 +59,9 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const [ type, setType ] = useState('info')
+  const [ openDia, setOpen ] = useState(false)
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,6 +69,14 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  }
+
+  const onClickOpen = () => {
+    setOpen(true)
+}
+
+  const handleCloseDia = () => {
+    setOpen(false)
   }
 
 
@@ -75,36 +87,36 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
     },
     {
         name: 'Unbook meeting',
-        icon: <DeleteIcon/>
+        icon: <BookmarkRemoveIcon/>
     },
     {
         name: 'Meeting info',
-        icon: <BookmarkRemoveIcon/>
+        icon: <VisibilityIcon/>
     },
   ]
 
   return (
     <div>
         <Button
-        id="demo-customized-button"
-        aria-controls="demo-customized-menu"
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableElevation
-        style={MuiStyles.OptionsButtonStyle}
-        onClick={handleClick}
+          id="demo-customized-button"
+          aria-controls="demo-customized-menu"
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          variant="contained"
+          disableElevation
+          style={MuiStyles.OptionsButtonStyle}
+          onClick={handleClick}
         >
             <MoreVertIcon/>
         </Button>
         <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-            'aria-labelledby': 'demo-customized-button',
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
+          id="demo-customized-menu"
+          MenuListProps={{
+              'aria-labelledby': 'demo-customized-button',
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
         >
         {
             moreOptions.map((element) => {
@@ -114,6 +126,8 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                             element.name === 'Edit meeting'
                             ?
                                 <MenuItem onClick={() => {
+                                    setType('edit')
+                                    onClickOpen()
                                     handleClose()
                                 }} disableRipple>
                                     {element.icon}
@@ -126,6 +140,8 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                             element.name === 'Unbook meeting'
                             ?
                                 <MenuItem onClick={() => {
+                                  setType('delete')
+                                    onClickOpen()
                                     handleClose()
                                 }} disableRipple>
                                     {element.icon}
@@ -137,7 +153,11 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                         {
                             element.name === 'Meeting info' 
                             ?
-                                    <MenuItem onClick={handleClose} disableRipple>
+                                    <MenuItem onClick={() => {
+                                      setType('info')
+                                      onClickOpen()
+                                      handleClose()
+                                    }} disableRipple>
                                         {element.icon}
                                         {element.name}
                                     </MenuItem>
@@ -149,6 +169,9 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
             })
         }
         </StyledMenu>
+        <div>
+          { type === 'info' ? <MoreInfo info={meetingInfo} openAdd={openDia} handleClose={handleCloseDia}/> : null }
+        </div>
     </div>
   )
 }

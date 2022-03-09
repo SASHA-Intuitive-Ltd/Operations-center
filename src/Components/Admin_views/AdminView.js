@@ -76,7 +76,7 @@ function AdminView({  }) {
     
     // Handle dialog closing
     const handleClose = () => {
-          setOpen(false);
+        setOpen(false)
     }
 
     // Card const function component for generating action cards by cardInfo json doc.

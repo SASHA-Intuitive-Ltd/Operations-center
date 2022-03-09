@@ -69,5 +69,15 @@ export const MuiStyles = {
         justifyContent: 'center',
         textAlign: 'center',
         overflow: 'scroll'
+    },
+
+    InputsContainerStyleNoHorizScroll: {
+        paddingLeft: 25,
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 500,
+        fontSize: 'large',
+        justifyContent: 'center',
+        textAlign: 'justify',
     }
 }
