@@ -1,7 +1,7 @@
 import { da } from 'date-fns/locale'
 import React, { useLayoutEffect, useMemo, useState } from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { useParams } from 'react-router-dom'
 
 import { MuiStyles } from '../../../styles/Mui_styles'
 
@@ -35,6 +35,7 @@ export default function PatientsList({ activeFilters }) {
 
     const [ updateTrigger, setTrigger ] = useState(false)
 
+    // Table params
     const columns = [
         {
             title: 'Fullname',

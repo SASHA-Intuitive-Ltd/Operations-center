@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MuiStyles } from '../../../styles/Mui_styles';
 import EditIcon from '@mui/icons-material/Edit';
@@ -58,11 +57,11 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function MoreOptions({patientInfo, setTrigger}) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const [openEdit, setOpenEdit] = React.useState(false)
-  const [openDelete, setOpenDelete] = React.useState(false)
+  const [openEdit, setOpenEdit] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
