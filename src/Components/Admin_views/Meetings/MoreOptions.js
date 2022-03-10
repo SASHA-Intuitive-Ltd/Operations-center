@@ -12,6 +12,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 import MoreInfo from "../Dialogs/MoreInfo";
+import DeleteMeeting from "../Dialogs/DeleteMeeting";
+import UpdateMeeting from "../Dialogs/UpdateMeeting";
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -171,6 +173,8 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
         </StyledMenu>
         <div>
           { type === 'info' ? <MoreInfo info={meetingInfo} openAdd={openDia} handleClose={handleCloseDia}/> : null }
+          { type === 'delete' ? <DeleteMeeting meetingInfo={meetingInfo} open={openDia} handleClose={handleCloseDia} setTrigger={setTrigger}/> : null }
+          { type === 'edit' ? <UpdateMeeting meetingInfo={meetingInfo} open={openDia} handleClose={handleCloseDia} setTrigger={setTrigger}/> : null }
         </div>
     </div>
   )
