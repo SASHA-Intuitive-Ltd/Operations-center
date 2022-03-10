@@ -79,5 +79,11 @@ export const MuiStyles = {
         fontSize: 'large',
         justifyContent: 'center',
         textAlign: 'justify',
+    },
+    
+    CellStyle: {
+        border: '0.5px solid var(--global-grey)',
+        fontWeight: 'bold',
+        fontSize: 'medium'
     }
 }

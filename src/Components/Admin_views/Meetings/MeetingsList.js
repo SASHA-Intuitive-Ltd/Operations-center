@@ -13,6 +13,7 @@ import MoreInfo from '../Dialogs/MoreInfo'
 import { useParams } from 'react-router-dom'
 import MoreVert from '@mui/icons-material/MoreVert';
 import MoreOptions from './MoreOptions';
+import { MuiStyles } from '../../../styles/Mui_styles';
 
 
 function createData(topic, date, patient, link, actions) {
@@ -90,6 +91,18 @@ export default function MeetingsList() {
     )
   } 
 
+  // Function for date formatting (better ux)
+  function getDateFormat(date) {
+    if (typeof date === "string") {
+        var sliceDate =  date.substring(0, 10).split('-')
+        var sliceTime = date.substring(11, 16)
+
+        return sliceDate[2] + '/' + sliceDate[1] + '/' + sliceDate[0] + ' at '
+        + sliceTime
+    }
+    return date
+  }
+
   // Function for retrieving component of single meeting
   async function getMeetingComp(meeting) {
       addComp(
@@ -97,14 +110,10 @@ export default function MeetingsList() {
           {
             columns.map((column) => {
               var align = column.ref === null || column.ref === 'date' ? 'center' : 'justify' 
+              var styleAlign = {textAlign: align}
               return (
                 <TableCell className='cell'
-                  style={{
-                    border: '0.5px solid var(--global-grey)',
-                    textAlign: align,
-                    fontWeight: 'bold',
-                    fontSize: 'medium'
-                  }}
+                  style={{...MuiStyles.CellStyle, ...styleAlign}}
                 >
                   {
                     column.ref === null ?
@@ -115,7 +124,15 @@ export default function MeetingsList() {
                         column.ref === 'link' ?
                         <a href={meeting[column.ref]}>{meeting[column.ref]}</a> 
                         :
-                        meeting[column.ref]}
+                        <>
+                          {
+                            column.ref === 'date' ? 
+                            <p>{getDateFormat(meeting[column.ref])}</p>
+                            :
+                            meeting[column.ref]
+                          }
+                        </>
+                      }
                     </>
                   }
                 </TableCell>

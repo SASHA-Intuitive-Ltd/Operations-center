@@ -43,8 +43,11 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
 
     const submitNewMeeting = useCallback(async () => {
         // TODO: Validators
+        // TODO: Get generated link for this date ? decide how.
 
-        // Send info to webserver
+        // FIXME: Broken meeting link 
+
+        // Send info to webserver 
         await axios.post('http://localhost:5000/meetings', {
             admin: adminName,
             user: patient,
@@ -108,7 +111,7 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
 
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DateTimePicker
-                            label="Date&Time picker"
+                            label="Date & Time"
                             value={date}
                             onChange={handleOnChangeDate}
                             renderInput={(params) => <TextField {...params} style={tfieldStyle}/>}
