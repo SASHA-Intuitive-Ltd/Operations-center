@@ -24,7 +24,14 @@ export default function UpdateMeeting({ open, handleClose, meetingInfo, setTrigg
     // Submit the edits to the server
     async function submitEdits() {
 
-        // FIXME: Add axios.put after you finish it in the backend
+        axios.put(`http://localhost:5000/meetings/${meetingInfo._id}`, {
+            _id: meetingInfo._id,
+            user: meetingInfo.user,
+            admin: meetingInfo.admin,
+            link: meetingInfo.link,
+            date: date,
+            topic: topic
+        })
 
         setTrigger(true)
         handleClose()
