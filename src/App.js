@@ -5,7 +5,7 @@
 import './App.css';
 
 // Routing
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom'
 import axios from 'axios';
 
 // Components testing imports
@@ -17,11 +17,14 @@ import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import MeetingsPageContainer from './Components/Admin_views/Meetings/MeetingsPageContainer';
 import Landing from './Components/User_management/Landing/Landing';
 import PatientsList from './Components/Admin_views/patients_management/PatientsList';
+
+
 const logo = require('./assets/logo.png')
 
-// Modules import
 
+// Modules import
 // Components import
+
 
 
 function App() {

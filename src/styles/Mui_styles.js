@@ -3,6 +3,7 @@
  * @purpose Style jsons for MUI objects
  */
 
+
 export const MuiStyles = {
     LineProgStyle: {
         width: "700px",
@@ -85,5 +86,15 @@ export const MuiStyles = {
         border: '0.5px solid var(--global-grey)',
         fontWeight: 'bold',
         fontSize: 'medium'
+    },
+
+    ErrorMessageText: {
+        border: '1.5px solid red',
+        borderRadius: 5,
+        color: 'red',
+        padding: 5,
+        margin: 10,
+        display: 'flex',
+        fontSize: 'x-large'
     }
 }
