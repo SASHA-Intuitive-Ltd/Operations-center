@@ -136,7 +136,7 @@ export default function MeetingsList() {
                     </>
                   }
                 </TableCell>
-              );
+              )
             })
           }
           </TableRow>
@@ -145,11 +145,11 @@ export default function MeetingsList() {
 
   // Get admin's info
   async function getAdminInfo() {
-    await fetch(`http://localhost:5000/admins/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-            setInfo(data.fullname)
-        })
+      await fetch(`http://localhost:5000/admins/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+          setInfo(data.fullname)
+      })
   }
 
   // Function that runs on each page initiation or after changing the meetings info
@@ -171,7 +171,6 @@ export default function MeetingsList() {
               })
           })
       }
-
   }
 
   // Function for getting data into the table when its triggered

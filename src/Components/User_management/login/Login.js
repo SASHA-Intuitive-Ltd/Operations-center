@@ -47,13 +47,14 @@ function Login({ userType, setToken, creds, link }) {
         }
     }
 
+    
+
     function getRedirectionRoute() {
         
         var link = ""
 
         // Send get to axios by user type, search by user name...
         if (userType === 'admin') {
-
             var _id = loginResult
             link = `./home_admin/${_id}`
         }

@@ -56,7 +56,7 @@ function App() {
               <Route exact path='/login_patient'><Login userType='patient' setToken={setToken} setCreds={setCreds}/></Route>
               <Route path='/home_admin/:id'><AdminView/></Route>
 
-              <Route path='/operating_screen/:id'><PageContainerOperator operatorInfo={userCreds}/></Route>
+              <Route path='/operating_screen/:id'><PageContainerOperator/></Route>
               <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1}
                 devicesPerformances={testConfigs.device_checkpoints} currentDevice={"wheelchair"}
                 /></Route>
