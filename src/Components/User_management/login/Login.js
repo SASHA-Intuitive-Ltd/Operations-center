@@ -47,8 +47,6 @@ function Login({ userType, setToken, creds, link }) {
         }
     }
 
-    
-
     function getRedirectionRoute() {
         
         var link = ""
