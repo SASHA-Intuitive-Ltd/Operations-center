@@ -122,5 +122,32 @@ export const MuiStyles = {
         margin: 20,
         borderRadius: 15,
         border: '2px solid var(--global-primary)'
+    },
+
+    // Admin action card MUI custom
+    AdminActionCard: {
+        minWidth: '30%',
+        maxWidth: '30%', 
+        borderRadius: '6px',
+        border: '2px solid var(--global-primary)',
+        margin: '10px'
+    },
+
+    // Button that contains icon variant 1
+    IconButtonStyle1: {
+        border: '1px solid var(--global-grey)',
+        backgroundColor: 'var(--global-white)',
+        transition: 'all 0.65s',
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
+
+    // Icon style variant 1
+    IconContentStyle1: {
+        margin: 5,
+        fontSize: 'xx-large',
+        size: 'max-content',
+        color: 'var(--global-primary)',
+        transition: 'all 0.65s'
     }
 }

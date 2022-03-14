@@ -1,3 +1,4 @@
+// React imports and configs
 import React, { useState, useLayoutEffect } from "react"
 import { useParams } from "react-router-dom";
 import  { CardOptions }  from './AdminView.configs'
@@ -18,37 +19,12 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import UpdateIcon from '@mui/icons-material/Update';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import BugReportIcon from '@mui/icons-material/BugReport';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import AccessibleForwardIcon from '@mui/icons-material/AccessibleForward';
 
 // Dialogs
 import AddPatient from "./Dialogs/AddPatient";
 import ReportBug from "./Dialogs/ReportBug";
-
-
-// Styles TODO: Transfer it to design js file (Styles folder)
-const cardStyle = { 
-    minWidth: '30%',
-    maxWidth: '30%', 
-    borderRadius: '6px',
-    border: '2px solid var(--global-primary)',
-    margin: '10px'
-}
-
-const buttonStyle = {
-    border: '1px solid var(--global-grey)',
-    backgroundColor: 'var(--global-white)',
-    transition: 'all 0.65s',
-    alignSelf: 'center',
-    textAlign: 'center',
-}
-
-const iconStyle = {
-    margin: 5,
-    fontSize: 'xx-large',
-    size: 'max-content',
-    color: 'var(--global-primary)',
-    transition: 'all 0.65s'
-}
+import { MuiStyles } from "../../styles/Mui_styles";
 
 // Admin home page function component
 export default function AdminView({  }) {
@@ -92,9 +68,11 @@ export default function AdminView({  }) {
 
     // Card const function component for generating action cards by cardInfo json doc.
     const getCard = (cardInfo) =>  (
-        <Box sx={cardStyle}>
+        <Box sx={MuiStyles.AdminActionCard}>
+            {/* Card container */}
             <Card variant="outlined">
                 <div style={{ margin: '10px' }}>
+                    {/* Card content: title (action), description, activation button */}
                     <CardContent>
                         <Typography variant="h4">
                             <b>{cardInfo.action}</b>
@@ -108,7 +86,7 @@ export default function AdminView({  }) {
                     </CardContent>
                     
                     <CardActions>
-                        <Button className="card-button" size="medium" onClick={cardInfo.func} style={buttonStyle}>
+                        <Button className="card-button" size="medium" onClick={cardInfo.func} style={MuiStyles.IconButtonStyle1}>
                         {
                             cardInfo.actionCall
                         }
@@ -132,7 +110,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.operator_view.action,
-                            "actionCall": <Link className="link-box" to={`/operating_screen/${id}`} style={iconStyle}><PreviewIcon className="button-icon"/></Link>,
+                            "actionCall": <Link className="link-box" to={`/operating_screen/${id}`} style={MuiStyles.IconContentStyle1}><PreviewIcon className="button-icon"/></Link>,
                             "description": CardOptions.operator_view.description,
                         })
                     }
@@ -141,7 +119,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.add_patient.action,
-                            "actionCall": <AddCircleOutlineIcon style={iconStyle} className="button-icon"/>,
+                            "actionCall": <AddCircleOutlineIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
                             "description":  CardOptions.add_patient.description,
                             "func": handleClickOpen(CardOptions.add_patient.type),
                         })
@@ -151,7 +129,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.manage.action,
-                            "actionCall": <Link className="link-box" to={`/manage/${id}`} style={iconStyle}><UpdateIcon className="button-icon"/></Link>,
+                            "actionCall": <Link className="link-box" to={`/manage/${id}`} style={MuiStyles.IconContentStyle1}><UpdateIcon className="button-icon"/></Link>,
                             "description": CardOptions.manage.description
                         })
                     }
@@ -163,7 +141,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.meetings.action,
-                            "actionCall": <Link className="link-box" to={`/meetings/${id}`} style={iconStyle}> <CardMembershipIcon className="button-icon"/> </Link>,
+                            "actionCall": <Link className="link-box" to={`/meetings/${id}`} style={MuiStyles.IconContentStyle1}><CardMembershipIcon className="button-icon"/> </Link>,
                             "description": CardOptions.meetings.action
                         })
                     }
@@ -172,7 +150,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.bugs.action,
-                            "actionCall": <BugReportIcon style={iconStyle} className="button-icon"/>,
+                            "actionCall": <BugReportIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
                             "description": CardOptions.bugs.description,
                             "func": handleClickOpen(CardOptions.bugs.type)
                         })
@@ -182,7 +160,7 @@ export default function AdminView({  }) {
                     {
                         getCard({
                             "action": CardOptions.scenarios.action,
-                            "actionCall": <HelpOutlineIcon style={iconStyle} className="button-icon"/>,
+                            "actionCall": <Link className="link-box" to={`/scenarios/${id}`} style={MuiStyles.IconContentStyle1}><AccessibleForwardIcon className="button-icon"/></Link>,
                             "description": CardOptions.scenarios.description
                         })
                     }

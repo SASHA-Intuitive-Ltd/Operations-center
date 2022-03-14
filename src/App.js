@@ -20,6 +20,10 @@ import AdminView from './Components/Admin_views/AdminView';
 import MeetingsPageContainer from './Components/Admin_views/Meetings/MeetingsPageContainer';
 import Landing from './Components/User_management/Landing/Landing';
 import PatientsList from './Components/Admin_views/patients_management/PatientsList';
+import Scenarios from './Components/Admin_views/Scenarios/Scenarios';
+import CreateScenario from './Components/Admin_views/Scenarios/CreateScenario';
+import ViewBasics from './Components/Admin_views/Scenarios/ViewBasic';
+import ViewSpecific from './Components/Admin_views/Scenarios/ViewSpecific';
 
 
 // Logo import
@@ -64,6 +68,12 @@ export default function App() {
               <Route path='/operating_screen/:id'><PageContainerOperator/></Route>
               <Route path='/meetings/:id'><MeetingsPageContainer/></Route>              
               <Route path='/manage/:id'><PatientsList/></Route>
+              <Route path='/scenarios/:id'><Scenarios/></Route>
+
+              {/* Scenarios admin screens */}
+              <Route path='/scenario_add/:id'><CreateScenario/></Route>
+              <Route path='/scenario_basic/:id'><ViewBasics/></Route>
+              <Route path='/scenario_specific/:id'><ViewSpecific/></Route>
 
               {/* TODO: Minimize hardcoding in PatientPage */}
               <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1} devicesPerformances={testConfigs.device_checkpoints} currentDevice={"wheelchair"}/></Route>

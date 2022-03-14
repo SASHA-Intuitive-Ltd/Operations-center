@@ -29,7 +29,7 @@ export const CardOptions = {
     },
 
     scenarios: {
-        action: "Internal updates",
-        description: "Internal updates and instructions for admins"
+        action: "Scenarios",
+        description: "View basic & user customized scenarios, add new scenarios"
     }
 }
