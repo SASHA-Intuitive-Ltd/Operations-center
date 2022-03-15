@@ -149,5 +149,12 @@ export const MuiStyles = {
         size: 'max-content',
         color: 'var(--global-primary)',
         transition: 'all 0.65s'
+    },
+
+    // Form style
+    FormStyle: {
+        padding: '100px',
+        display: 'flex',
+        flexDirection: 'column'
     }
 }

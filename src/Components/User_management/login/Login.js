@@ -12,13 +12,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useHistory } from 'react-router-dom'
 import axios from "axios"
 
-
-const formStyle = {
-    padding: '100px',
-    display: 'flex',
-    flexDirection: 'column',
-}
-
 // Login form component
 export default function Login({ userType, setToken, creds, link, token }) {
 
@@ -157,7 +150,7 @@ export default function Login({ userType, setToken, creds, link, token }) {
             {/* TODO: move style to a style util */}
             <h1 style={{fontSize: '240%', padding: '50px'}}>Dear {userType}, please fill the form and login to the operations center</h1>
             
-            <Box style={formStyle}>
+            <Box style={MuiStyles.FormStyle}>
                 <TextField style={{...MuiStyles.TextField, width: 500}} name="fullname" label="Full name" value={fullname} onChange={handleValueChange} variant="outlined" />
                 <TextField style={{...MuiStyles.TextField, width: 500}} name="password" label="password" value={password} onChange={handleValueChange} variant="outlined" 
                     type={showPassword ? "text" : "password"}
