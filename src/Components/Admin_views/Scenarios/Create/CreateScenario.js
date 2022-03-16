@@ -22,7 +22,7 @@ export default function CreateScenario() {
     const [ stepsList, setList ] = useState([])
 
     const addStep = (newStep) => {
-        setList((steps) => [...steps, newStep])
+        setList((steps) => [...steps, { index: (stepsList.length + 1) , item: newStep }])
     }
 
     // Dialog state
@@ -83,9 +83,10 @@ export default function CreateScenario() {
                             <div style={MuiStyles.StepCardOut}>
                             {   
                                 <Card sx={{...MuiStyles.StepCard}}>
-                                    <CardContent >
-                                        <Typography variant="h4"><b>{element.stepTitle}</b></Typography>
-                                        <Typography variant="h6">{element.stepDesc}</Typography>
+                                    <CardContent>
+                                        <Typography variant="h5"><b>#{element.index}</b></Typography>
+                                        <Typography variant="h4"><b>{element.item.stepTitle}</b></Typography>
+                                        <Typography variant="h6">{element.item.stepDesc}</Typography>
                                     </CardContent>
                                 </Card>
                             }

@@ -161,8 +161,8 @@ export const MuiStyles = {
     // Scenario outside card
     StepCardOut: {
         textAlign: 'justify',
-        margin: 10,
-        padding: 10,
+        margin: 0,
+        padding: 7.5,
     },
 
     // Scenario card

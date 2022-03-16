@@ -78,12 +78,15 @@ export default function MenuButton({ setTrigger, setOpen }) {
     
     // Handle menu closing
     const handleClose = (ref) => {
-
+        // If ref is add new step
         if (ref === 'add') {
-            setOpen(true)
+            setOpen(true) // Set adding dialog open
         }
 
-        setAnchorEl(null) // Clear anchor
+        // If ref is dismiss, dismiss this menu, prevent menu closing on option choosing
+        if (ref === 'dismiss') {
+            setAnchorEl(null) // Clear anchor
+        }
     }
 
     return (
@@ -105,7 +108,7 @@ export default function MenuButton({ setTrigger, setOpen }) {
                     menuOptions.map((element) => {
                         return (
                             <div key={element.ref} onClick={() => handleClose(element.ref)}>
-                                { element.icon }
+                                {element.icon}
                             </div>
                         )
                     })
