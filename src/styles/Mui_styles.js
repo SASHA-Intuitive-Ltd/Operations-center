@@ -156,5 +156,17 @@ export const MuiStyles = {
         padding: '100px',
         display: 'flex',
         flexDirection: 'column'
+    },
+
+    // Scenario outside card
+    StepCardOut: {
+        textAlign: 'justify',
+        margin: 10,
+        padding: 10,
+    },
+
+    // Scenario card
+    StepCard: {
+        border: '2px solid var(--global-primary)'
     }
 }

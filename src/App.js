@@ -21,7 +21,7 @@ import MeetingsPageContainer from './Components/Admin_views/Meetings/MeetingsPag
 import Landing from './Components/User_management/Landing/Landing';
 import PatientsList from './Components/Admin_views/patients_management/PatientsList';
 import Scenarios from './Components/Admin_views/Scenarios/Scenarios';
-import CreateScenario from './Components/Admin_views/Scenarios/CreateScenario';
+import CreateScenario from './Components/Admin_views/Scenarios/Create/CreateScenario';
 import ViewBasics from './Components/Admin_views/Scenarios/ViewBasic';
 import ViewSpecific from './Components/Admin_views/Scenarios/ViewSpecific';
 
