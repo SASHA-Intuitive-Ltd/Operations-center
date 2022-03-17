@@ -9,17 +9,18 @@ import { useTheme } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Typography } from "@mui/material";
+import Edit from "@mui/icons-material/Edit";
 
 // Dialog function component for adding step to a scenario
-export default function CreateStep({ open, handleClose, addStep }) {
+export default function CreateStep({ open, handleClose, editStep, stepInfo }) {
 
     // Theme and full screen settings
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
     // Inputs states reset
-    const [ stepTitle, setTitle ] = useState('')
-    const [ stepDesc, setDesc ] = useState('')
+    const [ stepTitle, setTitle ] = useState(stepInfo.item.title)
+    const [ stepDesc, setDesc ] = useState(stepInfo.item.desc)
 
     const handleInputChange = (e) => {
         // Const of name and value
@@ -37,7 +38,7 @@ export default function CreateStep({ open, handleClose, addStep }) {
     }
 
     const onSubmit = () => {
-        addStep({
+        editStep({
             stepTitle: stepTitle,
             stepDesc: stepDesc
         })

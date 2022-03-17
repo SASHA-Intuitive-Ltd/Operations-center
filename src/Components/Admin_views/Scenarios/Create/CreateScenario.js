@@ -10,6 +10,7 @@ import MenuButton from "./MenuButton"
 // Style
 import { MuiStyles } from "../../../../styles/Mui_styles"
 import CreateStep from "./CreateStep"
+import EditStep from "./EditStep"
 import CloseIcon from "@mui/icons-material/Close"
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -20,11 +21,17 @@ export default function CreateScenario() {
     const [ title, setTitle ] = useState("")
     const [ desc, setDesc ] = useState("")
 
+    // Dialog type 
+    const [ type, setType ] = useState('')
+
     // Scenarios steps list
     const [ stepsList, setList ] = useState([])
 
     // Removing element trigger
     const [ remTrigger, setRemoveTrigger ] = useState(false)
+
+    // Selected item to edit
+    const [ selected, setSelected ] = useState({})
 
     // Add step function
     const addStep = (newStep) => {
@@ -68,6 +75,13 @@ export default function CreateScenario() {
         }
     }
 
+    // Function for handling edit
+    const edit = (step) => {
+        setSelected(step)
+        setType('edit')
+        handleOpenDia()
+    }
+
     // Dialog state
     const [ openDia, setOpen ] = useState(false)
 
@@ -102,6 +116,35 @@ export default function CreateScenario() {
         }
     }
 
+    function getTitle() {
+        return title
+    }
+
+    // Function for handling scenario creating 
+    async function submitScenario() {
+
+
+        var scenarioData = {
+            title: title,
+            
+            desc: desc,
+
+            devices: {
+                x: 'off',
+                y: 'on'
+            },
+
+            steps: stepsList
+        }
+        
+
+        console.log(scenarioData)
+
+        // await axios.post('http://localhost:5000/scenarios', {
+
+        //})
+    } 
+
     // Use effect, update states with change of stepsList or removing trigger
     useEffect(() => {
 
@@ -127,10 +170,11 @@ export default function CreateScenario() {
                 label="Scenario title" value={title} onChange={handleValueChange} variant="outlined" />
 
                 <TextField style={{...MuiStyles.TextField, width: 500}} name="desc"
-                label="Scenario description" value={desc} onChange={handleValueChange} variant="outlined" />
+                    label="Scenario description" value={desc} onChange={handleValueChange} variant="outlined" 
+                />
 
                 <center style={{ margin: 25 }}>
-                    <MenuButton setOpen={setOpen}/>
+                    <MenuButton saveToBackend={submitScenario} setOpen={setOpen} setType={setType}/>
                 </center>
             </Box>   
             
@@ -162,17 +206,23 @@ export default function CreateScenario() {
                                         >
                                             <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
                                         </IconButton>
-                                        <IconButton size="small" 
-                                            style={{
-                                                ...MuiStyles.OptionsButtonStyle,
-                                                borderRadius: '50%', 
-                                                backgroundColor: 'orange',
-                                                cursor: 'pointer !important'
-                                            }}
-                                            onClick={() => removeStep(element)}
-                                        >
-                                            <EditIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
-                                        </IconButton>
+                                        {
+                                            /*
+                                            <IconButton size="small" 
+                                                style={{
+                                                    ...MuiStyles.OptionsButtonStyle,
+                                                    borderRadius: '50%', 
+                                                    backgroundColor: 'orange',
+                                                    cursor: 'pointer !important'
+                                                }}
+                                                onClick={() => 
+                                                    edit(element)
+                                                }
+                                            >
+                                                <EditIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
+                                            </IconButton>
+                                            */
+                                        }
                                     </CardActions>
                                 </Card>
                             }
@@ -185,7 +235,22 @@ export default function CreateScenario() {
             </Box>
             
             {/* Creating dialog including */}
-            <CreateStep open={openDia} handleClose={handleCloseDia} addStep={addStep}/>
+            { 
+                type === 'add'
+                ?
+                <CreateStep open={openDia} handleClose={handleCloseDia} addStep={addStep}/>
+                :
+                null
+            }
+            {  
+                /*
+                type === 'edit'
+                ?
+                <EditStep open={openDia} handleClose={handleCloseDia} stepsInfo={selected}/>
+                :
+                null
+                */
+            }
         </div>
     )
 }

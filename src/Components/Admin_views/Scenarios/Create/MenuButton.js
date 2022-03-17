@@ -39,7 +39,7 @@ const StyledMenu = styled((props) => (
   }));
 
 // Function for handling button menu opening and actions
-export default function MenuButton({ setTrigger, setOpen }) {
+export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend }) {
 
     // Menu opening state
     const [anchorEl, setAnchorEl] = useState(null);
@@ -80,7 +80,12 @@ export default function MenuButton({ setTrigger, setOpen }) {
     const handleClose = (ref) => {
         // If ref is add new step
         if (ref === 'add') {
+            setType('add')
             setOpen(true) // Set adding dialog open
+        }
+
+        else if (ref === 'save') {
+            saveToBackend()
         }
 
         // If ref is dismiss, dismiss this menu, prevent menu closing on option choosing
