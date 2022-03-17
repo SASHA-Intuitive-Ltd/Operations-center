@@ -84,9 +84,9 @@ export default function MenuButton({ setTrigger, setOpen }) {
         }
 
         // If ref is dismiss, dismiss this menu, prevent menu closing on option choosing
-        if (ref === 'dismiss') {
-            setAnchorEl(null) // Clear anchor
-        }
+        // if (ref === 'dismiss') {
+        setAnchorEl(null) // Clear anchor
+        // }
     }
 
     return (
