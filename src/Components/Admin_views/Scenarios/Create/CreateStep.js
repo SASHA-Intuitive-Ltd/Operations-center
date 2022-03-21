@@ -4,11 +4,11 @@ import { MuiStyles } from "../../../../styles/Mui_styles";
 
 // Import MUI icons and components
 import Dialog from '@mui/material/Dialog';
-import { DialogTitle, DialogContent, DialogActions, TextField, Fab } from "@mui/material";
+import { DialogTitle, DialogContent, DialogActions, TextField, Fab, FormControlLabel, RadioGroup, Radio, Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Typography } from "@mui/material";
+import { set } from "date-fns";
 
 // Dialog function component for adding step to a scenario
 export default function CreateStep({ open, handleClose, addStep }) {
@@ -20,31 +20,61 @@ export default function CreateStep({ open, handleClose, addStep }) {
     // Inputs states reset
     const [ stepTitle, setTitle ] = useState('')
     const [ stepDesc, setDesc ] = useState('')
+    const [ shown, setShown ] = useState(true)
+    const [ pers, setPers ] = useState(0)
 
+
+    // Handle text fields inputs changes
     const handleInputChange = (e) => {
         // Const of name and value
         const { name, value } = e.target
 
         // If step title
         if (name === 'stepTitle') {
-            setTitle(value)
+            // Set step's title
+            setTitle(value) 
         }
 
         // If scenario description
         else if (name === 'stepDesc') {
+            // Set step's description
             setDesc(value)
         }
     }
 
+    // Handle radio buttons value change
+    const handleShown = (e) => {
+
+        // If radio button represents true
+        if (e.target.value === 'true') {
+            // Set shown true
+            setShown(true) 
+        }
+
+        // If radio button represents false 
+        else if (e.target.value === 'false') {
+            // Set shown to false
+            setShown(false)
+        }
+    }
+
+    // On clicking V 
     const onSubmit = () => {
+        // Use the addStep hook from the params for adding a new step to the steps list
         addStep({
             stepTitle: stepTitle,
-            stepDesc: stepDesc
+            stepDesc: stepDesc,
+            isShown: shown,
+            pers: pers
         })
 
+        // Clean input states
         setTitle("")
         setDesc("")
+        setShown(true)
+        setPers(0)
 
+        // Handling dialog closing
         handleClose()
     }
 
@@ -73,6 +103,17 @@ export default function CreateStep({ open, handleClose, addStep }) {
                         value={stepDesc}
                         onChange={handleInputChange}
                     />
+
+
+                    <Typography sx={{ textAlign: 'center', width: '100%' }} ><b>Choose step's visibillity</b></Typography>
+                    <RadioGroup
+                        defaultValue="true"
+                        name="radio-buttons-group"
+                        style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
+                    >
+                        <FormControlLabel name='true_option' onChange={handleShown} value="true" control={<Radio checked={shown} />} label="True" />
+                        <FormControlLabel name='false_option'  onChange={handleShown} value="false" control={<Radio checked={!shown}/>} label="False" />
+                    </RadioGroup>
                 </DialogContent>
 
                 <DialogActions>

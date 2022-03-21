@@ -13,6 +13,7 @@ import CreateStep from "./CreateStep"
 import EditStep from "./EditStep"
 import CloseIcon from "@mui/icons-material/Close"
 import EditIcon from '@mui/icons-material/Edit';
+import axios from 'axios'
 
 // Function for creating new scenario component
 export default function CreateScenario() {
@@ -123,26 +124,34 @@ export default function CreateScenario() {
     // Function for handling scenario creating 
     async function submitScenario() {
 
-
+        // Scenario info to save
         var scenarioData = {
+            // Scenario title
             title: title,
             
+            // Scenraio description
             desc: desc,
 
-            devices: {
-                x: 'off',
-                y: 'on'
-            },
+            // Devices the scenario uses + states
+            devices: [
+                {
+                    deviceName: 'x',
+                    state: 'off'
+                },
+                {
+                    deviceName: 'y',
+                    state: 'off'
+                }
+            ],
 
+            // Devices steps list for this scenario
             steps: stepsList
         }
         
 
         console.log(scenarioData)
 
-        // await axios.post('http://localhost:5000/scenarios', {
-
-        //})
+        await axios.post('http://localhost:5000/scenarios', scenarioData)
     } 
 
     // Use effect, update states with change of stepsList or removing trigger
@@ -162,7 +171,7 @@ export default function CreateScenario() {
     }, [stepsList, remTrigger])
         
     return (
-        <div className="user-management">
+        <div className="user-management" >
             {/* Form for creating title and description for the scenario */}
             <Box style={{...MuiStyles.FormStyle, padding: 50}}>
                 <Typography variant="h3"><b>Create new scenario</b></Typography>
@@ -190,7 +199,7 @@ export default function CreateScenario() {
                             {   
                                 <Card sx={{...MuiStyles.StepCard}}>
                                     <CardContent>
-                                        <Typography variant="h6"><b>Step #{element.index + 1}</b></Typography>
+                                        <Typography variant="h6" style={{ color: element.item.isShown ? 'green' : 'red' }}><b>Step #{element.index + 1}</b></Typography>
                                         <Typography variant="h5"><b>{element.item.stepTitle}</b></Typography>
                                         <Typography variant="h6">{element.item.stepDesc}</Typography>
                                     </CardContent>
