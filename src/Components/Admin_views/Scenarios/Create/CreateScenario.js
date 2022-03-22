@@ -14,9 +14,16 @@ import EditStep from "./EditStep"
 import CloseIcon from "@mui/icons-material/Close"
 import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios'
+import { useParams, useHistory } from "react-router-dom"
 
 // Function for creating new scenario component
 export default function CreateScenario() {
+
+    // Save admin id for further actions
+    const { id } = useParams()
+
+    // History for further actions pushing 
+    const history = useHistory()
     
     // Form params values & setters
     const [ title, setTitle ] = useState("")
@@ -117,10 +124,6 @@ export default function CreateScenario() {
         }
     }
 
-    function getTitle() {
-        return title
-    }
-
     // Function for handling scenario creating 
     async function submitScenario() {
 
@@ -134,14 +137,7 @@ export default function CreateScenario() {
 
             // Devices the scenario uses + states
             devices: [
-                {
-                    deviceName: 'x',
-                    state: 'off'
-                },
-                {
-                    deviceName: 'y',
-                    state: 'off'
-                }
+               
             ],
 
             // Devices steps list for this scenario
@@ -152,6 +148,8 @@ export default function CreateScenario() {
         console.log(scenarioData)
 
         await axios.post('http://localhost:5000/scenarios', scenarioData)
+
+        history.push(`/scenarios/${id}`)
     } 
 
     // Use effect, update states with change of stepsList or removing trigger
@@ -200,8 +198,10 @@ export default function CreateScenario() {
                                 <Card sx={{...MuiStyles.StepCard}}>
                                     <CardContent>
                                         <Typography variant="h6" style={{ color: element.item.isShown ? 'green' : 'red' }}><b>Step #{element.index + 1}</b></Typography>
-                                        <Typography variant="h5"><b>{element.item.stepTitle}</b></Typography>
-                                        <Typography variant="h6">{element.item.stepDesc}</Typography>
+                                        <Typography variant="h4"><b>{element.item.stepTitle}</b></Typography>
+                                        <Typography variant="h6">Description: {element.item.stepDesc}</Typography>
+                                        <br/>
+                                        <Typography variant="h6">Command: <b>{element.item.trigger}</b></Typography>
                                     </CardContent>
                                     <CardActions dir="rtl">
                                         <IconButton size="small" 

@@ -1,7 +1,7 @@
 // Import modules
 import React, { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
-import  { CardOptions }  from './Scenarios.configs'
+import  { CardOptions, StepCardOptions }  from './Scenarios.configs'
 import { MuiStyles } from "../../../styles/Mui_styles";
 
 // MUI comps
@@ -11,11 +11,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { Fab as Button, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
-
-// MUI Icons
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import PreviewIcon from '@mui/icons-material/Preview';
-import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 // Function for containing the action of the scenarios feature
 export default function Scenarios({  }) {
@@ -75,10 +70,50 @@ export default function Scenarios({  }) {
 
     return (
         <div>
-            <p>{adminInfo.fullname}</p>
+            {/**<p>{adminInfo.fullname}</p>*/}
             <div className="possible-actions">
+
                 <div className="row">
-                    {/* View operating screen action */}
+                    {
+                        CardOptions.map((element) => {
+                            return (
+                                getCard({
+                                    "action": element.action,
+                                    "actionCall": 
+                                    <Link className="link-box" to={`${element.path}/${id}`} style={MuiStyles.IconContentStyle1}>
+                                    {
+                                        element.icon
+                                    }
+                                    </Link>,
+                                    "description": element.description,
+                                })
+                            )
+                        })
+                    }
+                </div>
+
+                <div className="row">
+                    {
+                        StepCardOptions.map((element) => {
+                            return (
+                                getCard({
+                                    "action": element.action,
+                                    "actionCall": 
+                                    <Link className="link-box" to={`${element.path}/${id}`} style={MuiStyles.IconContentStyle1}>
+                                    {
+                                        element.icon
+                                    }
+                                    </Link>,
+                                    "description": element.description,
+                                })
+                            )
+                        })
+                    }
+                </div>
+
+                {/**
+                 * <div className="row">
+                    {/* View operating screen action }
                     {
                         getCard({
                             "action": CardOptions.add.action,
@@ -90,7 +125,7 @@ export default function Scenarios({  }) {
                         })
                     }
                     
-                    {/* Open patient adding dialog */}
+                    {/* Open patient adding dialog }
                     {
                         getCard({
                             "action": CardOptions.basic.action,
@@ -103,7 +138,7 @@ export default function Scenarios({  }) {
                         })
                     }
                     
-                    {/* View patient management (Update and delete options too) */}
+                    {/* View patient management (Update and delete options too) }
                     {
                         getCard({
                             "action": CardOptions.specific.action,
@@ -115,6 +150,8 @@ export default function Scenarios({  }) {
                         })
                     }
                 </div>
+                 */}
+                
             </div>
         </div>
     )

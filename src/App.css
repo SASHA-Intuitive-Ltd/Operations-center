@@ -484,8 +484,3 @@
 .link2:hover {
   background-color: transparent !important;
 }
-
-.css-6hp17o-MuiList-root-MuiMenu-list {
-  display: flex;
-    flex-direction: row;
-}

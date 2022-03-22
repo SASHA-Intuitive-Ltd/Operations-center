@@ -24,6 +24,8 @@ import Scenarios from './Components/Admin_views/Scenarios/Scenarios';
 import CreateScenario from './Components/Admin_views/Scenarios/Create/CreateScenario';
 import ViewBasics from './Components/Admin_views/Scenarios/ViewBasic';
 import ViewSpecific from './Components/Admin_views/Scenarios/ViewSpecific';
+import AddStep from './Components/Admin_views/Scenarios/Steps/AddStep';
+import ViewSteps from './Components/Admin_views/Scenarios/Steps/ViewSteps';
 
 
 // Logo import
@@ -74,6 +76,8 @@ export default function App() {
               <Route path='/scenario_add/:id'><CreateScenario/></Route>
               <Route path='/scenario_basic/:id'><ViewBasics/></Route>
               <Route path='/scenario_specific/:id'><ViewSpecific/></Route>
+              <Route path='/step_add/:id'><AddStep/></Route>
+              <Route path='/steps_list/:id'><ViewSteps/></Route>
 
               {/* TODO: Minimize hardcoding in PatientPage */}
               <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1} devicesPerformances={testConfigs.device_checkpoints} currentDevice={"wheelchair"}/></Route>

@@ -32,7 +32,7 @@ const StyledMenu = styled((props) => (
       marginTop: theme.spacing(2),
     
     },
-    '.MuiList-root .MuiList-padding .MuiMenu-list .css-6hp17o-MuiList-root-MuiMenu-list': {
+    '.css-6hp17o-MuiList-root-MuiMenu-list': {
         display: 'flex',
         flexDirection: 'row'
     }
@@ -101,7 +101,7 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
             </IconButton> 
 
             <StyledMenu
-                id="demo-customized-menu"
+                id="demo-customized-menu1"
                 MenuListProps={{
                 'aria-labelledby': 'demo-customized-button',
                 }}

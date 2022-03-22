@@ -1,10 +1,10 @@
 // Import react modules
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { MuiStyles } from "../../../../styles/Mui_styles";
 
 // Import MUI icons and components
 import Dialog from '@mui/material/Dialog';
-import { DialogTitle, DialogContent, DialogActions, TextField, Fab, FormControlLabel, RadioGroup, Radio, Typography } from "@mui/material";
+import { DialogTitle, DialogContent, DialogActions, TextField, Fab, FormControlLabel, RadioGroup, Radio, Typography, MenuItem, FormControl, InputLabel, Select } from "@mui/material";
 import { useTheme } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -17,66 +17,69 @@ export default function CreateStep({ open, handleClose, addStep }) {
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
-    // Inputs states reset
-    const [ stepTitle, setTitle ] = useState('')
-    const [ stepDesc, setDesc ] = useState('')
-    const [ shown, setShown ] = useState(true)
+    // Input states definition
     const [ pers, setPers ] = useState(0)
 
+    // Steps and chosen step states definition
+    const [ steps, setSteps ] = useState([{}])
+    const [ chosen, setChosen ] = useState({})
 
-    // Handle text fields inputs changes
-    const handleInputChange = (e) => {
-        // Const of name and value
-        const { name, value } = e.target
-
-        // If step title
-        if (name === 'stepTitle') {
-            // Set step's title
-            setTitle(value) 
-        }
-
-        // If scenario description
-        else if (name === 'stepDesc') {
-            // Set step's description
-            setDesc(value)
-        }
+    // Async function for accessing the steps from the database
+    async function getSteps() {
+        // Fetch steps collection through api controller
+        await fetch('http://localhost:5000/steps/')
+        .then((response) => response.json())
+        .then((data) => { 
+            // Set steps list as data
+            setSteps(data)
+        })
     }
 
-    // Handle radio buttons value change
-    const handleShown = (e) => {
-
-        // If radio button represents true
-        if (e.target.value === 'true') {
-            // Set shown true
-            setShown(true) 
-        }
-
-        // If radio button represents false 
-        else if (e.target.value === 'false') {
-            // Set shown to false
-            setShown(false)
-        }
-    }
-
-    // On clicking V 
+    // On clicking the submit button
     const onSubmit = () => {
         // Use the addStep hook from the params for adding a new step to the steps list
         addStep({
-            stepTitle: stepTitle,
-            stepDesc: stepDesc,
-            isShown: shown,
+            stepTitle: chosen.title,
+            stepDesc: chosen.desc,
+            isShown: chosen.isShown,
+            trigger: chosen.trigger,
             pers: pers
         })
 
-        // Clean input states
-        setTitle("")
-        setDesc("")
-        setShown(true)
+        // Reset persentage's state
         setPers(0)
 
         // Handling dialog closing
         handleClose()
     }
+
+    // Function for getting menu items
+    function menuItems() {
+        // Reset components list
+        var comps = []
+
+        // For each step, create component and push it to the comps list
+        steps.map(element => {
+            comps.push(
+                <MenuItem value={element}>{element.title}</MenuItem>
+            )
+        })
+
+        // Return components list
+        return comps
+    }
+
+    // Fucntion for handling the changes of the selection section
+    const handleChangeSelection = (e) => {
+        // Set chosen step as the value of the selected step <li></li>
+        setChosen(e.target.value)
+    }
+
+
+    // Use effect for calling the steps accessor
+    useEffect(() => {
+        getSteps()
+    }, [])
 
     return (
         <div>
@@ -86,34 +89,26 @@ export default function CreateStep({ open, handleClose, addStep }) {
                 onClose={handleClose}
             >
                 <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
-                    <Typography variant="h4"><b>Add new step</b></Typography>
+                    <Typography variant="h4"><b>Choose step you'd like to add</b></Typography>
                 </DialogTitle>
+                
+                <br/>
 
                 <DialogContent style={MuiStyles.InputsContainerStyleNoHorizScroll}>
-                    <TextField style={MuiStyles.TextField} name='stepTitle' id="outlined-basic" label="Step title" variant="outlined" value={stepTitle} onChange={handleInputChange}/>
-                    
-                    <TextField style={MuiStyles.TextField}
-                        name='stepDesc'
-                        id="outlined-basic"
-                        label="Step description"
-                        variant="outlined"
-                        multiline
-                        rows={5}     
-                        maxRows={20} 
-                        value={stepDesc}
-                        onChange={handleInputChange}
-                    />
-
-
-                    <Typography sx={{ textAlign: 'center', width: '100%' }} ><b>Choose step's visibillity</b></Typography>
-                    <RadioGroup
-                        defaultValue="true"
-                        name="radio-buttons-group"
-                        style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
-                    >
-                        <FormControlLabel name='true_option' onChange={handleShown} value="true" control={<Radio checked={shown} />} label="True" />
-                        <FormControlLabel name='false_option'  onChange={handleShown} value="false" control={<Radio checked={!shown}/>} label="False" />
-                    </RadioGroup>
+                    <FormControl>
+                        <InputLabel id="demo-simple-select-label">Step</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={chosen}
+                            label="Age"
+                            onChange={handleChangeSelection}
+                        >
+                        {
+                            menuItems()
+                        }        
+                        </Select>
+                    </FormControl>
                 </DialogContent>
 
                 <DialogActions>
