@@ -28,13 +28,14 @@ function PersonalInfo({ user }) {
     return (
         <div className='info'>
             <div className='profile-picture'>
-                <Avatar variant="square" sx={{ height: 130, width: 90, bgcolor: require("../../configs/tests.json").theme.primary }} src={userInfo.profileImageURl !== "NaN" ?  "Profile": require("../../assets/logo.png")}></Avatar>
+                <Avatar variant="square" sx={{ height: 130, width: 90, bgcolor: require("../../configs/tests.json").theme.primary }} 
+                src={userInfo.profileImg !== "default" ? userInfo.profileImg : null}/>
             </div>
             <div className='user-vitals'>
                 <p className='info__username'>{userInfo.fullname}</p>
-                {/*<p>Age: {user.age}</p>*/}
                 <p><b>Phone:</b> {userInfo.phone}</p>
                 <p><b>Email:</b> {userInfo.email}</p>
+                <p><b>Gender:</b> <span style={{textTransform: 'capitalize'}}>{userInfo.gender}</span></p>
                 <p><b>Address:</b> {userInfo.address}</p>
                 <p>{userInfo.diagnosis ? <><b>Diagnosis:</b> user.diagnosis </>: null}</p>
             </div>

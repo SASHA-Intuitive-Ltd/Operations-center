@@ -16,6 +16,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import storage from '../../../configs/firebaseConfig';
+
 import axios from 'axios'
 import { MuiStyles } from '../../../styles/Mui_styles';
 
@@ -24,10 +26,10 @@ function AddPatient({ openAdd, handleClose }) {
     const [fullname, setFullname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [address, setAdress] = useState("")
+    const [address, setAddress] = useState("")
     const [phone, setPhone] = useState("")
     const [diseases, setDiseases] = useState([])
-    const [gender, setGender] = useState("")
+    const [gender, setGender] = useState("male")
     const [age, setAge] = useState(20)
     const [profileImg, setProfileImg] = useState("default")
     const [img, setImage] = useState(null)
@@ -43,8 +45,6 @@ function AddPatient({ openAdd, handleClose }) {
 
 
     const submitNewPatient = useCallback(async () => {
-        // TODO: Validators
-
         // Send info to webserver
         await axios.post('http://localhost:5000/users', {
             fullname: fullname,
@@ -59,24 +59,33 @@ function AddPatient({ openAdd, handleClose }) {
         // Handle dialog closing
         handleClose()
     })
+
+    const upload = () => {
+
+    }
     
     const pickerItems = () => {
         var items = []
         
         for(var i = 20; i < 100; i++) {
-            items.push(<MenuItem value={i}>{i}</MenuItem>)
+            items.push(<MenuItem name="menuIten" value={i}>{i}</MenuItem>)
         }
 
         return items
     }
 
-    const handleOnChangeInput = (e) => {
+    async function handleOnChangeInput(e) {
         const { name, value } = e.target
 
         if (name === 'picture') {
             if (e.target.files && e.target.files[0]) {
                 let img1 = e.target.files[0];
-                setImage(URL.createObjectURL(img1)) }
+                setImage(URL.createObjectURL(img1))
+                
+                storage.refFromURL(`gs://sasha-cds-poc.appspot.com/${img1.name}`).put(img1).on("state_changed" , alert("success") , alert);
+
+                setProfileImg(`https://firebasestorage.googleapis.com/v0/b/sasha-cds-poc.appspot.com/o/${img1.name}?alt=media`)
+            }
         }
 
         else if (name === 'fullname') {
@@ -92,16 +101,27 @@ function AddPatient({ openAdd, handleClose }) {
         }
 
         else if (name === 'address') {
-            setAdress(value)
+            setAddress(value)
         }
 
         else if (name === 'phone') {
             setPhone(value)
         }
 
-        //else if (name === 'gender') {
-          //  setEmail(value)
-        //}
+        else if (name === 'male') {
+            setGender(value)
+        }
+
+        else if (name === 'female') {
+            setGender(value)
+        }
+
+        
+        /*
+        else if (name === 'menuItem') {
+            setAge(value)
+        }
+        */
     }
 
     return (
@@ -151,10 +171,22 @@ function AddPatient({ openAdd, handleClose }) {
                             name="radio-buttons-group"
                             style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
                         >
-                            <FormControlLabel name='gender_male' value="male" control={<Radio />} label="Male" />
-                            <FormControlLabel name='gender_female' value="female" control={<Radio />} label="Female" />
+                            <FormControlLabel name='gender_male' onChange={e => handleOnChangeInput(e)}  value="male" label="Male"
+                                control={
+                                    <Radio 
+                                        checked={gender === 'male'}
+                                    />
+                                } 
+                            />
+                            <FormControlLabel name='gender_female' onChange={e => handleOnChangeInput(e)} value="female" label="Female" 
+                                control={
+                                    <Radio 
+                                        checked={gender === 'female'}
+                                    />
+                                } 
+                            />
                         </RadioGroup>
-                        <FormControl style={MuiStyles.TextField}>
+                        {/*<FormControl style={MuiStyles.TextField}>
                                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
                                 <Select
                                 labelId="demo-simple-select-label"
@@ -165,8 +197,11 @@ function AddPatient({ openAdd, handleClose }) {
                                         pickerItems()
                                     }
                                 </Select>
-                        </FormControl>
-                        <Button
+                                </FormControl>*/}
+                        {
+                            profileImg === "default" 
+                            ?
+                            <Button
                             variant="outlined"
                             component="label"
                             style={MuiStyles.ButtonStyle}
@@ -178,7 +213,10 @@ function AddPatient({ openAdd, handleClose }) {
                                 name="picture"
                                 onChange={handleOnChangeInput}
                             />
-                        </Button>
+                            </Button>
+                            : 
+                            null
+                        }
                         <img src={img} style={imgStyle}/>
                     </DialogContent>
                     <DialogActions>

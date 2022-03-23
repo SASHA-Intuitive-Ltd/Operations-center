@@ -61,7 +61,7 @@ export default function CreateStep({ open, handleClose, addStep }) {
         // For each step, create component and push it to the comps list
         steps.map(element => {
             comps.push(
-                <MenuItem value={element}>{element.title}</MenuItem>
+                <MenuItem name="menuIten" value={element}>{element.title}</MenuItem>
             )
         })
 

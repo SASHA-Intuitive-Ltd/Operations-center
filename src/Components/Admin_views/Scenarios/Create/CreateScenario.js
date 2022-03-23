@@ -12,7 +12,7 @@ import { MuiStyles } from "../../../../styles/Mui_styles"
 import CreateStep from "./CreateStep"
 import EditStep from "./EditStep"
 import CloseIcon from "@mui/icons-material/Close"
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from '@mui/icons-material/Edit'
 import axios from 'axios'
 import { useParams, useHistory } from "react-router-dom"
 
