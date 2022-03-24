@@ -169,7 +169,7 @@ export default function AdminView({  }) {
 
             {/* Include dialog according to dialog type */}
             <div>
-                { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose}/> : null}
+                { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} id={id}/> : null}
                 { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose}/> : null}
             </div>
         </div>

@@ -11,7 +11,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 
-
 // Dialog function component for adding step to a scenario
 export default function AddStep({ }) {
 
@@ -26,6 +25,7 @@ export default function AddStep({ }) {
     var open = true
 
     // Inputs states reset
+    // TODO: Add validators in the onSubmit
     const [ stepTitle, setTitle ] = useState('')
     const [ stepDesc, setDesc ] = useState('')
     const [ stepTrigger, setTrigger ] = useState('')

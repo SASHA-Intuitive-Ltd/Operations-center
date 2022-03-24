@@ -59,10 +59,6 @@ function AddPatient({ openAdd, handleClose }) {
         // Handle dialog closing
         handleClose()
     })
-
-    const upload = () => {
-
-    }
     
     const pickerItems = () => {
         var items = []
@@ -115,13 +111,6 @@ function AddPatient({ openAdd, handleClose }) {
         else if (name === 'female') {
             setGender(value)
         }
-
-        
-        /*
-        else if (name === 'menuItem') {
-            setAge(value)
-        }
-        */
     }
 
     return (

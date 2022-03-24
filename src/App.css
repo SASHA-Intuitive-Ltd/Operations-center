@@ -309,7 +309,7 @@
   max-height: 650px;
   overflow-y: scroll;
   grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-row-gap: 0px;
   grid-template-columns: auto auto auto;
   float: right;
 }
@@ -318,6 +318,12 @@
   border-radius: 10px;
   background-color: var(--global-primary);
   width: 10px;
+}
+
+.rooms-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 2px solid var(--global-primary);
+  background-color: white;
 }
 
 .req-container::-webkit-scrollbar {
@@ -334,7 +340,9 @@
 
 
 .room {
-  margin: 10px;
+  margin-top: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
   display: flex;
   flex-direction: column;
   text-align: justify;
@@ -478,7 +486,8 @@
 .link2 {
   text-decoration: none !important;
   color: black !important;
-  size: max-content;
+  height: fit-content;
+  width: 100%;
 }
 
 .link2:hover {

@@ -45,10 +45,10 @@ export default function PatientsList({ activeFilters }) {
             title: 'Gender',
             ref: 'gender'
         },
-        {
-            title: 'Age',
-            ref: 'age'
-        },
+        //{
+          //  title: 'Age',
+            //ref: 'age'
+        //},
         {
             title: 'Email',
             ref: 'email'
@@ -112,12 +112,11 @@ export default function PatientsList({ activeFilters }) {
         
         if(comps.length === 0) {
 
-            await fetch(`http://localhost:5000/admins/${id}`)
+            await fetch(`http://localhost:5000/users`)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.patients)
-                data.patients.map((patient) => {
-                    getPatientComp(patient)
+                data.map((patient) => {
+                    getPatientComp(patient._id)
                 })
             })
         }

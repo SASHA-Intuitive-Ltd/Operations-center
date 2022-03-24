@@ -16,6 +16,8 @@ function PageContainerOperator({ }) {
 
     const [adminInfo, setInfo] = useState(null)
 
+    const [ users, setUsers ] = useState([1])
+
     const [ comps, setComps ] = useState(null)
     const addComp = (newComp) => {
         setComps((c) => [...c, newComp])
@@ -27,7 +29,7 @@ function PageContainerOperator({ }) {
         .then((data) => {
             console.log(data)
             if (data !== null && typeof data.fullname !== 'undefined') {
-                var roomParams= {
+                var roomParams = {
                     "_id": data._id,
                     "name": data.fullname,
                     "room_id": `${data.address}, ${data.fullname}`,
@@ -38,15 +40,16 @@ function PageContainerOperator({ }) {
                         "requests": "issue"
                     }
                 }
-                addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) 
+
+                adminInfo.location === data.address ? addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) : console.log()
             }
         })
     }
 
     async function loopComps() {
-        adminInfo.patients?.forEach((patient) => { 
+        users.forEach((patient) => { 
             if (typeof patient !== 'undefined') {
-                getCurrentPatientComp(patient)
+                getCurrentPatientComp(patient._id)
             }
         })
     }
@@ -54,14 +57,28 @@ function PageContainerOperator({ }) {
     async function getOperatorInfo() {
         await fetch(`http://localhost:5000/admins/${id}`)
         .then((response) => response.json())
-        .then((data) => {
+        .then(data => {
             setInfo(data)
             console.log(adminInfo)
         })
     }
 
+    async function getUsers() {
+        await fetch('http://localhost:5000/users')
+        .then((response) => response.json())
+        .then(data => {
+            console.log(data)
+            setUsers(data)
+        })
+    }
+
     useEffect(() => {
-        if (adminInfo === null) {
+        if (users[0] === 1)
+        {    
+            getUsers()
+        }
+            if (adminInfo === null) 
+        {
             getOperatorInfo()
         }
 
@@ -72,7 +89,15 @@ function PageContainerOperator({ }) {
                 loopComps()
             }
         }
-    }, [id, adminInfo])
+
+        if (users !== []) {
+            setUsers(users)
+        }
+
+        if (adminInfo !== null) {
+            setInfo(adminInfo)
+        }
+    }, [id, adminInfo, users])
 
 
     return (
