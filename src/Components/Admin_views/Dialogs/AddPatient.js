@@ -70,6 +70,7 @@ function AddPatient({ openAdd, handleClose }) {
         return items
     }
 
+    // TODO: Clean code
     async function handleOnChangeInput(e) {
         const { name, value } = e.target
 
@@ -104,11 +105,11 @@ function AddPatient({ openAdd, handleClose }) {
             setPhone(value)
         }
 
-        else if (name === 'male') {
+        else if (name === 'gender_male') {
             setGender(value)
         }
 
-        else if (name === 'female') {
+        else if (name === 'gender_female') {
             setGender(value)
         }
     }
