@@ -2,7 +2,6 @@
  * @Purpose Contain the Emergencies, requests, Room display list of the operator screen
  */
 
-import { Info } from "@mui/icons-material"
 import React, { useEffect, useLayoutEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import EmergenciesContainer from './EmergenciesContainer'
@@ -41,7 +40,8 @@ function PageContainerOperator({ }) {
                     }
                 }
 
-                adminInfo.location === data.address ? addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) : console.log()
+                //adminInfo.location === data.address ? addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) : console.log()
+                addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>)
             }
         })
     }
@@ -77,13 +77,15 @@ function PageContainerOperator({ }) {
         {    
             getUsers()
         }
-            if (adminInfo === null) 
+        
+        
+        /*if (adminInfo === null) 
         {
             getOperatorInfo()
-        }
+        }*/
 
         else {
-            console.log("Admin_id: " + adminInfo._id)
+            // console.log("Admin_id: " + adminInfo._id)
             if (comps === null) {
                 setComps([])
                 loopComps()
@@ -97,7 +99,7 @@ function PageContainerOperator({ }) {
         if (adminInfo !== null) {
             setInfo(adminInfo)
         }
-    }, [id, adminInfo, users])
+    }, [id, users])
 
 
     return (

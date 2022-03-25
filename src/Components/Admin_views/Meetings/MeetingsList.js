@@ -148,7 +148,7 @@ export default function MeetingsList() {
       await fetch(`http://localhost:5000/admins/${id}`)
       .then((response) => response.json())
       .then((data) => {
-          setInfo(data.fullname)
+        setInfo(data.fullname)
       })
   }
 
@@ -213,19 +213,6 @@ export default function MeetingsList() {
         </Table>
       </TableContainer>
       
-     
-      {/** FIXME: 
-       * <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-       */}
-      <MoreInfo openAdd={open} handleClose={handleClose} info={['Casual check', '2022-03-17T11:33:28.806Z', 'Cris Walker', 'https://zoom.us/']}/>
     </div>
   );
 }

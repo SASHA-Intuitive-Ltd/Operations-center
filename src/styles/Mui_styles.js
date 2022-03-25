@@ -31,8 +31,8 @@ export const MuiStyles = {
     ButtonStyle: {
         textTransform: 'none', 
         color: 'var(--global-white)',
-        borderColor: 'var(--global-primary)',
-        backgroundColor: 'var(--global-primary)',
+        borderColor: 'var(--global-green)',
+        backgroundColor: 'var(--global-green)',
         margin: 10
     },
 
@@ -40,8 +40,8 @@ export const MuiStyles = {
     ButtonStyleRed: {
         textTransform: 'none', 
         color: 'var(--global-white)',
-        borderColor: '#d32f2f',
-        backgroundColor: '#d32f2f',
+        borderColor: 'var(--global-failed)',
+        backgroundColor: 'var(--global-failed)',
         margin: 10
     },
 
@@ -49,9 +49,9 @@ export const MuiStyles = {
     OptionsButtonStyle: {
         textTransform: 'none', 
         color: 'var(--global-grey-darker)',
-        backgroundColor: 'var(--global-white)',
-        border: '1px solid var(--global-grey-darker)',
-        borderRadius: 7.5,
+        backgroundColor: '#F4F9F6',
+        border: '2px solid var(--global-grey-darker)',
+        borderRadius: 10,
         margin: 10,
         width: 'min-content'
     },

@@ -208,7 +208,7 @@ export default function CreateScenario() {
                                             style={{
                                                 ...MuiStyles.OptionsButtonStyle,
                                                 borderRadius: '50%', 
-                                                backgroundColor: '#FE3113',
+                                                backgroundColor: 'var(--global-failed)',
                                                 cursor: 'pointer !important'
                                             }}
                                             onClick={() => removeStep(element)}

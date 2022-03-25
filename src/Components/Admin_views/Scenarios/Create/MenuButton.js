@@ -34,7 +34,10 @@ const StyledMenu = styled((props) => (
     },
     '.css-6hp17o-MuiList-root-MuiMenu-list': {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderRadius: 20,
+        backgroundColor: '#F4F9F6',
+        border: '2px solid var(--global-grey-darker)'
     }
   }));
 
@@ -50,7 +53,7 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
         {
             ref: 'add',
             icon: 
-            <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'var(--global-primary)' }}>
+            <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'var(--global-green)' }}>
                 <AddIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white' }}/>
             </IconButton>
         },
@@ -64,7 +67,7 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
         {
             ref: 'dismiss',
             icon: 
-            <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: '#FE3113' }}>
+            <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'var(--global-failed)' }}>
                 <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
             </IconButton>
         },
@@ -97,7 +100,7 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
     return (
         <div>
             <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%' }} onClick={handleClick}>
-                <MoreVertIcon  className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'grey'}}/>
+                <MoreVertIcon  className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'var(--global-grey-darker)'}}/>
             </IconButton> 
 
             <StyledMenu

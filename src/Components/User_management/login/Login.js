@@ -3,8 +3,28 @@
  */
 
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { TextField, Button, Box, InputAdornment, IconButton, getDividerUtilityClass, getFormControlUtilityClasses } from "@mui/material"
+import { useTheme } from '@mui/material/styles';
+import {
+    Box,
+    Button,
+    Checkbox,
+    Divider,
+    FormControl,
+    FormControlLabel,
+    TextField,
+    FormHelperText,
+    Grid,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    Stack,
+    Typography,
+    useMediaQuery
+} from '@mui/material';
+
+import AnimateButton  from '../../Helpers/AnimateButton'
+
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { MuiStyles } from '../../../styles/Mui_styles'
 import CloseIcon from '@mui/icons-material/Close';
@@ -144,7 +164,14 @@ export default function Login({ userType, setToken, creds, link, token }) {
         console.log(error)
     }, [error, loginResult])
 
+
     // Return component
+
+    const theme = useTheme();
+    // const scriptedRef = useScriptRef();
+    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+    // const customization = useSelector((state) => state.customization);
+    const [checked, setChecked] = useState(true);
     return (
         <div className="user-management">
             {/* TODO: move style to a style util */}
@@ -169,11 +196,14 @@ export default function Login({ userType, setToken, creds, link, token }) {
                       }}
                 />
 
-                { getErrorDiv() }
 
-                <Button name={userType} onClick={login} style={MuiStyles.ButtonStyle} variant='outlined'>
-                    Login as {userType}
-                </Button>
+                <AnimateButton>
+                    <Button   name={userType} onClick={login} style={MuiStyles.ButtonStyle} variant='outlined'>
+                        Login as {userType}
+                    </Button>
+                </AnimateButton>
+
+                { getErrorDiv() }
             </Box>
         </div>
     )
