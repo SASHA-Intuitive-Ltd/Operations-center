@@ -99,9 +99,9 @@ export default function AdminView({  }) {
 
     return(
         <div className="operator-dashboard">
-            <h1>Hey, {adminInfo.fullname}</h1>
+            <h1 style={{ fontSize: '240%',  ...MuiStyles.TitleStyle }}>Hey, {adminInfo.fullname}</h1>
             
-            <h2>Please choose an operation to execute:</h2>
+            <h2 style={{ ...MuiStyles.SubtitleStyle, margin: 0 }}>Please choose an operation to execute:</h2>
             
             <div className="possible-actions">
                 {/* Container for actions: view patients, add new patient, manage current patients */}

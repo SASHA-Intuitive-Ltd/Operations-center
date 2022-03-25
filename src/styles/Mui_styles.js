@@ -168,5 +168,17 @@ export const MuiStyles = {
     // Scenario card
     StepCard: {
         border: '2px solid var(--global-primary)'
+    },
+
+    // Main title styles
+    TitleStyle: {
+        color: '#1565C0',
+        paddingBottom: 15
+    },
+
+    SubtitleStyle: {
+        color: '#9E9E9E',
+        padding: 7,
+        fontWeight: 500
     }
 }

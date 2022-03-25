@@ -26,6 +26,7 @@ import ViewBasics from './Components/Admin_views/Scenarios/ViewBasic';
 import ViewSpecific from './Components/Admin_views/Scenarios/ViewSpecific';
 import AddStep from './Components/Admin_views/Scenarios/Steps/AddStep';
 import ViewSteps from './Components/Admin_views/Scenarios/Steps/ViewSteps';
+import AppAppBar from './Components/User_management/Landing/AppBar'
 
 
 // Logo import
@@ -46,14 +47,16 @@ export default function App() {
   // Session type: 'admin' / 'patient'
   const [type, setType] = useState("")
 
+  useEffect(() => {
+    console.log("Token: " + token)
+    console.log("User: " + type)
+  }, [ token, type ])
+
   // Return main app component 
   return (
     <div className="App">
       <Router>
-        <div className='top-bar'>
-            {/* Logo - FIXME: Link href for home page when logged in, if visitor to '/' */}
-            <Link className='link'><img src={logo} className='logo'/></Link>
-        </div>
+        <AppAppBar token={token} userType={type}/>
 
         <div className='content'>
           {/* Switch between possible routes */}
@@ -62,7 +65,7 @@ export default function App() {
               <Route exact path='/' component={() => {return(<Landing/>)}}/>
 
               {/* Login pages for each session */}
-              <Route exact path='/login_admin'><Login userType='admin' setToken={setToken} token={token}/></Route>
+              <Route exact path='/login_admin'><Login setType={setType} userType='admin' setToken={setToken} token={token}/></Route>
               <Route exact path='/login_patient'><Login userType='patient' setToken={setToken} token={token}/></Route>
 
               {/* Admin related routes */}

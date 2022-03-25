@@ -17,15 +17,15 @@ function Performance() {
 
             <div className='pref'>
                 <h4>Transition time</h4>
-                <LinearProgress valueBuffer={80} style={MuiStyles.LineProgStyle} color="success" variant="buffer" value={80}/>
+                <LinearProgress valueBuffer={80} style={MuiStyles.LineProgStyle} color="primary" variant="buffer" value={80}/>
             </div>
             <div className='pref'>
                 <h4>Left hand amplitude motion</h4>
-                <LinearProgress valueBuffer={40} style={MuiStyles.LineProgStyle} color="success" variant="buffer" value={40}/>
+                <LinearProgress valueBuffer={40} style={MuiStyles.LineProgStyle} color="primary" variant="buffer" value={40}/>
             </div>
             <div className='pref'>
                 <h4>Right hand amplitude motion</h4>
-                <LinearProgress valueBuffer={50} style={MuiStyles.LineProgStyle} color="success" variant="buffer" value={50}/>
+                <LinearProgress valueBuffer={50} style={MuiStyles.LineProgStyle} color="primary" variant="buffer" value={50}/>
             </div>
         </div>
     )

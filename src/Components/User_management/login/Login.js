@@ -20,7 +20,9 @@ import {
     OutlinedInput,
     Stack,
     Typography,
-    useMediaQuery
+    useMediaQuery,
+    Card,
+    Alert
 } from '@mui/material';
 
 import AnimateButton  from '../../Helpers/AnimateButton'
@@ -33,7 +35,7 @@ import { useHistory } from 'react-router-dom'
 import axios from "axios"
 
 // Login form component
-export default function Login({ userType, setToken, creds, link, token }) {
+export default function Login({ userType, setToken, creds, link, token, setType }) {
 
     // Password visibility 
     const [showPassword, setShowPassword] = useState(false)
@@ -131,10 +133,14 @@ export default function Login({ userType, setToken, creds, link, token }) {
         return (
             error !== "" 
             ?
-            <div style={MuiStyles.ErrorMessageText}>
-                <IconButton style={{marginRigth: 10}} onClick={() => {setError("")}}><CloseIcon/></IconButton>
+            <Alert variant='outlined' severity='error' style={MuiStyles.ErrorMessageText}>
+                <IconButton style={{ ...MuiStyles.IconButtonStyle1, color: 'var(--global-failed)',
+                    border: '2px solid var(--global-failed)'
+                }} onClick={() => {setError("")}}>
+                    <CloseIcon/>
+                </IconButton>
                 <p>{error}</p>
-            </div> 
+            </Alert> 
             :
             null
         )
@@ -154,6 +160,7 @@ export default function Login({ userType, setToken, creds, link, token }) {
         // If login result, login to loginresult
         if (loginResult !== {} && loginResult !== null && typeof loginResult !== 'undefined') {
             console.log(loginResult)
+            setType(userType)
             history.push(getRedirectionRoute())
         }
 
@@ -173,38 +180,54 @@ export default function Login({ userType, setToken, creds, link, token }) {
     // const customization = useSelector((state) => state.customization);
     const [checked, setChecked] = useState(true);
     return (
-        <div className="user-management">
-            {/* TODO: move style to a style util */}
-            <h1 style={{fontSize: '240%', padding: '50px'}}>Dear {userType}, please fill the form and login to the operations center</h1>
-            
-            <Box style={MuiStyles.FormStyle}>
-                <TextField style={{...MuiStyles.TextField, width: 500}} name="fullname" label="Full name" value={fullname} onChange={handleValueChange} variant="outlined" />
-                <TextField style={{...MuiStyles.TextField, width: 500}} name="password" label="password" value={password} onChange={handleValueChange} variant="outlined" 
-                    type={showPassword ? "text" : "password"}
-                    InputProps={{ 
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                            >
-                              {showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                          </InputAdornment>
-                        )
-                      }}
-                />
+        <Card style={{
+            display: 'flex',
+            flexDirection: 'column', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            paddingTop: 30,
+            paddingBottom: 30,
+            paddingRight: 0,
+            paddingLeft: 0,
+            marginTop: 100,
+            marginRight: 150,
+            marginLeft: 150,
+            border: '3px solid var(--global-primary)',
+            borderRadius: '20px'
+        }}>
+            <div className="user-management">
+                {/* TODO: move style to a style util */}
+                <h1 style={{fontSize: '240%', padding: 50, ...MuiStyles.TitleStyle}}>Dear {userType}, please fill the form and login to the operations center</h1>
+                
+                <Box style={MuiStyles.FormStyle}>
+                    <TextField style={{...MuiStyles.TextField, width: 500}} name="fullname" label="Full name" value={fullname} onChange={handleValueChange} variant="outlined" />
+                    <TextField style={{...MuiStyles.TextField, width: 500}} name="password" label="password" value={password} onChange={handleValueChange} variant="outlined" 
+                        type={showPassword ? "text" : "password"}
+                        InputProps={{ 
+                            endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                >
+                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            )
+                        }}
+                    />
 
 
-                <AnimateButton>
-                    <Button   name={userType} onClick={login} style={MuiStyles.ButtonStyle} variant='outlined'>
-                        Login as {userType}
-                    </Button>
-                </AnimateButton>
+                    <AnimateButton>
+                        <Button name={userType} onClick={login} style={{...MuiStyles.ButtonStyle, width: 'fit-content', height: '100%', marginBottom: 0, marginTop: 30}} variant='outlined'>
+                            Login as {userType}
+                        </Button>
+                    </AnimateButton>
 
-                { getErrorDiv() }
-            </Box>
-        </div>
+                    { getErrorDiv() }
+                </Box>
+            </div>
+        </Card>
     )
 }

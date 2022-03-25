@@ -37,7 +37,7 @@
   justify-content: start;
 }
 
-.top-bar .link:hover {
+.link:hover {
   background-color: transparent;
 }
 
@@ -89,6 +89,7 @@
   border-bottom: none;
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
 
 .profile-picture {
@@ -128,6 +129,7 @@
   padding: 10px;
   border: solid 2px var(--global-grey);
   border-radius: 0 0 10px 10px;
+  background-color: white;
 }
 
 .history-button {
@@ -187,7 +189,7 @@
 }
 
 .finished {
-  background-color: var(--global-primary);
+  background-color: var(--global-green);
 }
 
 .in-progress {
@@ -315,16 +317,27 @@
   float: right;
 }
 
+::-webkit-scrollbar {
+  background-color: var(--global-primary);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 2px solid var(--global-primary);
+  background-color: white;
+}
+
 .rooms-list::-webkit-scrollbar {
   border-radius: 10px;
-  background-color: var(--global-primary);
+  background-color: transparent;
   width: 10px;
 }
 
 .rooms-list::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid var(--global-primary);
-  background-color: white;
+  background-color: transparent;
 }
 
 .req-container::-webkit-scrollbar {
@@ -445,7 +458,12 @@
 }
 
 .landing {
-  padding: 200px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .landing h1 {
@@ -465,13 +483,12 @@
 
 .login-button {
   padding: 20px;
-  transition: ease-in-out 0.65s;
+  transition: ease-in-out 0.45s;
 }
 
 .login-button:hover {
   background-color: var(--global-primary) !important;
   color: var(--global-white) !important;
-  border: 2px solid #000000 !important;
 }
 
 .links {
@@ -485,12 +502,17 @@
 }
 
 .link2 {
-  text-decoration: none !important;
   color: black !important;
   height: fit-content;
+  text-decoration: none !important;
   width: 100%;
 }
 
 .link2:hover {
   background-color: transparent !important;
+}
+
+.no-scroll-area {
+  overflow: hidden !important;
+  position: fixed;
 }

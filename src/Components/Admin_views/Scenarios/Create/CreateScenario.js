@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"
 
 // Import MUI comps & icons
-import { TextField, Typography, Box, Card, CardContent, CardActions, IconButton } from "@mui/material"
+import { TextField, Typography, Box, Card, CardContent, CardActions, IconButton, Tooltip } from "@mui/material"
 
 // Other comps
 import MenuButton from "./MenuButton"
@@ -168,98 +168,103 @@ export default function CreateScenario() {
         // If stepsList/removing trigger's value is being changed, refresh this component
     }, [stepsList, remTrigger])
         
+
+    // TODO: Design scrolls
     return (
-        <div className="user-management" >
-            {/* Form for creating title and description for the scenario */}
-            <Box style={{...MuiStyles.FormStyle, padding: 50}}>
-                <Typography variant="h3"><b>Create new scenario</b></Typography>
-                <TextField style={{...MuiStyles.TextField, width: 500, marginTop: 50 }} name="title"
-                label="Scenario title" value={title} onChange={handleValueChange} variant="outlined" />
+        <div>
+            <Typography variant="h3" style={{ padding: 25 }}><b>Create new scenario</b></Typography>
+            <div className="no-scroll-area">
+                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'space-between' }}>
+                    <div>
+                        {/* Form for creating title and description for the scenario */}
+                        <Box style={{...MuiStyles.FormStyle, padding: 50}}>
+                            <TextField style={{...MuiStyles.TextField, width: 500, marginTop: 50 }} name="title"
+                            label="Scenario title" value={title} onChange={handleValueChange} variant="outlined" />
 
-                <TextField style={{...MuiStyles.TextField, width: 500}} name="desc"
-                    label="Scenario description" value={desc} onChange={handleValueChange} variant="outlined" 
-                />
+                            <TextField style={{...MuiStyles.TextField, width: 500}} name="desc"
+                                label="Scenario description" value={desc} onChange={handleValueChange} variant="outlined" 
+                            />
 
-                <center style={{ margin: 25 }}>
-                    <MenuButton saveToBackend={submitScenario} setOpen={setOpen} setType={setType}/>
-                </center>
-            </Box>   
-            
-            {/* Steps list display box */}
-            <Box style={{...MuiStyles.InputsContainerStyleNoHorizScroll, padding: 50, textAlign: 'center'}}>
-                <Typography variant="h4"><b>Scenario steps:</b></Typography>
-                {
-                    stepsList !== [{}] 
-                    ?
-                    stepsList.map((element) => {
-                        return (
-                            <div style={MuiStyles.StepCardOut}>
-                            {   
-                                <Card sx={{...MuiStyles.StepCard}}>
-                                    <CardContent>
-                                        <Typography variant="h6" style={{ color: element.item.isShown ? 'green' : 'red' }}><b>Step #{element.index + 1}</b></Typography>
-                                        <Typography variant="h4"><b>{element.item.stepTitle}</b></Typography>
-                                        <Typography variant="h6">Description: {element.item.stepDesc}</Typography>
-                                        <br/>
-                                        <Typography variant="h6">Command: <b>{element.item.trigger}</b></Typography>
-                                    </CardContent>
-                                    <CardActions dir="rtl">
-                                        <IconButton size="small" 
-                                            style={{
-                                                ...MuiStyles.OptionsButtonStyle,
-                                                borderRadius: '50%', 
-                                                backgroundColor: 'var(--global-failed)',
-                                                cursor: 'pointer !important'
-                                            }}
-                                            onClick={() => removeStep(element)}
-                                        >
-                                            <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
-                                        </IconButton>
-                                        {
-                                            /*
-                                            <IconButton size="small" 
-                                                style={{
-                                                    ...MuiStyles.OptionsButtonStyle,
-                                                    borderRadius: '50%', 
-                                                    backgroundColor: 'orange',
-                                                    cursor: 'pointer !important'
-                                                }}
-                                                onClick={() => 
-                                                    edit(element)
-                                                }
-                                            >
-                                                <EditIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
-                                            </IconButton>
-                                            */
-                                        }
-                                    </CardActions>
-                                </Card>
+                            <Tooltip title="Scenario options" arrow sx={{ m: 0 }}>
+                                <MenuButton saveToBackend={submitScenario} setOpen={setOpen} setType={setType}/>
+                            </Tooltip>
+                        </Box>   
+                    </div>
+
+                    <div style={{ padding: 50, width: '100%' }}>
+                        {/* Steps list display box */}
+                        <Box style={{ ...MuiStyles.InputsContainerStyleNoHorizScroll}}>
+                            <Typography variant="h4"><b>Scenario steps:</b></Typography>
+                            {
+                                stepsList !== [{}] 
+                                ?
+                                <div style={{ overflowY: 'scroll', overflowX: 'hidden', maxHeight: '650px' }}>
+                                {
+                                    stepsList.map((element) => {
+                                        return (
+                                            <div style={{...MuiStyles.StepCardOut, minWidth: '90%'}}>
+                                            {   
+                                                <Card sx={{...MuiStyles.StepCard}}>
+                                                    <CardContent>
+                                                        <Typography variant="h6" style={{ color: element.item.isShown ? 'green' : 'red' }}><b>Step #{element.index + 1}</b></Typography>
+                                                        <Typography style={{ textAlign: 'justify' }} variant="h4"><b>{element.item.stepTitle}</b></Typography>
+                                                        <Typography variant="h6">Description: {element.item.stepDesc}</Typography>
+                                                        <br/>
+                                                        <Typography variant="h6">Command: <b>{element.item.trigger}</b></Typography>
+                                                    </CardContent>
+                                                    <CardActions dir="rtl">
+                                                        <IconButton size="small" 
+                                                            style={{
+                                                                ...MuiStyles.OptionsButtonStyle,
+                                                                borderRadius: '50%', 
+                                                                backgroundColor: 'var(--global-failed)',
+                                                                cursor: 'pointer !important'
+                                                            }}
+                                                            onClick={() => removeStep(element)}
+                                                        >
+                                                            <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
+                                                        </IconButton>
+                                                        {
+                                                            /*
+                                                            <IconButton size="small" 
+                                                                style={{
+                                                                    ...MuiStyles.OptionsButtonStyle,
+                                                                    borderRadius: '50%', 
+                                                                    backgroundColor: 'orange',
+                                                                    cursor: 'pointer !important'
+                                                                }}
+                                                                onClick={() => 
+                                                                    edit(element)
+                                                                }
+                                                            >
+                                                                <EditIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
+                                                            </IconButton>
+                                                            */
+                                                        }
+                                                    </CardActions>
+                                                </Card>
+                                            }
+                                            </div>
+                                        )
+                                    })
+                                }
+                                </div>
+                                : 
+                                null
                             }
-                            </div>
-                        )
-                    })
-                    : 
-                    null
-                }
-            </Box>
-            
-            {/* Creating dialog including */}
-            { 
-                type === 'add'
-                ?
-                <CreateStep open={openDia} handleClose={handleCloseDia} addStep={addStep}/>
-                :
-                null
-            }
-            {  
-                /*
-                type === 'edit'
-                ?
-                <EditStep open={openDia} handleClose={handleCloseDia} stepsInfo={selected}/>
-                :
-                null
-                */
-            }
+                        </Box>
+                    </div>
+
+                    {/* Creating dialog including */}
+                    { 
+                        type === 'add'
+                        ?
+                        <CreateStep open={openDia} handleClose={handleCloseDia} addStep={addStep}/>
+                        :
+                        null
+                    }
+                </div>
+            </div>
         </div>
     )
 }

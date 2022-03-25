@@ -5,7 +5,7 @@ import  { MuiStyles } from '../../../../styles/Mui_styles'
 
 // MUI Icons & Components
 import { styled, alpha } from '@mui/material/styles';
-import { Fab, IconButton, Menu } from "@mui/material"
+import { Fab, IconButton, Menu, Tooltip } from "@mui/material"
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
@@ -56,6 +56,8 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
             <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'var(--global-green)' }}>
                 <AddIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white' }}/>
             </IconButton>
+            ,
+            side: 'left'
         },
         {
             ref: 'save',
@@ -63,6 +65,8 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
             <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'orange' }}>
                 <SaveIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
             </IconButton>
+            ,
+            side: 'bottom'
         },
         {
             ref: 'dismiss',
@@ -70,6 +74,8 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
             <IconButton style={{ ...MuiStyles.OptionsButtonStyle, borderRadius: '50%', backgroundColor: 'var(--global-failed)' }}>
                 <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
             </IconButton>
+            ,
+            side: 'right'
         },
     ]
 
@@ -93,7 +99,9 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
 
         // If ref is dismiss, dismiss this menu, prevent menu closing on option choosing
         // if (ref === 'dismiss') {
+        // else {
         setAnchorEl(null) // Clear anchor
+        // }
         // }
     }
 
@@ -115,9 +123,13 @@ export default function MenuButton({ setTrigger, setOpen, setType, saveToBackend
                 {
                     menuOptions.map((element) => {
                         return (
-                            <div key={element.ref} onClick={() => handleClose(element.ref)}>
-                                {element.icon}
-                            </div>
+                            <Tooltip key={element.ref} title={`${element.ref.charAt(0).toUpperCase() + element.ref.slice(1)}`} 
+                                arrow placement={element.side} sx={{ m: 0 }}
+                            >
+                                <div onClick={() => handleClose(element.ref)}>
+                                    {element.icon}
+                                </div>
+                            </Tooltip>
                         )
                     })
                 }

@@ -1,8 +1,7 @@
-import { da } from 'date-fns/locale'
 import React, { useLayoutEffect, useMemo, useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 import { MuiStyles } from '../../../styles/Mui_styles'
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -18,10 +17,8 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getCardActionsUtilityClass } from '@mui/material'
 
 
-import { styled, alpha } from '@mui/material/styles';
 import MoreOptions from './MoreOptions'
 
 // Patients list table
@@ -84,19 +81,29 @@ export default function PatientsList({ activeFilters }) {
                 {
                     columns.map((column) => {
                         var align = column.ref === null || column.ref === 'age' || column.ref === 'phone' ? 'center' : 'justify' 
+                        
+                        
                         return (
                             <TableCell className='cell'
                                 style={{
                                     border: '0.5px solid var(--global-grey)',
                                     textAlign: align,
                                     fontWeight: 'bold',
-                                    fontSize: 'medium'
+                                    fontSize: 'medium',
                                 }}
                             >
                                 {
-                                    column.ref === null ?
+                                    column.ref === null
+                                    ?
                                     getMoreOptionsMenu(data)
-                                    : data[column.ref]
+                                    : null
+                                }
+                                {
+                                    column.ref === 'fullname' 
+                                    ?
+                                    <Link className='link2' to={`/patient/${data._id}`}>{data[column.ref]}</Link>
+                                    :
+                                    data[column.ref]
                                 }
                             </TableCell>
                         );
