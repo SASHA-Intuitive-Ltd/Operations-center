@@ -7,11 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Button, Fab } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import { More, MoreHoriz, MoreOutlined } from '@mui/icons-material';
-import MoreInfo from '../Dialogs/MoreInfo'
 import { useParams } from 'react-router-dom'
-import MoreVert from '@mui/icons-material/MoreVert';
 import MoreOptions from './MoreOptions';
 import { MuiStyles } from '../../../styles/Mui_styles';
 
@@ -180,39 +178,40 @@ export default function MeetingsList() {
   }, [id, updateTrigger, adminInfo])
 
   return (
-    <div>
-      <TableContainer sx={{ maxHeight: '700px' }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.title}
-                  align={column.align}
-                  style={{ 
-                        width: column.width,
-                        backgroundColor: 'var(--global-primary)',
-                        color: 'white',
-                        border: '1px solid white',
-                        textAlign: 'center',
-                        fontWeight: 600,
-                        fontSize: 'large'
-                   }}
-                >
-                  {column.title}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-              {/*comps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {return row})*/}
-            {
-              comps
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-      
+    <div className='landing'>
+      <Card style={MuiStyles.TableCard}>
+        <TableContainer sx={MuiStyles.TableContainer}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.title}
+                    align={column.align}
+                    style={{ 
+                      backgroundColor: 'white',
+                      color: 'black',
+                      border: '0.5px solid var(--global-grey)',
+                      textAlign: 'center',
+                      fontWeight: 600,
+                      fontSize: 'large'
+                    }}
+                  >
+                    {column.title}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+                {/*comps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {return row})*/}
+              {
+                comps
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+        
+      </Card>
     </div>
   );
 }

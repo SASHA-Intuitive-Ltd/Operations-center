@@ -180,5 +180,21 @@ export const MuiStyles = {
         color: '#9E9E9E',
         padding: 7,
         fontWeight: 500
+    },
+
+    TableCard: { 
+        display: 'flex',
+        flexDirection: 'column', 
+        width: '100%', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        margin: 30,
+        border: '3px solid var(--global-primary)',
+        borderRadius: '10px',
+        boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px'
+    },
+
+    TableContainer: {
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset'
     }
 }

@@ -172,7 +172,7 @@ export default function CreateScenario() {
     // TODO: Design scrolls
     return (
         <div>
-            <Typography variant="h3" style={{ padding: 25 }}><b>Create new scenario</b></Typography>
+            <Typography variant="h3" style={{ padding: 25, ...MuiStyles.TitleStyle }}><b>Create new scenario</b></Typography>
             <div className="no-scroll-area">
                 <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'space-between' }}>
                     <div>
@@ -194,7 +194,7 @@ export default function CreateScenario() {
                     <div style={{ padding: 50, width: '100%' }}>
                         {/* Steps list display box */}
                         <Box style={{ ...MuiStyles.InputsContainerStyleNoHorizScroll}}>
-                            <Typography variant="h4"><b>Scenario steps:</b></Typography>
+                            <Typography variant="h4" style={MuiStyles.SubtitleStyle}><b>Scenario steps:</b></Typography>
                             {
                                 stepsList !== [{}] 
                                 ?

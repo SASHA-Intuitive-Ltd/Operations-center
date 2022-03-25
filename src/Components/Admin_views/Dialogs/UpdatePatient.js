@@ -92,7 +92,7 @@ export default function UpdatePatient({ patientInfo, openAdd, handleClose, setTr
                 <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
                     <p>Edit {patientInfo.fullname}'s information</p>
                 </DialogTitle>
-                <DialogContent style={MuiStyles.InputsContainerStyle}>
+                <DialogContent style={MuiStyles.InputsContainerStyleNoHorizScroll}>
                         <TextField style={MuiStyles.TextField} name="fullname" label="Full name" variant="outlined" 
                             value={fullname}
                             onChange={e => handleOnChangeInput(e)} 

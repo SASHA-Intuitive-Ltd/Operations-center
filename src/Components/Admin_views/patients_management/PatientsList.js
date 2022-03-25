@@ -17,6 +17,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import {Avatar, Card} from '@mui/material'
 
 
 import MoreOptions from './MoreOptions'
@@ -101,9 +102,34 @@ export default function PatientsList({ activeFilters }) {
                                 {
                                     column.ref === 'fullname' 
                                     ?
-                                    <Link className='link2' to={`/patient/${data._id}`}>{data[column.ref]}</Link>
+                                    <div>
+                                        <div style={{  }}>
+                                            {
+                                                data.profileImg !== 'default' 
+                                                ?
+                                                <img style={{ padding: 0, width: 50, height: 50, border: '1px solid', borderRadius: 5 }} src={data.profileImg}/>
+                                                : 
+                                                <Avatar variant="square" sx={{ marginBottom: '5px', height: 50, border: '1px solid black', borderRadius: 2, width: 50, bgcolor: require("../../../configs/tests.json").theme.primary }}/>
+                                            }
+                                        </div>
+                                        <Link className='link2' to={`/patient/${data._id}`}>{data[column.ref]}</Link>
+                                    </div>
                                     :
+                                    null
+                                }
+                                {
+                                    column.ref === 'gender' 
+                                    ?
+                                    data['gender'].charAt(0).toUpperCase() + data['gender'].slice(1)
+                                    :
+                                    null
+                                } 
+                                {
+                                    column.ref !== 'gender' && column.ref !== 'fullname'
+                                    ?
                                     data[column.ref]
+                                    :
+                                    null
                                 }
                             </TableCell>
                         );
@@ -114,14 +140,20 @@ export default function PatientsList({ activeFilters }) {
         })
     }
 
+    // Function for setting components before running
     async function beforeRunning() {
+        
+        // Reset comps list
         setComps([])
         
+        // If the comps list is empty, not necessary term
         if(comps.length === 0) {
 
+            // Fetch to users collection
             await fetch(`http://localhost:5000/users`)
             .then((response) => response.json())
             .then((data) => {
+                // Per each patient, add new line component to the comps list
                 data.map((patient) => {
                     getPatientComp(patient._id)
                 })
@@ -130,39 +162,44 @@ export default function PatientsList({ activeFilters }) {
 
     }
 
+    // UseEffect hook, runs each time the page is loaded or user is being updated/deleted
     useEffect(() => {
         beforeRunning()
         setTrigger(false)
     }, [id, updateTrigger])
 
     return (
-        <div>
-            <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        {
-                            columns.map((column) => (
-                                <TableCell
-                                    key={column.ref}
-                                    style={{ 
-                                            backgroundColor: 'var(--global-primary)',
-                                            color: 'white',
-                                            border: '1px solid white',
-                                            textAlign: 'center',
-                                            fontWeight: 600,
-                                            fontSize: 'large'
-                                    }}
-                                    >
-                                    {column.title}
-                                </TableCell>
-                            ))
-                        }
-                    </TableHead>
-                    <TableBody>
-                        {comps}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+        <div className='landing'>
+            <Card
+                style={MuiStyles.TableCard}
+            >
+                <TableContainer style={MuiStyles.TableContainer}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            {
+                                columns.map((column) => (
+                                    <TableCell
+                                        key={column.ref}
+                                        style={{ 
+                                                backgroundColor: 'white',
+                                                color: 'black',
+                                                border: '0.5px solid var(--global-grey)',
+                                                textAlign: 'center',
+                                                fontWeight: 600,
+                                                fontSize: 'large'
+                                        }}
+                                        >
+                                        {column.title}
+                                    </TableCell>
+                                ))
+                            }
+                        </TableHead>
+                        <TableBody>
+                            {comps}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Card>
         </div>
     )
 }

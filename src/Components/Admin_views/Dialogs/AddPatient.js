@@ -124,7 +124,7 @@ function AddPatient({ openAdd, handleClose }) {
                     <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
                         <p>Enter new patient info</p>
                     </DialogTitle>
-                    <DialogContent style={MuiStyles.InputsContainerStyle}>
+                    <DialogContent style={{...MuiStyles.InputsContainerStyleNoHorizScroll, textAlign: 'center' }}>
                         <TextField style={MuiStyles.TextField} name="fullname" label="Full name" variant="outlined" 
                             value={fullname}
                             onChange={e => handleOnChangeInput(e)} 
