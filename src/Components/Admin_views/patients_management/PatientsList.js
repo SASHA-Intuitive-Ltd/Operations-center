@@ -17,15 +17,19 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import {Avatar, Card} from '@mui/material'
+import {Avatar, Card, Fab} from '@mui/material'
 
 
 import MoreOptions from './MoreOptions'
+import { ArrowBack, Home } from '@mui/icons-material'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 // Patients list table
 export default function PatientsList({ activeFilters }) {
 
     const { id } = useParams()
+    const history = useHistory()
+
     const [ comps, setComps ] = useState([])
     const addComp = (newComp) => {
         setComps((c) => [...c, newComp])
@@ -81,13 +85,12 @@ export default function PatientsList({ activeFilters }) {
                 <TableRow hover role="checkbox" tabIndex={-1} key={patient._id}>
                 {
                     columns.map((column) => {
-                        var align = column.ref === null || column.ref === 'age' || column.ref === 'phone' ? 'center' : 'justify' 
-                        
-                        
+                        var align = column.ref === 'fullname' ? 'left' : 'center' 
+
                         return (
                             <TableCell className='cell'
                                 style={{
-                                    border: '0.5px solid var(--global-grey)',
+                                    borderBottom: '0.5px solid var(--global-grey)',
                                     textAlign: align,
                                     fontWeight: 'bold',
                                     fontSize: 'medium',
@@ -173,25 +176,32 @@ export default function PatientsList({ activeFilters }) {
             <Card
                 style={MuiStyles.TableCard}
             >
+                <div>
+                    Actions
+                </div>    
                 <TableContainer style={MuiStyles.TableContainer}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             {
-                                columns.map((column) => (
-                                    <TableCell
-                                        key={column.ref}
-                                        style={{ 
-                                                backgroundColor: 'white',
-                                                color: 'black',
-                                                border: '0.5px solid var(--global-grey)',
-                                                textAlign: 'center',
-                                                fontWeight: 600,
-                                                fontSize: 'large'
-                                        }}
-                                        >
-                                        {column.title}
-                                    </TableCell>
-                                ))
+                                columns.map((column) => {
+                                    var align = column.ref === 'fullname' ? 'left' : 'center' 
+
+                                    return (
+                                        <TableCell
+                                            key={column.ref}
+                                            style={{ 
+                                                    backgroundColor: 'white',
+                                                    color: 'black',
+                                                    textAlign: align,
+                                                    borderBottom: '0.5px solid var(--global-grey)',
+                                                    fontWeight: 600,
+                                                    fontSize: 'large'
+                                            }}
+                                            >
+                                            {column.title}
+                                        </TableCell>
+                                    )
+                                    })
                             }
                         </TableHead>
                         <TableBody>
@@ -200,6 +210,14 @@ export default function PatientsList({ activeFilters }) {
                     </Table>
                 </TableContainer>
             </Card>
+            <Fab onClick={() => {
+                        history.push(`/home_admin/${id}`)
+                    }}
+                    style={ MuiStyles.FabStyle }
+                    className='insert-fab' 
+                >
+                    <Home className='fab-icon' style={{color: "var(--global-primary)"}}/>
+            </Fab>
         </div>
     )
 }

@@ -107,11 +107,10 @@ export default function MeetingsList() {
           <TableRow hover role="checkbox" key={meeting._id}>
           {
             columns.map((column) => {
-              var align = column.ref === null || column.ref === 'date' ? 'center' : 'justify' 
-              var styleAlign = {textAlign: align}
+              
               return (
                 <TableCell className='cell'
-                  style={{...MuiStyles.CellStyle, ...styleAlign}}
+                  style={{ ...MuiStyles.CellStyle, textAlign: 'center', border: 'none', borderBottom: '0.5px solid var(--global-grey)' }}
                 >
                   {
                     column.ref === null ?
@@ -184,22 +183,23 @@ export default function MeetingsList() {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.title}
-                    align={column.align}
-                    style={{ 
-                      backgroundColor: 'white',
-                      color: 'black',
-                      border: '0.5px solid var(--global-grey)',
-                      textAlign: 'center',
-                      fontWeight: 600,
-                      fontSize: 'large'
-                    }}
-                  >
-                    {column.title}
-                  </TableCell>
-                ))}
+                {
+                  columns.map((column) => {
+                    return(<TableCell
+                      key={column.title}
+                      align={column.align}
+                      style={{ 
+                          backgroundColor: 'white',
+                          color: 'black',
+                          textAlign: 'center',
+                          borderBottom: '0.5px solid var(--global-grey)',
+                          fontWeight: 600,
+                          fontSize: 'large'
+                      }}
+                    >
+                      {column.title}
+                    </TableCell>)
+                  })}
               </TableRow>
             </TableHead>
             <TableBody>

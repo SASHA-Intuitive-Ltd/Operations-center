@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"
 
 // Import MUI comps & icons
-import { TextField, Typography, Box, Card, CardContent, CardActions, IconButton, Tooltip } from "@mui/material"
+import { TextField, Typography, Box, Card, CardContent, CardActions, IconButton, Tooltip, Fab } from "@mui/material"
 
 // Other comps
 import MenuButton from "./MenuButton"
@@ -15,6 +15,7 @@ import CloseIcon from "@mui/icons-material/Close"
 import EditIcon from '@mui/icons-material/Edit'
 import axios from 'axios'
 import { useParams, useHistory } from "react-router-dom"
+import { ArrowBack, ArrowForward } from "@mui/icons-material"
 
 // Function for creating new scenario component
 export default function CreateScenario() {
@@ -174,10 +175,10 @@ export default function CreateScenario() {
         <div>
             <Typography variant="h3" style={{ padding: 25, ...MuiStyles.TitleStyle }}><b>Create new scenario</b></Typography>
             <div className="no-scroll-area">
-                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'space-between' }}>
-                    <div>
+                <div style={{ display: 'flex', flexDirection: 'row-reverse', alignContent: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ ...MuiStyles.TableCard, height: 500, marginTop: 70  }}>
                         {/* Form for creating title and description for the scenario */}
-                        <Box style={{...MuiStyles.FormStyle, padding: 50}}>
+                        <Box style={{ padding: 70}}>
                             <TextField style={{...MuiStyles.TextField, width: 500, marginTop: 50 }} name="title"
                             label="Scenario title" value={title} onChange={handleValueChange} variant="outlined" />
 
@@ -224,23 +225,6 @@ export default function CreateScenario() {
                                                         >
                                                             <CloseIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
                                                         </IconButton>
-                                                        {
-                                                            /*
-                                                            <IconButton size="small" 
-                                                                style={{
-                                                                    ...MuiStyles.OptionsButtonStyle,
-                                                                    borderRadius: '50%', 
-                                                                    backgroundColor: 'orange',
-                                                                    cursor: 'pointer !important'
-                                                                }}
-                                                                onClick={() => 
-                                                                    edit(element)
-                                                                }
-                                                            >
-                                                                <EditIcon className="button-icon" style={{...MuiStyles.IconContentStyle1, color: 'white'}}/>
-                                                            </IconButton>
-                                                            */
-                                                        }
                                                     </CardActions>
                                                 </Card>
                                             }
@@ -265,6 +249,14 @@ export default function CreateScenario() {
                     }
                 </div>
             </div>
+            <Fab onClick={() => {
+                        history.push(`/scenarios/${id}`)
+                    }}
+                    style={ MuiStyles.FabStyle }
+                    className='insert-fab' 
+                >
+                    <ArrowForward className='fab-icon' style={{color: "var(--global-primary)"}}/>
+            </Fab>
         </div>
     )
 }

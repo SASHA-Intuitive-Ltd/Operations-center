@@ -308,9 +308,8 @@
 
 .rooms-list {
   display: inline-grid;
-  overflow-y: scroll;
+  overflow: auto;
   max-height: 650px;
-  overflow-y: scroll;
   grid-column-gap: 20px;
   grid-row-gap: 0px;
   grid-template-columns: auto auto auto;
@@ -330,14 +329,14 @@
 
 .rooms-list::-webkit-scrollbar {
   border-radius: 10px;
-  background-color: transparent;
+  background-color: var(--global-primary);
   width: 10px;
 }
 
 .rooms-list::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid var(--global-primary);
-  background-color: transparent;
+  background-color: white;
 }
 
 .req-container::-webkit-scrollbar {

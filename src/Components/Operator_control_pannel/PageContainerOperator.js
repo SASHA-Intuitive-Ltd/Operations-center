@@ -8,10 +8,16 @@ import EmergenciesContainer from './EmergenciesContainer'
 import RequestsContainer from './RequestsContainer'
 import RoomsContainer from "./RoomsContainer"
 import RoomBox from "./RoomBox"
+import { Fab } from "@mui/material"
+import { ArrowForward, Home } from "@mui/icons-material"
+import { MuiStyles } from "../../styles/Mui_styles"
+import { useHistory } from "react-router-dom"
 
 function PageContainerOperator({ }) {
 
     const { id } = useParams()
+
+    const history = useHistory()
 
     const [adminInfo, setInfo] = useState(null)
 
@@ -113,6 +119,14 @@ function PageContainerOperator({ }) {
                 comps
             }
             </div>
+            <Fab onClick={() => {
+                        history.push(`/home_admin/${id}`)
+                    }}
+                    style={ MuiStyles.FabStyle }
+                    className='insert-fab' 
+                >
+                    <Home className='fab-icon' style={{color: "var(--global-primary)"}}/>
+            </Fab>
         </div>
     )
 }

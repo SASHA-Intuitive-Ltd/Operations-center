@@ -4,12 +4,13 @@ import { MuiStyles } from "../../../../styles/Mui_styles";
 
 // Import MUI icons and components
 import Dialog from '@mui/material/Dialog';
-import { DialogTitle, DialogContent, DialogActions, TextField, Fab, FormControlLabel, RadioGroup, Radio, Typography, Box, Button } from "@mui/material";
+import { DialogTitle, DialogContent, DialogActions, TextField, Fab, FormControlLabel, RadioGroup, Radio, Typography, Box, Button, Card } from "@mui/material";
 import { useTheme } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 // Dialog function component for adding step to a scenario
 export default function AddStep({ }) {
@@ -99,44 +100,55 @@ export default function AddStep({ }) {
     }
 
     return (
-        <div style={{minWidth: 400, padding: 100}}>
-            <Box>
-                <Typography variant="h4"><b>Add new step</b></Typography>
-            </Box>
-            
-            <Box style={MuiStyles.InputsContainerStyleNoHorizScroll}>
-                <TextField style={MuiStyles.TextField} name='stepTitle' id="outlined-basic" label="Step title" variant="outlined" value={stepTitle} onChange={handleInputChange}/>
+        <div className="landing">
+            <Card style={{ padding: 100, paddingTop: 50, paddingBottom: 50, ...MuiStyles.TableCard, width: 'fit-content', marginTop: '70px' }}>
+                <Box>
+                    <Typography style={{ ...MuiStyles.TitleStyle }} variant="h4"><b>Add new step</b></Typography>
+                </Box>
                 
-                <TextField style={MuiStyles.TextField}
-                    name='stepDesc'
-                    id="outlined-basic"
-                    label="Step description"
-                    variant="outlined"
-                    multiline
-                    rows={5}     
-                    maxRows={20} 
-                    value={stepDesc}
-                    onChange={handleInputChange}
-                />
+                <Box style={MuiStyles.InputsContainerStyleNoHorizScroll}>
+                    <TextField style={MuiStyles.TextField} name='stepTitle' id="outlined-basic" label="Step title" variant="outlined" value={stepTitle} onChange={handleInputChange}/>
+                    
+                    <TextField style={MuiStyles.TextField}
+                        name='stepDesc'
+                        id="outlined-basic"
+                        label="Step description"
+                        variant="outlined"
+                        multiline
+                        rows={5}     
+                        maxRows={20} 
+                        value={stepDesc}
+                        onChange={handleInputChange}
+                    />
 
-                <TextField style={MuiStyles.TextField} name='stepTrigger' id="outlined-basic" label="Step trigger" variant="outlined" value={stepTrigger} onChange={handleInputChange}/>
+                    <TextField style={MuiStyles.TextField} name='stepTrigger' id="outlined-basic" label="Step trigger" variant="outlined" value={stepTrigger} onChange={handleInputChange}/>
 
 
-                <Typography sx={{ textAlign: 'center', width: '100%' }} ><b>Choose step's visibillity</b></Typography>
-                <RadioGroup
-                    defaultValue="true"
-                    name="radio-buttons-group"
-                    style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
+                    <Typography sx={{ textAlign: 'center', width: '100%' }} ><b>Choose step's visibillity</b></Typography>
+                    <RadioGroup
+                        defaultValue="true"
+                        name="radio-buttons-group"
+                        style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
+                    >
+                        <FormControlLabel name='true_option' onChange={handleShown} value="true" control={<Radio checked={shown} />} label="True" />
+                        <FormControlLabel name='false_option'  onChange={handleShown} value="false" control={<Radio checked={!shown}/>} label="False" />
+                    </RadioGroup>
+                    
+                </Box>
+        
+                <Button style={MuiStyles.ButtonStyle} autoFocus variant="outlined" onClick={onSubmit}>
+                    <CheckIcon/>
+                </Button>
+            </Card>
+
+            <Fab onClick={() => {
+                        history.push(`/scenarios/${id}`)
+                    }}
+                    style={ MuiStyles.FabStyle }
+                    className='insert-fab' 
                 >
-                    <FormControlLabel name='true_option' onChange={handleShown} value="true" control={<Radio checked={shown} />} label="True" />
-                    <FormControlLabel name='false_option'  onChange={handleShown} value="false" control={<Radio checked={!shown}/>} label="False" />
-                </RadioGroup>
-                
-            </Box>
-    
-            <Button style={MuiStyles.ButtonStyle} autoFocus variant="outlined" onClick={onSubmit}>
-                <CheckIcon/>
-            </Button>
+                <ArrowForward className='fab-icon' style={{color: "var(--global-primary)"}}/>
+            </Fab>
         </div>
     )
 }

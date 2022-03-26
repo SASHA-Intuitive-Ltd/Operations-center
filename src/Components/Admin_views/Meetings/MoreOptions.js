@@ -30,15 +30,15 @@ const StyledMenu = styled((props) => (
     />
   ))(({ theme }) => ({
     '& .MuiPaper-root': {
-      borderRadius: 6,
       marginTop: theme.spacing(1),
+      borderRadius: 20,
       minWidth: 180,
       color:
         theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
       boxShadow:
         'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
       '& .MuiMenu-list': {
-        padding: '4px 0',
+        padding: '0px 0',
       },
       '& .MuiMenuItem-root': {
           color: theme.palette.text.primary,
@@ -55,6 +55,11 @@ const StyledMenu = styled((props) => (
         },
       },
     },
+    '.css-6hp17o-MuiList-root-MuiMenu-list': {
+      borderRadius: 20,
+      backgroundColor: '#F4F9F6',
+      border: '2px solid var(--global-grey-darker)'
+    }
   }));
 
 export default function MoreOptions({meetingInfo, setTrigger}) {
@@ -131,7 +136,11 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                                     setType('edit')
                                     onClickOpen()
                                     handleClose()
-                                }} disableRipple>
+                                }} disableRipple
+                                style={{ 
+                                  borderBottom: '0.5px solid'
+                                }}
+                                >
                                     {element.icon}
                                     {element.name}
                                 </MenuItem>  
@@ -145,7 +154,11 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                                   setType('delete')
                                     onClickOpen()
                                     handleClose()
-                                }} disableRipple>
+                                }} disableRipple
+                                style={{ 
+                                  borderBottom: '0.5px solid'
+                                }} 
+                                >
                                     {element.icon}
                                     {element.name}
                                 </MenuItem> 
@@ -159,7 +172,9 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                                       setType('info')
                                       onClickOpen()
                                       handleClose()
-                                    }} disableRipple>
+                                    }} disableRipple
+                                    
+                                    >
                                         {element.icon}
                                         {element.name}
                                     </MenuItem>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { MuiStyles } from "../../../../styles/Mui_styles"
 
 // MUI imports
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Card } from '@mui/material'
 
 export default function ViewSteps() {
     
@@ -80,37 +80,38 @@ export default function ViewSteps() {
     }, [trigger])
 
     return (
-        <div>
-            <TableContainer sx={{ maxHeight: '700px' }}>
-                <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                    <TableRow>
-                    {columns.map((column) => (
-                        <TableCell
-                        key={column.title}
-                        align={'center'}
-                        style={{ 
-                                width: column.width,
-                                backgroundColor: 'var(--global-primary)',
-                                color: 'white',
-                                border: '1px solid white',
+        <div className="landing">
+            <Card style={ MuiStyles.TableCard }>
+                <TableContainer sx={{ maxHeight: '700px' }}>
+                    <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                        {columns.map((column) => (
+                            <TableCell
+                            key={column.title}
+                            align={'center'}
+                            style={{ 
+                                backgroundColor: 'white',
+                                color: 'black',
+                                border: '0.5px solid var(--global-grey)',
                                 textAlign: 'center',
                                 fontWeight: 600,
                                 fontSize: 'large'
-                        }}
-                        >
-                        {column.title}
-                        </TableCell>
-                    ))}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        comps
-                    }
-                </TableBody>
-                </Table>
-            </TableContainer>        
+                            }}
+                            >
+                            {column.title}
+                            </TableCell>
+                        ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            comps
+                        }
+                    </TableBody>
+                    </Table>
+                </TableContainer> 
+            </Card>       
         </div>
     )
 }

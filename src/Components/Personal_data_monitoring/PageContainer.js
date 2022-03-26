@@ -6,7 +6,7 @@ import DeviceTrack from './WorkflowContainerDetails/DeviceTrack'
 import Performance from './WorkflowContainerDetails/Performance'
 import { useParams } from 'react-router-dom'
 
-function PageContainer({ healthStats, devicesPerformances, currentDevice }) {
+function PageContainer({ healthStats, devicesPerformances, currentDevice, originalRef }) {
 
     // TODO: add useEffect for currentDevice prop
     const { _id } = useParams()

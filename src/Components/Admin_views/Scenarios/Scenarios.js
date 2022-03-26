@@ -9,14 +9,17 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { Fab as Button, TextField } from '@mui/material';
+import { Fab as Button, Fab, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { useHistory } from "react-router-dom";
+import { Home } from "@mui/icons-material";
 
 // Function for containing the action of the scenarios feature
 export default function Scenarios({  }) {
 
     // Admin id
     const { id } = useParams()
+    const history = useHistory()
 
     // Admin info document
     const [ adminInfo, setInfo ] = useState({})
@@ -71,9 +74,10 @@ export default function Scenarios({  }) {
     return (
         <div>
             {/**<p>{adminInfo.fullname}</p>*/}
-            <div className="possible-actions">
+            <Typography style={{...MuiStyles.TitleStyle, paddingTop: 40, paddingBottom: 20}} variant='h3'><b>Scenarios control panel</b></Typography>
+            <div className="possible-actions" style={{ paddingTop: 30 }}>
 
-                <div className="row">
+                <div className="row" >
                     {
                         CardOptions.map((element) => {
                             return (
@@ -110,48 +114,15 @@ export default function Scenarios({  }) {
                         })
                     }
                 </div>
-
-                {/**
-                 * <div className="row">
-                    {/* View operating screen action }
-                    {
-                        getCard({
-                            "action": CardOptions.add.action,
-                            "actionCall": 
-                            <Link className="link-box" to={`/scenario_add/${id}`} style={MuiStyles.IconContentStyle1}>
-                                <AddCircleOutlineIcon className="button-icon"/>
-                            </Link>,
-                            "description": CardOptions.add.description,
-                        })
-                    }
-                    
-                    {/* Open patient adding dialog }
-                    {
-                        getCard({
-                            "action": CardOptions.basic.action,
-                            "actionCall": 
-                            <Link className="link-box" to={`/scenario_basic/${id}`} style={MuiStyles.IconContentStyle1}>
-                                <PreviewIcon className="button-icon"/>
-                            </Link>,
-                            "description":  CardOptions.basic.description,
-                            "func": "",
-                        })
-                    }
-                    
-                    {/* View patient management (Update and delete options too) }
-                    {
-                        getCard({
-                            "action": CardOptions.specific.action,
-                            "actionCall": 
-                            <Link className="link-box" to={`/scenario_specific/${id}`} style={MuiStyles.IconContentStyle1}>
-                                <AccessibilityIcon className="button-icon"/>
-                            </Link>,
-                            "description": CardOptions.specific.description
-                        })
-                    }
-                </div>
-                 */}
                 
+                <Fab onClick={() => {
+                        history.push(`/home_admin/${id}`)
+                    }}
+                    style={ MuiStyles.FabStyle }
+                    className='insert-fab' 
+                >
+                    <Home className='fab-icon' style={{color: "var(--global-primary)"}}/>
+                </Fab>
             </div>
         </div>
     )
