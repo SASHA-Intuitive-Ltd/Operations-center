@@ -2,10 +2,17 @@
 import React, { useEffect, useState } from "react"
 import { MuiStyles } from "../../../../styles/Mui_styles"
 
+import { useHistory, useParams } from "react-router-dom"
+
+import { Fab } from "@mui/material"
+import { ArrowForward, Done, Close } from "@mui/icons-material"
 // MUI imports
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Card } from '@mui/material'
 
 export default function ViewSteps() {
+
+    const { id } = useParams()
+    const history = useHistory()
     
     const [ trigger, setTrigger ] = useState(false)
     const [ comps, setComps ] = useState([])
@@ -23,10 +30,10 @@ export default function ViewSteps() {
             ref: 'trigger',
             title: 'Trigger'
         },
-       // { 
-         //   ref: 'isShow',
-           // title: 'Visibility'
-       // },
+        { 
+            ref: 'isShown',
+            title: 'Visibility'
+        },
     ]
 
     async function getSteps() {
@@ -49,12 +56,24 @@ export default function ViewSteps() {
             <TableRow hover role="checkbox" key={step._id}>
             {
                 columns.map((column) => {
+                    var align = column.ref === 'title' ? 'left' : 'center'
                     return (
                         <TableCell className='cell' key={step[column.ref]}
-                            style={{...MuiStyles.CellStyle}}
+                            style={{ 
+                                backgroundColor: 'white',
+                                color: 'black',
+                                textAlign: align,
+                                borderBottom: '0.5px solid var(--global-grey)',
+                                fontWeight: 600,
+                                fontSize: 'large'
+                            }}
                         >
                         {
-                           step[column.ref]
+                            column.ref === 'isShown'
+                            ?
+                            <>{step['isShown'] ? <Done/>: <Close/>}</>
+                            :
+                            step[column.ref]
                         }
                         </TableCell>
                     )    
@@ -86,32 +105,46 @@ export default function ViewSteps() {
                     <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                        {columns.map((column) => (
-                            <TableCell
-                            key={column.title}
-                            align={'center'}
-                            style={{ 
-                                backgroundColor: 'white',
-                                color: 'black',
-                                border: '0.5px solid var(--global-grey)',
-                                textAlign: 'center',
-                                fontWeight: 600,
-                                fontSize: 'large'
-                            }}
-                            >
-                            {column.title}
-                            </TableCell>
-                        ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
                         {
-                            comps
+                            columns.map((column) => {
+                                var align = column.ref === 'title' ? 'left' : 'center'
+                                return (
+                                    <TableCell
+                                        key={column.title}
+                                        align={'center'}
+                                        style={{ 
+                                            backgroundColor: 'white',
+                                            color: 'black',
+                                            borderBottom: '0.5px solid var(--global-grey)',
+                                            textAlign: align,
+                                            fontWeight: 600,
+                                            fontSize: 'large'
+                                        }}
+                                        >
+                                        {column.title}
+                                    </TableCell>
+                                )}
+                            )
                         }
-                    </TableBody>
-                    </Table>
-                </TableContainer> 
+                        </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                comps
+                            }
+                        </TableBody>
+                        </Table>
+                    </TableContainer> 
             </Card>       
+
+            <Fab onClick={() => {
+                        history.push(`/scenarios/${id}`)
+                    }}
+                style={ MuiStyles.FabStyle }
+                className='insert-fab' 
+            >
+                <ArrowForward className='fab-icon' style={{color: "var(--global-primary)"}}/>
+            </Fab>
         </div>
     )
 }

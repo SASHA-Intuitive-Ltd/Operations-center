@@ -32,7 +32,7 @@ const StyledMenu = styled((props) => (
     '& .MuiPaper-root': {
       marginTop: theme.spacing(1),
       borderRadius: 20,
-      minWidth: 180,
+      minWidth: 100,
       color:
         theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
       boxShadow:
@@ -89,15 +89,15 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
 
   const moreOptions = [
     {
-        name: 'Edit meeting',
+        name: 'Edit',
         icon: <EditIcon/>
     },
     {
-        name: 'Unbook meeting',
+        name: 'Unbook',
         icon: <BookmarkRemoveIcon/>
     },
     {
-        name: 'Meeting info',
+        name: 'Meeting',
         icon: <VisibilityIcon/>
     },
   ]
@@ -130,7 +130,7 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                 return (
                     <div>
                         {
-                            element.name === 'Edit meeting'
+                            element.name === 'Edit'
                             ?
                                 <MenuItem onClick={() => {
                                     setType('edit')
@@ -148,7 +148,7 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                             null
                         }
                         {
-                            element.name === 'Unbook meeting'
+                            element.name === 'Unbook'
                             ?
                                 <MenuItem onClick={() => {
                                   setType('delete')
@@ -166,7 +166,7 @@ export default function MoreOptions({meetingInfo, setTrigger}) {
                             null
                         }
                         {
-                            element.name === 'Meeting info' 
+                            element.name === 'Meeting' 
                             ?
                                     <MenuItem onClick={() => {
                                       setType('info')

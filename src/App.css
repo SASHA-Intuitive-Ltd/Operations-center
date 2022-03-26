@@ -515,3 +515,7 @@
   overflow: hidden !important;
   position: fixed;
 }
+
+.submit-button1:hover {
+  background-color: var(--global-primary);
+}

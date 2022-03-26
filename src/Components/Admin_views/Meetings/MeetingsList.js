@@ -12,6 +12,7 @@ import { More, MoreHoriz, MoreOutlined } from '@mui/icons-material';
 import { useParams } from 'react-router-dom'
 import MoreOptions from './MoreOptions';
 import { MuiStyles } from '../../../styles/Mui_styles';
+import { ExportToExcel } from '../../../export/ExelExport'
 
 
 function createData(topic, date, patient, link, actions) {
@@ -37,6 +38,11 @@ export default function MeetingsList() {
   const addComp = (newComp) => {
       setComps((c) => [...c, newComp])
   }
+
+  const [ meetings, setMeetings ] = useState([])
+  const addMeeting= (newMeeting) => {
+    setMeetings((m) => [...m, newMeeting])
+}
 
   // Table columns
   const columns = [
@@ -103,6 +109,7 @@ export default function MeetingsList() {
 
   // Function for retrieving component of single meeting
   async function getMeetingComp(meeting) {
+      addMeeting(meeting)
       addComp(
           <TableRow hover role="checkbox" key={meeting._id}>
           {
@@ -179,6 +186,9 @@ export default function MeetingsList() {
   return (
     <div className='landing'>
       <Card style={MuiStyles.TableCard}>
+        <div style={{ width: '100%', padding: 10 }}>
+          <ExportToExcel fileData={ meetings } fileName={ `${adminInfo}_sasha_remote_meetings` }/>
+        </div>  
         <TableContainer sx={MuiStyles.TableContainer}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

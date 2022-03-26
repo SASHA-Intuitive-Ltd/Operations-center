@@ -65,32 +65,36 @@ export default function UpdateMeeting({ open, handleClose, meetingInfo, setTrigg
                 open={open}
                 onClose={handleClose}
             >
-                <DialogTitle id="responsive-dialog-title" style={{minWidth: 100}}>
-                    <b>Edit meeting info, (meeting id: <u>{meetingInfo._id}</u>)</b>
-                </DialogTitle>
+                <div style={{
+                    border: '3px solid var(--global-primary)',
+                }}>
+                    <DialogTitle id="responsive-dialog-title" style={{minWidth: 100}}>
+                        <h1 style={{...MuiStyles.TitleStyle, fontSize: 'x-large'}}>Edit meeting info, (meeting id: <u>{meetingInfo._id}</u>)</h1>
+                    </DialogTitle>
 
-                <DialogContent style={MuiStyles.InputsContainerStyleNoHorizScroll}>
-                    <TextField style={MuiStyles.TextField} id="topic" name="topic"
-                        value={topic}
-                        onChange={e => handleOnChangeInput(e)} 
-                        label="Topic" variant="outlined" 
-                    />
-
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            label="Date & Time"
-                            value={date}
-                            onChange={handleOnChangeDate}
-                            renderInput={(params) => <TextField {...params} style={MuiStyles.TextField}/>}
+                    <DialogContent style={MuiStyles.InputsContainerStyleNoHorizScroll}>
+                        <TextField style={MuiStyles.TextField} id="topic" name="topic"
+                            value={topic}
+                            onChange={e => handleOnChangeInput(e)} 
+                            label="Topic" variant="outlined" 
                         />
-                    </LocalizationProvider>
-                </DialogContent>
 
-                <DialogActions>
-                    <Button style={MuiStyles.ButtonStyle} onClick={submitEdits} autoFocus variant="contained">
-                        Confirm
-                    </Button>
-                </DialogActions>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateTimePicker
+                                label="Date & Time"
+                                value={date}
+                                onChange={handleOnChangeDate}
+                                renderInput={(params) => <TextField {...params} style={MuiStyles.TextField}/>}
+                            />
+                        </LocalizationProvider>
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button style={MuiStyles.ButtonStyle} onClick={submitEdits} autoFocus variant="contained">
+                            Confirm
+                        </Button>
+                    </DialogActions>
+                </div>
             </Dialog>
         </div>
     )

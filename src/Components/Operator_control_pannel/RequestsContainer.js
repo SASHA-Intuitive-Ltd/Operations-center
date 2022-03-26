@@ -4,6 +4,7 @@
 
 import React, {useState} from "react"
 import EmergencyBox from "./EmergencyBox"
+import RequestsBox from "./RequestsBox"
 
 function RequestsContainer() {
 
@@ -35,9 +36,9 @@ function RequestsContainer() {
             <div className="header"><h3>Requests</h3></div>
             <div className="requests">
                 {/* Emergencies list iterating, return emergency component for each occurnce */}
-                <EmergencyBox emergency={emergencies[0]}/>
-                <EmergencyBox emergency={emergencies[1]}/>
-                <EmergencyBox emergency={emergencies[2]}/>
+                <RequestsBox emergency={emergencies[0]}/>
+                <RequestsBox emergency={emergencies[1]}/>
+                <RequestsBox emergency={emergencies[2]}/>
             </div>
         </div>
     )

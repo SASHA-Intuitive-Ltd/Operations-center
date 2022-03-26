@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import { MuiStyles } from '../../../styles/Mui_styles'
 
+import { ExportToExcel } from '../../../export/ExelExport'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton';
@@ -21,7 +22,7 @@ import {Avatar, Card, Fab} from '@mui/material'
 
 
 import MoreOptions from './MoreOptions'
-import { ArrowBack, Home } from '@mui/icons-material'
+import { ArrowBack, Download, Home } from '@mui/icons-material'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 // Patients list table
@@ -33,6 +34,11 @@ export default function PatientsList({ activeFilters }) {
     const [ comps, setComps ] = useState([])
     const addComp = (newComp) => {
         setComps((c) => [...c, newComp])
+    }
+
+    const [ patients, setPatients ] = useState([])
+    const addPatients = (newPatient) => {
+        setPatients((p) => [...p, newPatient])
     }
 
     const [ updateTrigger, setTrigger ] = useState(false)
@@ -47,10 +53,6 @@ export default function PatientsList({ activeFilters }) {
             title: 'Gender',
             ref: 'gender'
         },
-        //{
-          //  title: 'Age',
-            //ref: 'age'
-        //},
         {
             title: 'Email',
             ref: 'email'
@@ -69,18 +71,19 @@ export default function PatientsList({ activeFilters }) {
         }
     ]
 
+    // Get
     function getMoreOptionsMenu(patient) {
         return (
             <MoreOptions patientInfo={patient} setTrigger={setTrigger}/>
         )
     }
 
-
     async function getPatientComp(patient) {
         await fetch(`http://localhost:5000/users/${patient}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
+            addPatients(data)
             addComp(
                 <TableRow hover role="checkbox" tabIndex={-1} key={patient._id}>
                 {
@@ -176,8 +179,8 @@ export default function PatientsList({ activeFilters }) {
             <Card
                 style={MuiStyles.TableCard}
             >
-                <div>
-                    Actions
+                <div style={{ width: '100%', padding: 10 }}>
+                    <ExportToExcel fileData={ patients } fileName={ 'sasha_operations_patients' }/>
                 </div>    
                 <TableContainer style={MuiStyles.TableContainer}>
                     <Table stickyHeader aria-label="sticky table">

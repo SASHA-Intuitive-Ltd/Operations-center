@@ -98,44 +98,48 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
                 open={openAdd}
                 onClose={handleClose}
             >
-                <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
-                        Schedule a new meeting with a patient
-                </DialogTitle>
+                <div style={{
+                    border: '3px solid var(--global-primary)',
+                }}>
+                    <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
+                        <h1 style={{...MuiStyles.TitleStyle, fontSize: 'x-large'}}>Schedule a new meeting with a patient</h1>
+                    </DialogTitle>
 
-                <DialogContent style={inputsContainerStyle}>
-                    <TextField style={tfieldStyle} id="topic" name="topic"
-                        value={topic}
-                        onChange={e => handleOnChangeInput(e)} 
-                        label="Topic" variant="outlined" 
-                    />
-
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            label="Date & Time"
-                            value={date}
-                            onChange={handleOnChangeDate}
-                            renderInput={(params) => <TextField {...params} style={tfieldStyle}/>}
+                    <DialogContent style={inputsContainerStyle}>
+                        <TextField style={tfieldStyle} id="topic" name="topic"
+                            value={topic}
+                            onChange={e => handleOnChangeInput(e)} 
+                            label="Topic" variant="outlined" 
                         />
-                    </LocalizationProvider>
 
-                    <TextField style={tfieldStyle} id="patient_name" name="patient_name"
-                        value={patient}
-                        onChange={e => handleOnChangeInput(e)}
-                        label="Patient name" variant="outlined"
-                    />
-                </DialogContent>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateTimePicker
+                                label="Date & Time"
+                                value={date}
+                                onChange={handleOnChangeDate}
+                                renderInput={(params) => <TextField {...params} style={tfieldStyle}/>}
+                            />
+                        </LocalizationProvider>
 
-                <DialogActions>
-                        <Button style={
-                            MuiStyles.ButtonStyle
-                        } 
-                            autoFocus 
-                            variant="outlined"
-                            onClick={submitNewMeeting}
-                        >
-                            Schedule
-                        </Button>
+                        <TextField style={tfieldStyle} id="patient_name" name="patient_name"
+                            value={patient}
+                            onChange={e => handleOnChangeInput(e)}
+                            label="Patient name" variant="outlined"
+                        />
+                    </DialogContent>
+
+                    <DialogActions>
+                            <Button style={
+                                MuiStyles.ButtonStyle
+                            } 
+                                autoFocus 
+                                variant="outlined"
+                                onClick={submitNewMeeting}
+                            >
+                                Schedule
+                            </Button>
                     </DialogActions>
+                </div>
             </Dialog>
         </div>
     )

@@ -120,11 +120,15 @@ function AddPatient({ openAdd, handleClose }) {
                 fullScreen={fullScreen}
                 open={openAdd}
                 onClose={handleClose}
+                
             >
+                <div style={{
+                    border: '3px solid var(--global-primary)',
+                }}>
                     <DialogTitle id="responsive-dialog-title" style={{minWidth: 400}}>
-                        <p>Enter new patient info</p>
+                        <h1 style={{...MuiStyles.TitleStyle, width: '100%', textAlign: 'center', fontSize: 'xx-large'}}>Enter new patient info</h1>
                     </DialogTitle>
-                    <DialogContent style={{...MuiStyles.InputsContainerStyleNoHorizScroll, textAlign: 'center' }}>
+                    <DialogContent style={{...MuiStyles.InputsContainerStyleNoHorizScroll, textAlign: 'center', marginTop: '0' }}>
                         <TextField style={MuiStyles.TextField} name="fullname" label="Full name" variant="outlined" 
                             value={fullname}
                             onChange={e => handleOnChangeInput(e)} 
@@ -214,6 +218,7 @@ function AddPatient({ openAdd, handleClose }) {
                             Submit patient
                         </Button>
                     </DialogActions>
+                </div>
             </Dialog>
         </div>
     )
