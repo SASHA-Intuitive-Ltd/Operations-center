@@ -4,8 +4,7 @@ import { Button } from "@mui/material"
 function DeviceTrack({currentDevice}) {
 
     // const vitals = require('../../../configs/tests.json').device_vitals[currentDevice]
-    const vitals = require('../../../configs/tests.json').device_vitals["shower"]
-
+    const vitals = require('../../../configs/tests.json').device_vitals[currentDevice.toLowerCase()]
     const [elements, setElements] = useState([])
 
     const getItems = () => {

@@ -167,7 +167,18 @@
     },
     "device_vitals": {
         "wheelchair": [
-            
+            {
+                "vital": "Charge %",
+                "stat": "89%"
+            },
+            {
+                "vital": "Is patient loaded",
+                "stat": "Yes"
+            },
+            {
+                "vital": "In movement",
+                "stat": "Yes"
+            }
         ],
         "shower": [
             {
