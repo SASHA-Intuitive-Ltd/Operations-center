@@ -3,8 +3,9 @@
  * @Contains User's profile picture, full name, age, phone number, email, health state (diagnosis) more info button
  */
 import React, {useState} from 'react'
-import { Avatar, requirePropFactory } from '@mui/material'
+import { Avatar, getTableRowUtilityClass, requirePropFactory } from '@mui/material'
 import { useEffect } from 'react'
+import { element } from 'prop-types'
 
 
 function PersonalInfo({ user }) {
@@ -14,6 +15,7 @@ function PersonalInfo({ user }) {
 
     
     const [ userInfo, setInfo ] = useState({})
+    const { showerInfo, setShowerInfo } = useState({})
 
     useEffect(() => {
         setInfo({})
@@ -21,8 +23,8 @@ function PersonalInfo({ user }) {
         .then((data) => {
             console.log(data)
             setInfo(data)
-        });
-    }, [])
+        })
+    }, [showerInfo])
 
 
     return (
@@ -39,6 +41,7 @@ function PersonalInfo({ user }) {
                 <p><b>Address:</b> {userInfo.address}</p>
                 <p>{userInfo.diagnosis ? <><b>Diagnosis:</b> user.diagnosis </>: null}</p>
             </div>
+            
         </div>
     )
 }

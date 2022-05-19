@@ -4,37 +4,67 @@ import { MuiStyles } from '../../../styles/Mui_styles'
 import { Tooltip } from "@mui/material";
 
 
-function ProgressTrack({ currentDevice }) {
-    const [checkpoints, setCheckpoints] = useState(require('../../../configs/tests.json').device_checkpoints[currentDevice])
-    const [elements, setElements] = useState([])
-    const [progress, setProgress] = useState(50)
-
-    const themes = require('../../../configs/tests.json').theme
-
+function ProgressTrack({ _id }) {
+    const [workflow, setWorkflow] = useState({ })
+    
     const checkpointProgressStateStyle = {height: "35px", width: "35px", border: "1px solid black"}
 
     const getItems = () => {
-        checkpoints.forEach(element => {
-            elements.push(
-                <Tooltip title={`${element.name}: ${element.progress}`} arrow placement="bottom" sx={{ m: 0 }}>
-                    <div key={element.index} className="checkpoint">
-                        <div className={`checkpoint-progress ${element.progress}`} style={checkpointProgressStateStyle}><p>{element.index}</p></div>
-                    </div>
-                </Tooltip>
-            );
-        })
+        var elements = []
 
+        var steps = workflow.steps
+        if (steps) {
+
+            elements.push(
+                <div>
+                    Timer: {workflow.timer / 10} seconds passed
+                </div>
+            )
+
+            var i = 1
+            for (var key in steps) {
+                var prog = 'not-started'
+
+                if(steps[key] < workflow.timer) {
+                    prog = 'finished'
+                }
+
+                elements.push(
+                    <Tooltip title={`${key}: ${prog}`} arrow placement="bottom" sx={{ m: 0 }}>
+                        <div key={i} className="checkpoint">
+                            <div className={`checkpoint-progress ${prog}`} style={checkpointProgressStateStyle}><p>{i}</p></div>
+                        </div>
+                    </Tooltip>
+                );
+                i++
+            }
+        }
+
+
+        // TODO: Hnadle empty elements list (only timerr inserted..)
         return elements
     }
 
+    async function getWorkflowState() {
+        await fetch(`http://localhost:5000/workflows/${_id}`)
+        .then((response) => response.json())
+        .then((data) => {
+            setWorkflow(data)
+        })
+    }
+    
+    useEffect(() => {
+        //if (!workflow.steps) {
+        getWorkflowState()
+        // }
+    }, [workflow])
+
     return (
         <div className="progress-track">
-            <h3>Device in use: <span style={{fontWeight: 600, textTransform: 'capitalize'}}>{currentDevice}</span></h3>
+            {/* <h3>Device in use: <span style={{fontWeight: 600, textTransform: 'capitalize'}}></span></h3> */}
             {
                 getItems()
             }
-            <p><b>Progress: {progress}%</b></p>
-            <LinearProgress valueBuffer={progress} style={MuiStyles.LineProgStyle2} color="success" variant="buffer" value={progress}/>
         </div>
     )
 }
