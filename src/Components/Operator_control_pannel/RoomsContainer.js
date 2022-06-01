@@ -8,6 +8,8 @@ import SearchBar from "../SearchBar/SearchBar"
 
 function RoomsContainer({ adminInfo }) {
 
+    console.log("Admin info: " + adminInfo.location)
+
     const [ userInfo, setInfo ] = useState(null)
     const [ patientsList, setList ] = useState([])
 
@@ -17,7 +19,7 @@ function RoomsContainer({ adminInfo }) {
     }
 
     async function getCurrentPatientComp(patient) {
-        await fetch(`http://localhost:5000/users/${patient}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/users/${patient}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
@@ -28,13 +30,16 @@ function RoomsContainer({ adminInfo }) {
                     "name": userInfo.fullname,
                     "room_id": `${userInfo.address}, ${userInfo.fullname}`,
                     "current_activity": "wheelchair",
+                    "current_device": userInfo.device,
                     "states": {    
                         "health": "issue",
                         "monitors": "no_issue",
                         "requests": "issue"
                     }
                 }
-                addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) 
+                if (userInfo.address === adminInfo.location) {
+                    addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) 
+                }
             }
         })
     }

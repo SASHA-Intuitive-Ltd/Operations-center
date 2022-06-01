@@ -26,7 +26,7 @@ export default function Scenarios({  }) {
 
     // Get admin info from the server
     async function getAdminInfo() {
-        await fetch(`http://localhost:5000/admins/${id}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/admins/${id}`)
         .then((response) => response.json())
         .then(data => {
             console.log(data)

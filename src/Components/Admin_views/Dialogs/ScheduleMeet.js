@@ -24,7 +24,7 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
 
         for (var i = 0; i < patientsList.length; i++) {
 
-            fetch(`http://localhost:5000/users/${patientsList[i]}`)
+            fetch(`https://operations-center-dev.herokuapp.com/users/${patientsList[i]}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setCurrent(data)
@@ -48,7 +48,7 @@ function ScheduleMeet({ openAdd, handleClose, patientsList, adminName }) {
         // FIXME: Broken meeting link 
 
         // Send info to webserver 
-        await axios.post('http://localhost:5000/meetings', {
+        await axios.post('https://operations-center-dev.herokuapp.com/meetings', {
             admin: adminName,
             user: patient,
             date: date,

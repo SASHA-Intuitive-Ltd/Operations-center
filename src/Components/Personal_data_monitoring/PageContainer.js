@@ -19,8 +19,8 @@ function PageContainer({ healthStats, devicesPerformances, currentDevice, origin
                     {/* Subject's personal info */}
                     <PersonalInfo user={_id}/>
                     {/* Subject's health tracking */}
-                    {/* <HealthStats stats={healthStats}/> */}
-                    <ShowerMonitoring _id={_id}/>
+                    <HealthStats stats={healthStats}/> 
+                    {/* <ShowerMonitoring _id={_id}/> */}
                 </div>
                 <div className='right'>
                     <div className='row1'>
@@ -31,7 +31,7 @@ function PageContainer({ healthStats, devicesPerformances, currentDevice, origin
                         {/* Subject's performance (Reaction times, transition between devices time and more..) */}
                         <Performance/>
                         {/* Active device's performance (According to the performance parameters of each device, as specified)*/}
-                        {/* <DeviceTrack currentDevice={currentDevice}/> */}
+                        <DeviceTrack/>
                     </div>
                 </div>
             </div>

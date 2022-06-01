@@ -27,6 +27,7 @@ import ViewSpecific from './Components/Admin_views/Scenarios/ViewSpecific';
 import AddStep from './Components/Admin_views/Scenarios/Steps/AddStep';
 import ViewSteps from './Components/Admin_views/Scenarios/Steps/ViewSteps';
 import AppAppBar from './Components/User_management/Landing/AppBar'
+import HealthHistory from './Components/Personal_data_monitoring/History/HealthHistory';
 
 
 // Logo import
@@ -83,7 +84,8 @@ export default function App() {
               <Route path='/steps_list/:id'><ViewSteps/></Route>
 
               {/* TODO: Minimize hardcoding in PatientPage */}
-              <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1} devicesPerformances={testConfigs.device_checkpoints} currentDevice={"wheelchair"}/></Route>
+              <Route path='/patient/:_id'><PageContainer healthStats={testConfigs.healthStats1} /></Route>
+              <Route path='/patient_health_history/:_id'><HealthHistory /></Route>
             
               {/* Patient related routes */}
           </Switch>

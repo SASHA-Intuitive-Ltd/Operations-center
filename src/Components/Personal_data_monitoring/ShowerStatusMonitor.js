@@ -52,7 +52,7 @@ export default function ShowerMonitoring({ _id }) {
     }
 
     useEffect( () => {
-            fetch(`http://localhost:5000/device/${_id}`)
+            fetch(`https://operations-center-dev.herokuapp.com/device/${_id}`)
             .then((response) => response.json())
             .then(data => setInfo(data))
     }, [showerInfo])

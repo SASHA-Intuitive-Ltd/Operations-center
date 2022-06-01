@@ -104,7 +104,7 @@ export default function Login({ userType, setToken, creds, link, token, setType 
         var collectionType = userType === 'admin' ? 'admins' : 'users'
 
         // Get request, from the specified collection of user with the given password
-        await fetch(`http://localhost:5000/${collectionType}/loginByNameAndPassword/${fullname}/${password}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/${collectionType}/loginByNameAndPassword/${fullname}/${password}`)
         .then((response) => response.json())
         .then(data => {
             // console.log(data)

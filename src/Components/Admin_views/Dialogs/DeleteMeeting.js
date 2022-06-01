@@ -26,7 +26,7 @@
      */
     async function deleteMeeting() {
         console.log(`Removing ${meetingInfo._id}`)
-        await axios.delete(`http://localhost:5000/meetings/${meetingInfo._id}`)
+        await axios.delete(`https://operations-center-dev.herokuapp.com/meetings/${meetingInfo._id}`)
         setTrigger(true)
     }
  

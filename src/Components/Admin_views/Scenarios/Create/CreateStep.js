@@ -27,7 +27,7 @@ export default function CreateStep({ open, handleClose, addStep }) {
     // Async function for accessing the steps from the database
     async function getSteps() {
         // Fetch steps collection through api controller
-        await fetch('http://localhost:5000/steps/')
+        await fetch('https://operations-center-dev.herokuapp.com/steps/')
         .then((response) => response.json())
         .then((data) => { 
             // Set steps list as data

@@ -149,7 +149,7 @@ export default function MeetingsList() {
 
   // Get admin's info
   async function getAdminInfo() {
-      await fetch(`http://localhost:5000/admins/${id}`)
+      await fetch(`https://operations-center-dev.herokuapp.com/admins/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setInfo(data.fullname)
@@ -166,7 +166,7 @@ export default function MeetingsList() {
       }
 
       if(comps.length === 0 && adminInfo !== '') {
-          await fetch(`http://localhost:5000/meetings/byAdmin/${adminInfo}`)
+          await fetch(`https://operations-center-dev.herokuapp.com/meetings/byAdmin/${adminInfo}`)
           .then((response) => response.json())
           .then((data) => {
               console.log(data)

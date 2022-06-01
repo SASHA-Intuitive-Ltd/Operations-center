@@ -46,7 +46,7 @@ function ProgressTrack({ _id }) {
     }
 
     async function getWorkflowState() {
-        await fetch(`http://localhost:5000/workflows/${_id}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/workflows/${_id}`)
         .then((response) => response.json())
         .then((data) => {
             setWorkflow(data)

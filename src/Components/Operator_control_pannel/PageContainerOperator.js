@@ -29,7 +29,7 @@ function PageContainerOperator({ }) {
     }
 
     async function getCurrentPatientComp(patient) {
-        await fetch(`http://localhost:5000/users/${patient}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/users/${patient}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
@@ -38,7 +38,8 @@ function PageContainerOperator({ }) {
                     "_id": data._id,
                     "name": data.fullname,
                     "room_id": `${data.address}, ${data.fullname}`,
-                    "current_activity": "wheelchair",
+                    "current_activity": data.device,
+                    // FIXME: 
                     "states": {    
                         "health": "issue",
                         "monitors": "no_issue",
@@ -47,7 +48,10 @@ function PageContainerOperator({ }) {
                 }
 
                 //adminInfo.location === data.address ? addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>) : console.log()
-                addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>)
+                if (adminInfo.location === data.address) 
+                {
+                    addComp(<RoomBox key={roomParams.room_id} roomParams={roomParams}/>)
+                }
             }
         })
     }
@@ -61,7 +65,7 @@ function PageContainerOperator({ }) {
     }
 
     async function getOperatorInfo() {
-        await fetch(`http://localhost:5000/admins/${id}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/admins/${id}`)
         .then((response) => response.json())
         .then(data => {
             setInfo(data)
@@ -70,7 +74,7 @@ function PageContainerOperator({ }) {
     }
 
     async function getUsers() {
-        await fetch('http://localhost:5000/users')
+        await fetch('https://operations-center-dev.herokuapp.com/users')
         .then((response) => response.json())
         .then(data => {
             console.log(data)
@@ -78,20 +82,20 @@ function PageContainerOperator({ }) {
         })
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         if (users[0] === 1)
         {    
             getUsers()
         }
         
-        
-        /*if (adminInfo === null) 
-        {
-            getOperatorInfo()
-        }*/
 
         else {
             // console.log("Admin_id: " + adminInfo._id)
+            if (adminInfo === null) {
+                await getOperatorInfo()
+            }
+            console.log(adminInfo)
+
             if (comps === null) {
                 setComps([])
                 loopComps()
@@ -101,11 +105,7 @@ function PageContainerOperator({ }) {
         if (users !== []) {
             setUsers(users)
         }
-
-        if (adminInfo !== null) {
-            setInfo(adminInfo)
-        }
-    }, [id, users])
+    }, [id, users, adminInfo])
 
 
     return (

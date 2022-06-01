@@ -87,7 +87,7 @@ export default function AddStep({ }) {
 
         console.log("Data: " + stepData)
 
-        await axios.post('http://localhost:5000/steps', stepData)
+        await axios.post('https://operations-center-dev.herokuapp.com/steps', stepData)
 
         // Clean input states
         setTitle("")

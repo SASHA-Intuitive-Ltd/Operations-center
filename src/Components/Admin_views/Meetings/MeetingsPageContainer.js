@@ -32,7 +32,7 @@ function MeetingsPageContainer({ }) {
         
         // Starture for example
         
-        fetch('http://localhost:5000/admins/620a324365bd8515cf1a7ba3').then((response) => response.json())
+        fetch('https://operations-center-dev.herokuapp.com/admins/620a324365bd8515cf1a7ba3').then((response) => response.json())
         .then((data) => {
             setInfo(data);
         })

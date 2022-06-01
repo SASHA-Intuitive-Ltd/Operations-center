@@ -66,7 +66,7 @@ export default function UpdatePatient({ patientInfo, openAdd, handleClose, setTr
         // TODO: Validators
 
         // Send info to webserver
-        await axios.put(`http://localhost:5000/users/${patientInfo._id}`, {
+        await axios.put(`https://operations-center-dev.herokuapp.com/users/${patientInfo._id}`, {
             fullname: fullname,
             password: password,
             email: email,

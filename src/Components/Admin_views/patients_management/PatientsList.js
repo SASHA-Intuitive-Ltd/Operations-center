@@ -79,7 +79,7 @@ export default function PatientsList({ activeFilters }) {
     }
 
     async function getPatientComp(patient) {
-        await fetch(`http://localhost:5000/users/${patient}`)
+        await fetch(`https://operations-center-dev.herokuapp.com/users/${patient}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
@@ -156,7 +156,7 @@ export default function PatientsList({ activeFilters }) {
         if(comps.length === 0) {
 
             // Fetch to users collection
-            await fetch(`http://localhost:5000/users`)
+            await fetch(`https://operations-center-dev.herokuapp.com/users`)
             .then((response) => response.json())
             .then((data) => {
                 // Per each patient, add new line component to the comps list

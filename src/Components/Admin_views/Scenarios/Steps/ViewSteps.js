@@ -37,7 +37,7 @@ export default function ViewSteps() {
     ]
 
     async function getSteps() {
-        await fetch('http://localhost:5000/steps')
+        await fetch('https://operations-center-dev.herokuapp.com/steps')
         .then((response) => response.json())
         .then((data) => {    
             data.map((step) => {

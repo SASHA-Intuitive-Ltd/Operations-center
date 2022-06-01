@@ -19,13 +19,15 @@ function RoomBox({ roomParams }) {
                         <h2>{roomParams.room_id}</h2>
                     </div>
                     <div className="action">
+                        {/* TODO: Add Device to workflows DAO */}
+                        {/* TODO: Do states as: emergency, on/off/progress requests according to db */}
                         <p>Currently using: {roomParams.current_activity}</p>
                     </div>
-                    <div className="states">
+                    {/* <div className="states">
                         <div className={`icon--${roomParams.states.health === "no_issue" ? "ok" : "alert"}`}><FavoriteBorderIcon/></div>
                         <div className={`icon--${roomParams.states.monitors === "no_issue" ? "ok" : "alert"}`}><MonitorHeartIcon/></div>
                         <div className={`icon--${roomParams.states.requests === "no_issue" ? "ok" : "alert"}`}><TouchAppIcon/></div>
-                    </div>
+                    </div> */}
             </div>
         </Link>
     )

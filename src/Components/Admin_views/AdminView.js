@@ -43,7 +43,7 @@ export default function AdminView({  }) {
     useLayoutEffect(() => {
         
         // Fetch admin info (TODO: Do according to _id param from route)
-        fetch(`http://localhost:5000/admins/${id}`)
+        fetch(`https://operations-center-dev.herokuapp.com/admins/${id}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)

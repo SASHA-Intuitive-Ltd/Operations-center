@@ -21,46 +21,30 @@ import storage from '../../../configs/firebaseConfig';
 import axios from 'axios'
 import { MuiStyles } from '../../../styles/Mui_styles';
 
-function AddPatient({ openAdd, handleClose }) {
+function AddAdmin({ openAdd, handleClose }) {
 
     const [fullname, setFullname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [address, setAddress] = useState("")
-    const [phone, setPhone] = useState("")
-    const [diseases, setDiseases] = useState([])
-    const [gender, setGender] = useState("male")
-    const [age, setAge] = useState(20)
-    const [profileImg, setProfileImg] = useState("default")
-    const [img, setImage] = useState(null)
+    const [location, setLocatiom] = useState("")
     
     const theme = useTheme()
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
 
-    const imgStyle = {
-        padding: 20,
-        maxHeight: 75,
-        maxWidth: 45
-    }
+    
 
-
-    const submitNewPatient = useCallback(async () => {
+    const submitNewAdmin = useCallback(async () => {
         // Send info to webserver
-        await axios.post('https://operations-center-dev.herokuapp.com/users', {
+        await axios.post('https://operations-center-dev.herokuapp.com/admins', {
             fullname: fullname,
             password: password,
             email: email,
-            address: address,
-            phone: phone,
-            profileImg: profileImg,
-            gender: gender,
-            device: 'temp'
+            location: location
         })
 
         // Handle dialog closing
         handleClose()
     })
-    
 
     async function handleOnChangeInput(e) {
         const { name, value } = e.target
@@ -88,21 +72,10 @@ function AddPatient({ openAdd, handleClose }) {
             setEmail(value)
         }
 
-        else if (name === 'address') {
-            setAddress(value)
+        else if (name === 'location') {
+            setLocatiom(value)
         }
 
-        else if (name === 'phone') {
-            setPhone(value)
-        }
-
-        else if (name === 'gender_male') {
-            setGender(value)
-        }
-
-        else if (name === 'gender_female') {
-            setGender(value)
-        }
     }
 
     return (
@@ -140,58 +113,6 @@ function AddPatient({ openAdd, handleClose }) {
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
-                        <TextField style={MuiStyles.TextField} name="phone" label="Phone number" variant="outlined" 
-                            value={phone}
-                            onChange={e => handleOnChangeInput(e)} 
-                        />
-                        
-                        <TextField style={MuiStyles.TextField} name="disease" label="Previous diseases" variant="outlined" 
-                            value={diseases}
-                            onChange={e => handleOnChangeInput(e)} 
-                        />
-
-                        <DialogContentText>Gender</DialogContentText>
-                        <RadioGroup
-                            defaultValue="male"
-                            name="radio-buttons-group"
-                            style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}
-                        >
-                            <FormControlLabel name='gender_male' onChange={e => handleOnChangeInput(e)}  value="male" label="Male"
-                                control={
-                                    <Radio 
-                                        checked={gender === 'male'}
-                                    />
-                                } 
-                            />
-                            <FormControlLabel name='gender_female' onChange={e => handleOnChangeInput(e)} value="female" label="Female" 
-                                control={
-                                    <Radio 
-                                        checked={gender === 'female'}
-                                    />
-                                } 
-                            />
-                        </RadioGroup>
-                      
-                        {
-                            profileImg === "default" 
-                            ?
-                            <Button
-                            variant="outlined"
-                            component="label"
-                            style={MuiStyles.ButtonStyle}
-                            >
-                            Upload patient image
-                            <input
-                                type="file"
-                                hidden
-                                name="picture"
-                                onChange={handleOnChangeInput}
-                            />
-                            </Button>
-                            : 
-                            null
-                        }
-                        <img src={img} style={imgStyle}/>
                     </DialogContent>
                     <DialogActions>
                         <Button style={MuiStyles.ButtonStyle} onClick={submitNewPatient} autoFocus variant="contained">

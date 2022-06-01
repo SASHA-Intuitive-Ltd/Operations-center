@@ -24,7 +24,7 @@ export default function UpdateMeeting({ open, handleClose, meetingInfo, setTrigg
     // Submit the edits to the server
     async function submitEdits() {
 
-        axios.put(`http://localhost:5000/meetings/${meetingInfo._id}`, {
+        axios.put(`https://operations-center-dev.herokuapp.com/meetings/${meetingInfo._id}`, {
             _id: meetingInfo._id,
             user: meetingInfo.user,
             admin: meetingInfo.admin,

@@ -31,7 +31,7 @@ export default function DeletePatient({ patientInfo, open, handleClose, setTrigg
 
     async function deleteUser() {
         console.log(`Removing ${patientInfo._id}`)
-        await axios.delete(`http://localhost:5000/users/${patientInfo._id}`)
+        await axios.delete(`https://operations-center-dev.herokuapp.com/users/${patientInfo._id}`)
         setTrigger(true)
         // TODO: Update admin's users list, remove the useId of the removed user from this array, not crucial, cause the user won't be shown in the table cause his
         // Id value, returns null value, but for efficient the process and save data transport between client and server, we remove it from admin's list as well.

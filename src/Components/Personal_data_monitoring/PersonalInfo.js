@@ -19,7 +19,7 @@ function PersonalInfo({ user }) {
 
     useEffect(() => {
         setInfo({})
-        fetch(`http://localhost:5000/users/${user}`).then((response) => response.json())
+        fetch(`https://operations-center-dev.herokuapp.com/users/${user}`).then((response) => response.json())
         .then((data) => {
             console.log(data)
             setInfo(data)
@@ -37,8 +37,8 @@ function PersonalInfo({ user }) {
                 <p className='info__username'>{userInfo.fullname}</p>
                 <p><b>Phone:</b> {userInfo.phone}</p>
                 <p><b>Email:</b> {userInfo.email}</p>
-                <p><b>Gender:</b> <span style={{textTransform: 'capitalize'}}>{userInfo.gender}</span></p>
-                <p><b>Address:</b> {userInfo.address}</p>
+                {/* <p><b>Gender:</b> <span style={{textTransform: 'capitalize'}}>{userInfo.gender}</span></p> */}
+                <p><b>Location:</b> {userInfo.address}</p>
                 <p>{userInfo.diagnosis ? <><b>Diagnosis:</b> user.diagnosis </>: null}</p>
             </div>
             

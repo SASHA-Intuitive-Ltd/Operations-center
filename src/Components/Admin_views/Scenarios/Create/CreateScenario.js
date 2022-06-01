@@ -148,7 +148,7 @@ export default function CreateScenario() {
 
         console.log(scenarioData)
 
-        await axios.post('http://localhost:5000/scenarios', scenarioData)
+        await axios.post('https://operations-center-dev.herokuapp.com/scenarios', scenarioData)
 
         history.push(`/scenarios/${id}`)
     } 
