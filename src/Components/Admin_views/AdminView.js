@@ -109,6 +109,10 @@ export default function AdminView({  }) {
                 <div className="row">
                     {/* View operating screen action */}
                     {
+                        adminInfo.location === 'Home'
+                        ?
+                        null
+                        :
                         getCard({
                             "action": CardOptions.operator_view.action,
                             "actionCall": <Link className="link-box" to={`/operating_screen/${id}`} style={MuiStyles.IconContentStyle1}><PreviewIcon className="button-icon"/></Link>,
@@ -128,14 +132,18 @@ export default function AdminView({  }) {
                     
                     {/* View patient management (Update and delete options too) */}
                     {
-                        adminInfo.location !== 'Home'
-                        ?
                         getCard({
                             "action": CardOptions.manage.action,
                             "actionCall": <Link className="link-box" to={`/manage/${id}`} style={MuiStyles.IconContentStyle1}><UpdateIcon className="button-icon"/></Link>,
                             "description": CardOptions.manage.description
                         })
-                        :
+                    }
+                </div>
+                
+                {/* Container for actions: view upcoming booked meets, book a meeting, report issue to IT department */}
+                <div className="row">
+                     {/* Open new admin dialog*/} 
+                     {
                         getCard({
                             "action": CardOptions.add_admin.action,
                             "actionCall": <AddCircleOutlineIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
@@ -143,26 +151,13 @@ export default function AdminView({  }) {
                             "func": handleClickOpen(CardOptions.add_admin.type),
                         })
                     }
-                </div>
-                
-                {/* Container for actions: view upcoming booked meets, book a meeting, report issue to IT department */}
-                <div className="row">
+
                     {/* View booked meetings as well as appointing new meetings */}
                     {
                         getCard({
                             "action": CardOptions.meetings.action,
                             "actionCall": <Link className="link-box" to={`/meetings/${id}`} style={MuiStyles.IconContentStyle1}><CardMembershipIcon className="button-icon"/> </Link>,
                             "description": CardOptions.meetings.action
-                        })
-                    }
-            
-                    {/* Open new report ticket  dialog*/}
-                    {
-                        getCard({
-                            "action": CardOptions.bugs.action,
-                            "actionCall": <BugReportIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
-                            "description": CardOptions.bugs.description,
-                            "func": handleClickOpen(CardOptions.bugs.type)
                         })
                     }
 
@@ -179,9 +174,9 @@ export default function AdminView({  }) {
 
             {/* Include dialog according to dialog type */}
             <div>
-                { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} id={id}/> : null}
-                { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose}/> : null}
-                { type === 'addAd' ? <AddAdmin openAdd={open} handleClose={handleClose}/> : null}
+                { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
+                { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
+                { type === 'addAd' ? <AddAdmin openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
             </div>
         </div>
     )

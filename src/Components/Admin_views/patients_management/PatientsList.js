@@ -86,7 +86,7 @@ export default function PatientsList({ activeFilters }) {
         .then((data) => {
             console.log(data)
             console.log(adminInfo.location)
-            if (data.address === adminInfo.location) {
+            if (data.address === adminInfo.location || adminInfo.location === 'Home') {
                 addPatients(data)
                 addComp(
                 <TableRow hover role="checkbox" tabIndex={-1} key={patient._id}>

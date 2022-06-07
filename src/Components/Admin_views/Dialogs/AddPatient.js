@@ -21,7 +21,7 @@ import storage from '../../../configs/firebaseConfig';
 import axios from 'axios'
 import { MuiStyles } from '../../../styles/Mui_styles';
 
-function AddPatient({ openAdd, handleClose }) {
+function AddPatient({ openAdd, handleClose, adminInfo }) {
 
     const [fullname, setFullname] = useState("")
     const [email, setEmail] = useState("")
@@ -50,7 +50,7 @@ function AddPatient({ openAdd, handleClose }) {
             fullname: fullname,
             password: password,
             email: email,
-            address: address,
+            address: adminInfo.location,
             phone: phone,
             profileImg: profileImg,
             gender: gender,
@@ -88,10 +88,6 @@ function AddPatient({ openAdd, handleClose }) {
             setEmail(value)
         }
 
-        else if (name === 'address') {
-            setAddress(value)
-        }
-
         else if (name === 'phone') {
             setPhone(value)
         }
@@ -125,18 +121,13 @@ function AddPatient({ openAdd, handleClose }) {
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
-                        <TextField style={MuiStyles.TextField} name="email" label="Email address" variant="outlined"
+                        <TextField style={MuiStyles.TextField} name="email" label="Email Address" variant="outlined"
                             value={email}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
                         <TextField style={MuiStyles.TextField} name="password" label="User password" variant="outlined" 
                             value={password}
-                            onChange={e => handleOnChangeInput(e)} 
-                        />
-                        
-                        <TextField style={MuiStyles.TextField} name="address" label="Home Adress" variant="outlined" 
-                            value={address}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
