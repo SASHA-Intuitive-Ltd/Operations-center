@@ -31,6 +31,8 @@ export default function PatientsList({ activeFilters }) {
     const { id } = useParams()
     const history = useHistory()
 
+    const [ adminInfo, setInfo ] = useState({fullname: null})
+
     const [ comps, setComps ] = useState([])
     const addComp = (newComp) => {
         setComps((c) => [...c, newComp])
@@ -83,8 +85,10 @@ export default function PatientsList({ activeFilters }) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-            addPatients(data)
-            addComp(
+            console.log(adminInfo.location)
+            if (data.address === adminInfo.location) {
+                addPatients(data)
+                addComp(
                 <TableRow hover role="checkbox" tabIndex={-1} key={patient._id}>
                 {
                     columns.map((column) => {
@@ -143,6 +147,7 @@ export default function PatientsList({ activeFilters }) {
                 }
                 </TableRow>
             )
+            }
         })
     }
 
@@ -169,10 +174,17 @@ export default function PatientsList({ activeFilters }) {
     }
 
     // UseEffect hook, runs each time the page is loaded or user is being updated/deleted
-    useEffect(() => {
+    useEffect(async () => {
+        if (adminInfo.fullname === null) {
+            await fetch(`https://operations-center-dev.herokuapp.com/admins/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setInfo(data)
+            })
+        }
         beforeRunning()
         setTrigger(false)
-    }, [id, updateTrigger])
+    }, [id, updateTrigger, adminInfo])
 
     return (
         <div className='landing'>

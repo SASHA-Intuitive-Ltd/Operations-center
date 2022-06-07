@@ -23,6 +23,7 @@ import AccessibleForwardIcon from '@mui/icons-material/AccessibleForward';
 
 // Dialogs
 import AddPatient from "./Dialogs/AddPatient";
+import AddAdmin from "./Dialogs/AddAdmin";
 import ReportBug from "./Dialogs/ReportBug";
 import { MuiStyles } from "../../styles/Mui_styles";
 
@@ -127,10 +128,19 @@ export default function AdminView({  }) {
                     
                     {/* View patient management (Update and delete options too) */}
                     {
+                        adminInfo.location !== 'Home'
+                        ?
                         getCard({
                             "action": CardOptions.manage.action,
                             "actionCall": <Link className="link-box" to={`/manage/${id}`} style={MuiStyles.IconContentStyle1}><UpdateIcon className="button-icon"/></Link>,
                             "description": CardOptions.manage.description
+                        })
+                        :
+                        getCard({
+                            "action": CardOptions.add_admin.action,
+                            "actionCall": <AddCircleOutlineIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
+                            "description":  CardOptions.add_admin.description,
+                            "func": handleClickOpen(CardOptions.add_admin.type),
                         })
                     }
                 </div>
@@ -171,6 +181,7 @@ export default function AdminView({  }) {
             <div>
                 { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} id={id}/> : null}
                 { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose}/> : null}
+                { type === 'addAd' ? <AddAdmin openAdd={open} handleClose={handleClose}/> : null}
             </div>
         </div>
     )

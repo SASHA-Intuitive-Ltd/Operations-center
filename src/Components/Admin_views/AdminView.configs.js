@@ -12,6 +12,12 @@ export const CardOptions = {
         "type": 'add'
     },
 
+    add_admin : {
+        "action": "Add new admin",
+        "description": "Add a new admin admins list",
+        "type": 'addAd'
+    },
+
     manage : {
         "action": "Manage patients",
         "description": "Update or remove patient info, also can re-add patient to other representative"

@@ -49,18 +49,7 @@ function AddAdmin({ openAdd, handleClose }) {
     async function handleOnChangeInput(e) {
         const { name, value } = e.target
 
-        if (name === 'picture') {
-            if (e.target.files && e.target.files[0]) {
-                let img1 = e.target.files[0];
-                setImage(URL.createObjectURL(img1))
-                
-                storage.refFromURL(`gs://sasha-cds-poc.appspot.com/${img1.name}`).put(img1).on("state_changed" , alert("success") , alert);
-
-                setProfileImg(`https://firebasestorage.googleapis.com/v0/b/sasha-cds-poc.appspot.com/o/${img1.name}?alt=media`)
-            }
-        }
-
-        else if (name === 'fullname') {
+        if (name === 'fullname') {
             setFullname(value)
         }
 
@@ -108,14 +97,14 @@ function AddAdmin({ openAdd, handleClose }) {
                             onChange={e => handleOnChangeInput(e)} 
                         />
                         
-                        <TextField style={MuiStyles.TextField} name="address" label="Home Adress" variant="outlined" 
-                            value={address}
+                        <TextField style={MuiStyles.TextField} name="location" label="Home Adress" variant="outlined" 
+                            value={location}
                             onChange={e => handleOnChangeInput(e)} 
                         />
 
                     </DialogContent>
                     <DialogActions>
-                        <Button style={MuiStyles.ButtonStyle} onClick={submitNewPatient} autoFocus variant="contained">
+                        <Button style={MuiStyles.ButtonStyle} onClick={submitNewAdmin} autoFocus variant="contained">
                             Submit patient
                         </Button>
                     </DialogActions>
@@ -125,4 +114,4 @@ function AddAdmin({ openAdd, handleClose }) {
     )
 }
 
-export default AddPatient
+export default AddAdmin
