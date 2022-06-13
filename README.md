@@ -1,15 +1,20 @@
 # Sasha Intuitive .Ltd operations center software
 
 ## Purpose 
-Enable controlling smart house systems remotely and keep tracking patient's health
+Enable monitoring smart house systems remotely and keep tracking patient's health
 
 ## Documentations:
-appendixes found in project's google drive, ask Ruben Rudov for perms
+Appendixes found in project's google drive, ask Ruben Rudov for perms
+
+## Contribute
+- Clone this repo
+- install packages using: ```npm install```
+- For debugging, use: ```npm start```
+- Login as an admin to one of testing users (Ruben Rudov - for site debugging/Spivak Ilan - for shower device tracking for now.)
+- Go to operator page and chose a user to track.
+- Each part of the site is documented at: [final documentation](https://docs.google.com/document/d/1-9-OYhF-cYoPGiyFr6bPmLa_wxn9J60caYYPrhxHEbk/edit)
+- For editting and writting code for admin view: go to admin views section and lookup for the relevant component according to the component at app.js's router.
 
 ## Questions directed to
 Ruben Rudov - Software developer and architect
-Through:
-
-Email: rudovruben4all@gmail.com 
-
-Whatsapp: +972-054-2679333
+Gmail: rudovruben4all@gmail.com 
