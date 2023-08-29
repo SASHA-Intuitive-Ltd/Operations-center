@@ -26,6 +26,7 @@ import AddPatient from "./Dialogs/AddPatient";
 import AddAdmin from "./Dialogs/AddAdmin";
 import ReportBug from "./Dialogs/ReportBug";
 import { MuiStyles } from "../../styles/Mui_styles";
+import NewAddPatient from "./Dialogs/NewAddPatient";
 
 // Admin home page function component
 export default function AdminView({  }) {
@@ -109,10 +110,6 @@ export default function AdminView({  }) {
                 <div className="row">
                     {/* View operating screen action */}
                     {
-                        adminInfo.location === 'Home'
-                        ?
-                        null
-                        :
                         getCard({
                             "action": CardOptions.operator_view.action,
                             "actionCall": <Link className="link-box" to={`/operating_screen/${id}`} style={MuiStyles.IconContentStyle1}><PreviewIcon className="button-icon"/></Link>,
@@ -141,40 +138,43 @@ export default function AdminView({  }) {
                 </div>
                 
                 {/* Container for actions: view upcoming booked meets, book a meeting, report issue to IT department */}
-                <div className="row">
+                {/* <div className="row"> */}
                      {/* Open new admin dialog*/} 
-                     {
+                     {/* {
                         getCard({
                             "action": CardOptions.add_admin.action,
                             "actionCall": <AddCircleOutlineIcon style={MuiStyles.IconContentStyle1} className="button-icon"/>,
                             "description":  CardOptions.add_admin.description,
                             "func": handleClickOpen(CardOptions.add_admin.type),
                         })
-                    }
+                    } */}
 
                     {/* View booked meetings as well as appointing new meetings */}
-                    {
+                    {/* {
                         getCard({
                             "action": CardOptions.meetings.action,
                             "actionCall": <Link className="link-box" to={`/meetings/${id}`} style={MuiStyles.IconContentStyle1}><CardMembershipIcon className="button-icon"/> </Link>,
                             "description": CardOptions.meetings.action
                         })
-                    }
+                    } */}
 
                     {/* View updates for operators */}
-                    {
+                    {/* {
                         getCard({
                             "action": CardOptions.scenarios.action,
                             "actionCall": <Link className="link-box" to={`/scenarios/${id}`} style={MuiStyles.IconContentStyle1}><AccessibleForwardIcon className="button-icon"/></Link>,
                             "description": CardOptions.scenarios.description
                         })
                     }
-                </div>
+                </div> */}
             </div>
 
             {/* Include dialog according to dialog type */}
             <div>
-                { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
+                { type === 'add' ? <NewAddPatient openAdd={open} handleClose={handleClose}/> : null}
+                {/* { type === 'add' ? <AddPatient openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null} 
+                    Prev add user
+                */}
                 { type === 'report-bug' ? <ReportBug openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
                 { type === 'addAd' ? <AddAdmin openAdd={open} handleClose={handleClose} adminInfo={adminInfo}/> : null}
             </div>
